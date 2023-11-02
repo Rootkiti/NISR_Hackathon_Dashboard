@@ -9,7 +9,7 @@ import plotly.express as px
 
 survey_data = pd.read_excel("survey_data.xlsx", sheet_name=None)
 location = pd.read_excel("provinces&district.xlsx", )
-labour_force = pd.read_excel('RLFS.xlsx', sheet_name=None)
+# labour_force = pd.read_excel('RLFS.xlsx', sheet_name=None)
 
 
 
