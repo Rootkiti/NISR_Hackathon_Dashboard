@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import streamlit as stl
 import plotly.express as px
-
+import agriculture_practices as ap
+import crop_production_and_yield as cpy
 
 
 # reading data
@@ -345,8 +346,6 @@ with tabs[0]:
                 stl.plotly_chart(fig,use_container_width=True)
                    
 with tabs[1]:    
-    import agriculture_practices as ap
-    # dist = str(chosen_district["District"][0]print
     ap.showData(dist,seasons)
-    # ap.showData.protected_land          
-                                   
+with tabs[2]:
+    cpy.crop_production_yeald(survey_data)                               

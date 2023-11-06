@@ -11,7 +11,7 @@ location = pd.read_excel("provinces&district.xlsx", )
 
 def showData(district,s):
     stl.subheader(' Participation In Agriculture Practice By Farmer Category Per Season And District In 2022 (%)')               
-
+    x = ['Season A','Season B','Season C']
     col1,col2,col3,col4 = stl.columns(4)
     
     new_column_names = ['District','Overall','SSF','LSF']
@@ -139,11 +139,10 @@ def showData(district,s):
     type1,type2,type3,type4,type5= stl.columns(5)
     irrigation_type = survey_data.get("Table 58")
     irrigation_type.drop(0)
-    
+    clrs = ['#B0BF1A','#045F5F','#FFFACD']
     cols = irrigation_type.columns
     if str(districts).strip().__contains__(district):
-        with type1:
-            stl.text('surface irrigation')
+        with type1:            
             # surface irrigation
             Surface_irrigation = irrigation_type[cols[:4]]
             n_cols = ['District','Season A','Season B','Season C']
@@ -151,9 +150,18 @@ def showData(district,s):
             Surface_irrigation = Surface_irrigation.drop([0,1]).reset_index().drop(columns=['index'])
             Surface_irrigation = Surface_irrigation.fillna(0)
             district_Surface_irrigation = Surface_irrigation[Surface_irrigation['District'] == district]
-            stl.write(district_Surface_irrigation)
+            district_Surface_irrigation = round(district_Surface_irrigation,1)
+            y = [district_Surface_irrigation['Season A'].sum(),district_Surface_irrigation['Season B'].sum(),district_Surface_irrigation['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title=f'Surface Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                 ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type2:
-            stl.text('flood irrigation')
             # flood irrigation
             Flood_irrigation = irrigation_type[cols[4:7]]
             Flood_irrigation = pd.concat([irrigation_type['District'].drop(0),Flood_irrigation],axis=1)
@@ -162,9 +170,17 @@ def showData(district,s):
             Flood_irrigation = Flood_irrigation.fillna(0)
             Flood_irrigation = round(Flood_irrigation,1)
             district_Flood_irrigation = Flood_irrigation[Flood_irrigation['District']==district]
-            stl.write(district_Flood_irrigation)
+            y = [district_Flood_irrigation['Season A'].sum(),district_Flood_irrigation['Season B'].sum(),district_Flood_irrigation['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title=f'Flood Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                 ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type3:
-            stl.text('Drip irrigation')  
             # Drip irrigation
             Drip_irrigation = irrigation_type[cols[7:10]]
             Drip_irrigation = pd.concat([irrigation_type['District'].drop(0),Drip_irrigation],axis=1)
@@ -173,9 +189,17 @@ def showData(district,s):
             Drip_irrigation = Drip_irrigation.fillna(0)
             Drip_irrigation = round(Drip_irrigation,1)
             district_Drip_irrigation = Drip_irrigation[Drip_irrigation['District'] == district]
-            stl.write(district_Drip_irrigation)         
+            y = [district_Drip_irrigation['Season A'].sum(),district_Drip_irrigation['Season B'].sum(),district_Drip_irrigation['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title=f'Drip Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                 ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type4:
-            stl.text('Sprinkler irrigation')
 
             # Sprinkler irrigation
             Sprinkle_irrigation = irrigation_type[cols[10:13]]
@@ -185,9 +209,18 @@ def showData(district,s):
             Sprinkle_irrigation = Sprinkle_irrigation.fillna(0)
             Sprinkle_irrigation = round(Sprinkle_irrigation,1)
             district_Sprinkle_irrigation = Sprinkle_irrigation[Sprinkle_irrigation['District'] == district]
-            stl.write(district_Sprinkle_irrigation)
+            
+            y = [district_Sprinkle_irrigation['Season A'].sum(),district_Sprinkle_irrigation['Season B'].sum(),district_Sprinkle_irrigation['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title=f'Sprinkler Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                 ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type5:
-            stl.text('Pivot irrigation')
             # Pivot irrigation
             Pivot_irrigation = irrigation_type[cols[13:16]]
             Pivot_irrigation = pd.concat([irrigation_type['District'].drop(0),Pivot_irrigation],axis=1)
@@ -196,20 +229,39 @@ def showData(district,s):
             Pivot_irrigation = Pivot_irrigation.fillna(0)
             Pivot_irrigation = round(Pivot_irrigation,1)
             district_Pivot_irrigation = Pivot_irrigation[Pivot_irrigation['District'] == district]
-            stl.write(district_Pivot_irrigation)
+            
+            y = [district_Pivot_irrigation['Season A'].sum(),district_Pivot_irrigation['Season B'].sum(),district_Pivot_irrigation['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title=f'Pivot Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                 ),)
+            stl.plotly_chart(fig, use_container_width=True)
       
     else:
         with type1:
-            stl.text('surface irrigation')
             # surface irrigation
             Surface_irrigation = irrigation_type[cols[:4]]
             n_cols = ['District','Season A','Season B','Season C']
             Surface_irrigation.set_axis(n_cols,axis=1,inplace=True)
             Surface_irrigation = Surface_irrigation.drop([0,1]).reset_index().drop(columns=['index'])
             Surface_irrigation = Surface_irrigation.fillna(0)
-            stl.write(Surface_irrigation)
-        with type2:
-            stl.text('flood irrigation')
+            Surface_irrigation = round(Surface_irrigation,1)
+            y = [Surface_irrigation['Season A'][30],Surface_irrigation['Season B'][30],Surface_irrigation['Season C'][30]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=(f'Surface Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
+
+        with type2:            
             # flood irrigation
             Flood_irrigation = irrigation_type[cols[4:7]]
             Flood_irrigation = pd.concat([irrigation_type['District'].drop(0),Flood_irrigation],axis=1)
@@ -217,9 +269,17 @@ def showData(district,s):
             Flood_irrigation = Flood_irrigation.drop([0,1]).reset_index().drop(columns=['index'])
             Flood_irrigation = Flood_irrigation.fillna(0)
             Flood_irrigation = round(Flood_irrigation,1)
-            stl.write(Flood_irrigation)
+            y = [Flood_irrigation['Season A'][30],Flood_irrigation['Season B'][30],Flood_irrigation['Season C'][30]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type3:
-            stl.text('Drip irrigation')  
             # Drip irrigation
             Drip_irrigation = irrigation_type[cols[7:10]]
             Drip_irrigation = pd.concat([irrigation_type['District'].drop(0),Drip_irrigation],axis=1)
@@ -227,9 +287,17 @@ def showData(district,s):
             Drip_irrigation = Drip_irrigation.drop([0,1]).reset_index().drop(columns=['index'])
             Drip_irrigation = Drip_irrigation.fillna(0)
             Drip_irrigation = round(Drip_irrigation,1)
-            stl.write(Drip_irrigation)         
+            y = [Drip_irrigation['Season A'][30],Drip_irrigation['Season B'][30],Drip_irrigation['Season C'][30]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type4:
-            stl.text('Sprinkler irrigation')
 
             # Sprinkler irrigation
             Sprinkle_irrigation = irrigation_type[cols[10:13]]
@@ -238,9 +306,17 @@ def showData(district,s):
             Sprinkle_irrigation = Sprinkle_irrigation.drop([0,1]).reset_index().drop(columns=['index'])
             Sprinkle_irrigation = Sprinkle_irrigation.fillna(0)
             Sprinkle_irrigation = round(Sprinkle_irrigation,1)
-            stl.write(Sprinkle_irrigation)
+            y = [Sprinkle_irrigation['Season A'][30],Sprinkle_irrigation['Season B'][30],Sprinkle_irrigation['Season C'][30]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=(f'Sprinkler Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with type5:
-            stl.text('Pivot irrigation')
             # Pivot irrigation
             Pivot_irrigation = irrigation_type[cols[13:16]]
             Pivot_irrigation = pd.concat([irrigation_type['District'].drop(0),Pivot_irrigation],axis=1)
@@ -248,7 +324,16 @@ def showData(district,s):
             Pivot_irrigation = Pivot_irrigation.drop([0,1]).reset_index().drop(columns=['index'])
             Pivot_irrigation = Pivot_irrigation.fillna(0)
             Pivot_irrigation = round(Pivot_irrigation,1)
-            stl.write(Pivot_irrigation)
+            y = [Pivot_irrigation['Season A'][30],Pivot_irrigation['Season B'][30],Pivot_irrigation['Season C'][30]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=(f'Pivot Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
 
     stl.subheader('  Source Of Water Used In Irrigation Per Season And District In 2022 (%)')  
     
@@ -259,10 +344,11 @@ def showData(district,s):
     districts = water_source[cols[0]]
     column_names = ['District',	'Season A',	'Season B',	'Season C']
     colors = ['#254117','#1F6357','#3EA99F']
+    
+
     if str(districts).strip().__contains__(district):
         
         with source1:
-            stl.text('Rainwater')
             # 1. Rain water
             rainwater = water_source[cols[:4]]
             rainwater = rainwater.drop(0)
@@ -271,28 +357,37 @@ def showData(district,s):
             rainwater = round(rainwater,1)
             rainwater_per_district = rainwater[rainwater['District'] == district]
             y = [rainwater_per_district['Season A'].sum(),rainwater_per_district['Season B'].sum(),rainwater_per_district['Season C'].sum()]
-            x = ['Season A','Season B','Season C']
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            # gig.show()
-            fig.update_layout(title_text=f'Use Of Rain Water In {district}', font_color='brown')
+            fig.update_layout(title_text=(f'Rain Water In {district}'), font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
             stl.plotly_chart(fig, use_container_width=True)
 
             
         with source2:
-            stl.text('Water treatment')
-            # 2. water treatment
+            
             water_treatment = pd.concat([districts,water_source[cols[4:7]]], axis=1)
             water_treatment = water_treatment.drop(0)
             water_treatment.set_axis(column_names, axis=1, inplace=True)
             water_treatment = water_treatment.fillna(0)
             water_treatment = round(water_treatment,1)
             water_treatment_per_district = water_treatment[water_treatment['District'] == district]
-            stl.write(water_treatment_per_district)
+            y = [water_treatment_per_district['Season A'].sum(),water_treatment_per_district['Season B'].sum(),water_treatment_per_district['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title=f' Water treatment In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=1,
+                                tickfont_size=14,
+    ),)
+            stl.plotly_chart(fig, use_container_width=True)
 
         with source3:
-            stl.text('Underground')
             # 3. underground water
             underground_water = pd.concat([districts,water_source[cols[7:10]]], axis=1)
             underground_water = underground_water.drop(0)
@@ -300,10 +395,18 @@ def showData(district,s):
             underground_water = underground_water.fillna(0)
             underground_water = round(underground_water,1)
             underground_water_per_district = underground_water[underground_water['District'] == district]
-            stl.write(underground_water_per_district)
+            y = [underground_water_per_district['Season A'].sum(),underground_water_per_district['Season B'].sum(),underground_water_per_district['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=f'Underground Water In {district}', font_color='red',titlefont_size=13,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=1,
+                                tickfont_size=14,
+    ),)
+            stl.plotly_chart(fig, use_container_width=True)
 
         with source4:
-            stl.text('Lake / streams')
             # 4. lake/stream water
             lake_or_stream_water = pd.concat([districts,water_source[cols[10:13]]], axis=1)
             lake_or_stream_water = lake_or_stream_water.drop(0)
@@ -311,10 +414,18 @@ def showData(district,s):
             lake_or_stream_water = lake_or_stream_water.fillna(0)
             lake_or_stream_water = round(lake_or_stream_water,1)
             lake_or_stream_water_perdistrict = lake_or_stream_water[lake_or_stream_water['District'] == district]
-            stl.write(lake_or_stream_water_perdistrict)
+            y = [lake_or_stream_water_perdistrict['Season A'].sum(),lake_or_stream_water_perdistrict['Season B'].sum(),lake_or_stream_water_perdistrict['Season C'].sum()]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=f'Lake / streams Water In {district}', font_color='red',titlefont_size=13,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=1,
+                                tickfont_size=14,
+    ),)
+            stl.plotly_chart(fig, use_container_width=True)
 
         with source5:
-           stl.text('Water catchment')
            # 5. water catchment 
            water_catchment = pd.concat([districts,water_source[cols[13:]]], axis=1)
            water_catchment = water_catchment.drop(0)
@@ -322,58 +433,107 @@ def showData(district,s):
            water_catchment = water_catchment.fillna(0)
            water_catchment = round(water_catchment,1)
            water_catchment_per_district = water_catchment[water_catchment['District'] == district]
-           stl.write(water_catchment_per_district)
+           y = [water_catchment_per_district['Season A'].sum(),water_catchment_per_district['Season B'].sum(),water_catchment_per_district['Season C'].sum()]
+           fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+           textposition='outside')])
+
+           fig.update_layout(title_text=f'Water catchment In {district}', font_color='red',titlefont_size=15,  yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=1,
+                                tickfont_size=14,
+    ),)
+           stl.plotly_chart(fig, use_container_width=True)
 
     else:
         with source1:
-            stl.text('Rainwater')
+            
             # 1. Rain water
             rainwater = water_source[cols[:4]]
             rainwater = rainwater.drop(0)
             rainwater.set_axis(column_names, axis=1, inplace=True)
             rainwater = rainwater.fillna(0)
             rainwater = round(rainwater,1)
-            stl.write(rainwater)
+            y = [rainwater['Season A'][31],rainwater['Season B'][31],rainwater['Season C'][31]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=('Rain Water'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.3,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                                
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
             
         with source2:
-            stl.text('Water treatment')
             # 2. water treatment
             water_treatment = pd.concat([districts,water_source[cols[4:7]]], axis=1)
             water_treatment = water_treatment.drop(0)
             water_treatment.set_axis(column_names, axis=1, inplace=True)
             water_treatment = water_treatment.fillna(0)
             water_treatment = round(water_treatment,1)
-            stl.write(water_treatment)
+            y = [water_treatment['Season A'][31],water_treatment['Season B'][31],water_treatment['Season C'][31]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
 
-        with source3:
-            stl.text('Underground')
-            # 3. underground water
+            fig.update_layout(title_text=(f'Water Treatment'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.2,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
+
+        with source3:            # 3. underground water
             underground_water = pd.concat([districts,water_source[cols[7:10]]], axis=1)
             underground_water = underground_water.drop(0)
             underground_water.set_axis(column_names, axis=1, inplace=True)
             underground_water = underground_water.fillna(0)
             underground_water = round(underground_water,1)
-            stl.write(underground_water)
+            y = [underground_water['Season A'][31],underground_water['Season B'][31],underground_water['Season C'][31]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+            fig.update_layout(title_text=(f'underground Water'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.1,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
 
         with source4:
-            stl.text('Lake / streams')
             # 4. lake/stream water
             lake_or_stream_water = pd.concat([districts,water_source[cols[10:13]]], axis=1)
             lake_or_stream_water = lake_or_stream_water.drop(0)
             lake_or_stream_water.set_axis(column_names, axis=1, inplace=True)
             lake_or_stream_water = lake_or_stream_water.fillna(0)
             lake_or_stream_water = round(lake_or_stream_water,1)
-            stl.write(lake_or_stream_water)
+            y = [lake_or_stream_water['Season A'][31],lake_or_stream_water['Season B'][31],lake_or_stream_water['Season C'][31]]
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
 
+            fig.update_layout(title_text=(f'Lake/Stream Water'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+            stl.plotly_chart(fig, use_container_width=True)
         with source5:
-           stl.text('Water catchment')
            # 5. water catchment 
            water_catchment = pd.concat([districts,water_source[cols[13:]]], axis=1)
            water_catchment = water_catchment.drop(0)
            water_catchment.set_axis(column_names, axis=1, inplace=True)
            water_catchment = water_catchment.fillna(0)
            water_catchment = round(water_catchment,1)
-           stl.write(round(water_catchment,1))
+           y = [water_catchment['Season A'][31],water_catchment['Season B'][31],water_catchment['Season C'][31]]
+           fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            textposition='outside')])
+
+           fig.update_layout(title_text=(f'Water Catchment'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.1,yaxis=dict(
+                                title='Percentage (%)',
+                                titlefont_size=15,
+                                tickfont_size=14,
+                           ),)
+           stl.plotly_chart(fig, use_container_width=True)
 
 
 
