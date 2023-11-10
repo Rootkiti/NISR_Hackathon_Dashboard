@@ -4,6 +4,7 @@ import streamlit as stl
 import plotly.express as px
 import agriculture_practices as ap
 import crop_production_and_yield as cpy
+import did_you_know as did
 
 
 # reading data
@@ -371,4 +372,8 @@ with tabs[0]:
 with tabs[1]:    
     ap.showData(dist,seasons)
 with tabs[2]:
-    cpy.crop_production_yeald(survey_data)                               
+    cpy.crop_production_yeald(survey_data) 
+    
+    
+with tabs[3]:
+    did.Know_this()                              
