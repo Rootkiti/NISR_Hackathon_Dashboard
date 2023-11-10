@@ -105,10 +105,10 @@ def crop_production_yeald(survey_data):
             ])
             plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
-                title=(f'{season} 2022 Agricultural land in {dist} (,000Ha)') ,
+                title=(f'{season} 2022 Agricultural land in {dist} (,1000 Ha)') ,
                 title_x=.26,
             width=3000,
-            height=500,yaxis=dict( title='Land use per district (,000Ha)', titlefont_size=15,tickfont_size=14,),
+            height=500,yaxis=dict( title='Land use per district (,1000 Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
@@ -152,10 +152,10 @@ def crop_production_yeald(survey_data):
             ])
             plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
-                title=(f'{season} 2022 Agricultural land in {dist} (,000Ha)'),
+                title=(f'{season} 2022 Agricultural land in {dist} (,1000 Ha)'),
                 title_x=.26,
             width=3000,
-            height=500,yaxis=dict( title='Land use per district (,000Ha)', titlefont_size=15,tickfont_size=14,),
+            height=500,yaxis=dict( title='Land use per district (,1000 Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
@@ -193,18 +193,18 @@ def crop_production_yeald(survey_data):
 
                 )
             ])
-            plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+            plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
-                title=(f'{season} 2022 Agricultural land use per district (,000Ha)'),
+                title=(f'{season} 2022 Agricultural land use per district (,1000 Ha)'),
                 title_x=.26,
-            width=3000,
-            height=400,yaxis=dict( title='Land use per district (,000Ha)', titlefont_size=15,tickfont_size=14,),
+            # width=3000,
+            height=400,yaxis=dict( title='Land use per district (,1000 Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
             plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.text(f'In Season A 2022 Agricultural land Was {seasonal_data}(,000Ha) And Covered {data_to_be_used["percentage of agricultural land"][30]} % Of total Area Land')
+            stl.text(f'In Season A 2022 Agricultural land Was {seasonal_data}(,1000 Ha) And Covered {data_to_be_used["percentage of agricultural land"][30]} % Of total Area Land')
          else:
             season_b_land_use = survey_data.get('Table 9')
             cols = season_b_land_use.columns
@@ -235,18 +235,18 @@ def crop_production_yeald(survey_data):
             ])
             plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
-                title=(f'{season} 2022 Agricultural land use per district (,000Ha)'),
+                title=(f'{season} 2022 Agricultural land use per district (1000 Ha)'),
                 title_x=.26,
             width=3000,
-            height=400,yaxis=dict( title='Land use per district (,000Ha)', titlefont_size=15,tickfont_size=14,),
+            height=400,yaxis=dict( title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
             plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.text(f' Agricultural land Reduced From 1402.0(,000Ha) In Season A To {data_to_be_used["Agricultural land"][30]}(,000Ha) In Season B And Covered {data_to_be_used["percentage of agricultural land"][30]} % Of total Area Land')
+            stl.text(f' Agricultural land Reduced From 1402.0(1000 Ha) In Season A To {data_to_be_used["Agricultural land"][30]}(1000 Ha) In Season B And \nCovered {data_to_be_used["percentage of agricultural land"][30]} % Of total Area Land')
 
-    stl.write("Cultivated Land Vs Havested Land")
+    stl.subheader(":green[Cultivated Area, Havested Area, Average Yield And Production Of Major crops]")
     season_A_cultivated_land = survey_data.get('Table 11')
     stl.multiselect('Select Crop',season_A_cultivated_land.columns[1:24])
    

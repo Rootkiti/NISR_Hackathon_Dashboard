@@ -10,7 +10,7 @@ location = pd.read_excel("provinces&district.xlsx", )
 
 
 def showData(district,s):
-    stl.subheader(' Participation In Agriculture Practice By Farmer Category Per Season And District In 2022 (%)')               
+    stl.subheader('Agriculture Practices By Farmer Categories Per Season And District In 2022 (%)')               
     x = ['Season A','Season B','Season C']
     col1,col2,col3,col4 = stl.columns(4)
     
@@ -134,7 +134,15 @@ def showData(district,s):
 
             fig.update_layout(title_text="Agroforestry (%)",width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
             stl.plotly_chart(fig,use_container_width=True)
-    stl.subheader('  (%) Use Of Modern Irrigation Methods Per Season And District In 2022')               
+    if(district == ''):
+        stl.subheader('  (%) Use Of Modern Irrigation Methods Per Season In 2022') 
+    elif (district =='choose your option'):
+        stl.subheader('  (%) Use Of Modern Irrigation Methods Per Season In 2022') 
+    else:
+        stl.subheader(f'(%) Use Of Modern Irrigation Methods Per Season In {district} District 2022')               
+              
+
+    # stl.subheader('  (%) Use Of Modern Irrigation Methods Per Season In 2022')               
  #  types of irrigation section
     type1,type2,type3,type4,type5= stl.columns(5)
     irrigation_type = survey_data.get("Table 58")
@@ -142,6 +150,7 @@ def showData(district,s):
     clrs = ['#B0BF1A','#045F5F','#FFFACD']
     cols = irrigation_type.columns
     if str(districts).strip().__contains__(district):
+        value = district
         with type1:            
             # surface irrigation
             Surface_irrigation = irrigation_type[cols[:4]]
@@ -155,7 +164,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Surface Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Surface Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -174,7 +183,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Flood Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Flood Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -193,7 +202,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Drip Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Drip Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -214,7 +223,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Sprinkler Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Sprinkler Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -234,7 +243,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Pivot Irrigation In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Pivot Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -334,8 +343,13 @@ def showData(district,s):
                                 tickfont_size=14,
                            ),)
             stl.plotly_chart(fig, use_container_width=True)
+    if(district == ''):
+       stl.subheader('  Source Of Water Used In Irrigation Per Season In 2022 (%)')  
+    elif (district =='choose your option'):
+       stl.subheader('  Source Of Water Used In Irrigation Per Season In 2022 (%)')  
+    else:
+        stl.subheader(f'Source Of Water Used In Irrigation Per Season In {district} District 2022 (%)')  
 
-    stl.subheader('  Source Of Water Used In Irrigation Per Season And District In 2022 (%)')  
     
    #  source of water used in irrigation activities
     source1,source2,source3,source4,source5 = stl.columns(5)
@@ -360,7 +374,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Rain Water In {district}'), font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title_text=(f'Rain Water'), font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -380,11 +394,11 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f' Water treatment In {district}', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f' Water treatment', font_color='red',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
-                                titlefont_size=1,
+                                titlefont_size=15,
                                 tickfont_size=14,
-    ),)
+            ),)
             stl.plotly_chart(fig, use_container_width=True)
 
         with source3:
@@ -399,11 +413,11 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=f'Underground Water In {district}', font_color='red',titlefont_size=13,yaxis=dict(
+            fig.update_layout(title_text=f'Underground Water', font_color='red',titlefont_size=13,yaxis=dict(
                                 title='Percentage (%)',
-                                titlefont_size=1,
+                                titlefont_size=15,
                                 tickfont_size=14,
-    ),)
+              ),)
             stl.plotly_chart(fig, use_container_width=True)
 
         with source4:
@@ -418,11 +432,11 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=f'Lake / streams Water In {district}', font_color='red',titlefont_size=13,yaxis=dict(
+            fig.update_layout(title_text=f'Lake / streams Water', font_color='red',titlefont_size=13,yaxis=dict(
                                 title='Percentage (%)',
-                                titlefont_size=1,
+                                titlefont_size=15,
                                 tickfont_size=14,
-    ),)
+               ),)
             stl.plotly_chart(fig, use_container_width=True)
 
         with source5:
@@ -437,11 +451,11 @@ def showData(district,s):
            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
            textposition='outside')])
 
-           fig.update_layout(title_text=f'Water catchment In {district}', font_color='red',titlefont_size=15,  yaxis=dict(
+           fig.update_layout(title_text=f'Water catchment', font_color='red',titlefont_size=15,  yaxis=dict(
                                 title='Percentage (%)',
-                                titlefont_size=1,
+                                titlefont_size=15,
                                 tickfont_size=14,
-    ),)
+                     ),)
            stl.plotly_chart(fig, use_container_width=True)
 
     else:
@@ -454,10 +468,10 @@ def showData(district,s):
             rainwater = rainwater.fillna(0)
             rainwater = round(rainwater,1)
             y = [rainwater['Season A'][31],rainwater['Season B'][31],rainwater['Season C'][31]]
-            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
+            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y], 
             textposition='outside')])
 
-            fig.update_layout(title_text=('Rain Water'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.3,yaxis=dict(
+            fig.update_layout(title_text=('Rain Water'), titlefont_size=15,titlefont_color='green',title_x = 0.3,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -476,11 +490,11 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Water Treatment'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.2,yaxis=dict(
+            fig.update_layout(title_text=(f'Water Treatment'), font_color='red',titlefont_size=15,titlefont_color='green',title_x = 0.2,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
-                           ),)
+                           ))
             stl.plotly_chart(fig, use_container_width=True)
 
         with source3:            # 3. underground water
@@ -493,7 +507,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'underground Water'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.1,yaxis=dict(
+            fig.update_layout(title_text=(f'underground Water'), font_color='red',titlefont_size=15,titlefont_color='green',title_x = 0.1,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -511,7 +525,7 @@ def showData(district,s):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Lake/Stream Water'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Lake/Stream Water'), font_color='red',titlefont_size=15,titlefont_color='green',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -528,14 +542,30 @@ def showData(district,s):
            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-           fig.update_layout(title_text=(f'Water Catchment'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.1,yaxis=dict(
+           fig.update_layout(title_text=(f'Water Catchment'), font_color='red',titlefont_size=15,titlefont_color='green',title_x = 0.1,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
                            ),)
            stl.plotly_chart(fig, use_container_width=True)
 
-
+#  area under agriculture practices
+    stl.subheader(':green[What Was Seasonal Change In Area under agricultural practices ?]')
+    practices = survey_data.get('Table 10')
+    cols = practices.columns
+    p1,p2,p3 = stl.columns(3)
+    with p1: 
+        stl.text(round(practices[cols[1]][32]))
+        stl.text(round(practices[cols[2]][32]))
+        stl.text(round(practices[cols[3]][32]))
+    with p2: 
+        stl.text(round(practices[cols[4]][32]))
+        stl.text(round(practices[cols[5]][32]))
+    with p3: 
+        stl.text(round(practices[cols[1]][32]))
+        stl.text(round(practices[cols[2]][32]))
+        stl.text(round(practices[cols[3]][32]))
+    stl.write(practices)
 
 
 
