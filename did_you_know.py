@@ -87,8 +87,10 @@ def Know_this():
     migrant = Labour_force.get('Table 52')
     total_migrants_in_agriculture = migrant[migrant.columns[1]][3]
     ttl_migrants_in_agriculture = ("{:,}".format(total_migrants_in_agriculture))
+    
     male_migrants_in_agriculture = migrant[migrant.columns[2]][3]
     male_migrants_in_agriculture = ("{:,}".format(male_migrants_in_agriculture))
+    
     female_migrants_in_agriculture = migrant[migrant.columns[3]][3]
     female_migrants_in_agriculture = ("{:,}".format(female_migrants_in_agriculture))
     
@@ -98,22 +100,39 @@ def Know_this():
     external_migrants_in_agriculture = migrant[migrant.columns[6]][3]
     external_migrants_in_agriculture = ("{:,}".format(external_migrants_in_agriculture))
     
-
-    
-
     ## drawing figue
-    data = [(males+females),total_migrants_in_agriculture]
+    data = [(males+females)-total_migrants_in_agriculture,total_migrants_in_agriculture]
     Lables = ['Resident','Migrants']
     fig = px.pie(data, values=data, names=Lables)
     fig.update_traces(hoverinfo='percent+label', textinfo='percent')
     fig.update_layout(title_text="% of Migrants involved in agriculture, forestry and fishing",width=400, height=400,title_x=.2)
     stl.plotly_chart(fig,use_container_width=True)
-    stl.write(f"	:ballot_box_with_check: In :orange[{total}] people who were invloved in agriculture, forestry and fishing in 2022,  :red[6.06%] were migrants equivalent to :blue[{ttl_migrants_in_agriculture}] people. :gray[{female_migrants_in_agriculture}] were female and :violet[{male_migrants_in_agriculture}] males. amonge them :green[{internal_migrants_in_agriculture}] were internal migrants and :blue[{external_migrants_in_agriculture}] were external migrants.")
+    stl.write(f":ballot_box_with_check: In :orange[{total}] people who were invloved in agriculture, forestry and fishing in 2022,  :red[6.46%] were migrants equivalent to :blue[{ttl_migrants_in_agriculture}] people. :gray[{female_migrants_in_agriculture}] were female and :violet[{male_migrants_in_agriculture}] males. amonge them :green[{internal_migrants_in_agriculture}] were internal migrants and :blue[{external_migrants_in_agriculture}] were external migrants.")
+    
+    stl.subheader(f"	:timer_clock: what was average time spent in agriculture, forestry and fishing per sex in 2022 ?")
+    stl.write('gaverage time')
+    stl.subheader(f":chart_with_downwards_trend: What was education level of population involved in agriculture, forestry and fishing and how does eduction level affected population's employment in agriculture and other related activities in 2022 ?")
+    population_education_level  = Labour_force.get('Table 21')
+    zero_level = population_education_level[population_education_level.columns[2]][3]
+    primary = population_education_level[population_education_level.columns[3]][3]
+    lower_secodary = population_education_level[population_education_level.columns[4]][3]
+    upper_secondary = population_education_level[population_education_level.columns[5]][3]
+    university = population_education_level[population_education_level.columns[6]][3]
+    levels= ['None','Primary','Lower Secondary','Upper Secondary','University']
 
- 
+
+    data_value=[zero_level,primary,lower_secodary,upper_secondary,university]
+    plt = px.bar(data_value,x=levels,y=data_value,color=levels,text=(data_value),title='Popilation In Agriculture And Their Level Of Education',labels = dict(y = "Population In Agriculture",x = "Level Of Education"))
+    plt.update_traces(width=1)
+    plt.update_layout(height=500)
+  
+    plt.update_traces(textposition='outside')
+    stl.plotly_chart(plt,use_container_width=True)
+    stl.write(":ballot_box_with_check: More People Lose Intrest In Agriculture, Forestry And Fishing As Their Level Of Eduction Increases. The Above Graph Shows That People With No Education Background Are More Involved In Agriculture, Forestry And Fishing.")
     
     
-    
+
+
     
     
     

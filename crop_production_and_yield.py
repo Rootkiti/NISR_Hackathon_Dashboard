@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 
 
 
-def crop_production_yeald(survey_data):
+def crop_production_yeald(survey_data,igihe):
 
     trends = survey_data.get('Table 7')
     cols = trends.columns
@@ -33,7 +33,7 @@ def crop_production_yeald(survey_data):
 
     stl.plotly_chart(fig, use_container_width=True)
     
-    stl.subheader("What Was Overall Gross Value Per Year From 2016 To 2021 :question:")
+    stl.write("What Was Overall Gross Value Per Year From 2016 To 2021 :question:")
     kpi1, kpi2,kpi3 = stl.columns(3)
     
     overall_216 =round(trends[cols[1]][14],0)
@@ -49,8 +49,10 @@ def crop_production_yeald(survey_data):
     overall_2018 =round(trends[cols[3]][14],0)
     kpi3.metric("2018","Overall GVA Increased",f"{overall_2018} RWF per ha")
     overall_2021 =round(trends[cols[6]][14],0)
-    kpi3.metric("2021","Overall GVA Decreased",f"{-overall_2021} RWF per ha")
+    kpi3.metric("2021","Overall GVA Decreased")
     
+    stl.subheader(":violet[What was seasonal change in agriculture land and it's percentage per district in 2022?]")
+
     selection1,selection2 = stl.columns([3,.5])
     new_cols = ['District','Total land area','Agricultural land','percentage of agricultural land']
 
@@ -65,6 +67,7 @@ def crop_production_yeald(survey_data):
     
     # getting districts
     dist = '' 
+
     for i in selected_districts:
         dist = dist + i +','
     if(selected_districts):
@@ -72,7 +75,7 @@ def crop_production_yeald(survey_data):
             season_a_land_use = survey_data.get('Table 8')
             cols = season_a_land_use.columns
             data_to_be_used = round(season_a_land_use[cols[0:4]],1)
-            data_to_be_used.set_axis(new_cols,axis=1,inplace=True)
+            data_to_be_used = data_to_be_used.set_axis(new_cols,axis=1)
             data_to_be_used = data_to_be_used[data_to_be_used['District'].isin(selected_districts)]
 
                 
@@ -82,7 +85,7 @@ def crop_production_yeald(survey_data):
                 x = selected_districts,
                 y = data_to_be_used['Total land area'],orientation='v',
                 marker_color = 'green',
-                text=[(f'{i}') for i in data_to_be_used['Total land area']],textposition='outside', 
+                text=[(f'{i}(1000 Ha)') for i in data_to_be_used['Total land area']],textposition='outside', 
 
                 ),
                 go.Bar(
@@ -90,37 +93,42 @@ def crop_production_yeald(survey_data):
                 x = selected_districts,
                 y = data_to_be_used['Agricultural land'],orientation='v',
                 marker_color = '#B0BF1A',
-                text=[(f'{i}') for i in data_to_be_used['Agricultural land']],textposition='outside', 
+                text=[(f'{i}(1000 Ha)') for i in data_to_be_used['Agricultural land']],textposition='outside', 
 
 
                 ),
-                go.Bar(
-                name = 'agricultural land %',
-                x = selected_districts,
-                y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                marker_color = '#3EA99F',
-                text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
+                # go.Bar(
+                # name = 'agricultural land %',
+                # x = selected_districts,
+                # y = data_to_be_used["percentage of agricultural land"],orientation='v',
+                # marker_color = '#3EA99F',
+                # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
 
-                )
+                # )
             ])
-            plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+            plot.update_traces(width=.5, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
                 title=(f'{season} 2022 Agricultural land in {dist} (,1000 Ha)') ,
                 title_x=.26,
-            width=3000,
+            width=200,
             height=500,yaxis=dict( title='Land use per district (,1000 Ha)', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,), barmode='overlay'
             )
             
-            plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickfont=dict(family='Rockwell', color='crimson', size=14))
             stl.plotly_chart(plot,use_container_width=True)
+        #     message
+            if(selected_districts.__len__() == 1):
+                 stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land  were used in {season}')
+            else:
+               stl.write(f':ballot_box_with_check: In {dist} :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and  :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land  were used in {season}')
 
-
+                  
          else:
             season_b_land_use = survey_data.get('Table 9')
             cols = season_b_land_use.columns
             data_to_be_used = round(season_b_land_use[cols[0:4]],1)
-            data_to_be_used.set_axis(new_cols,axis=1,inplace=True)
+            data_to_be_used = data_to_be_used.set_axis(new_cols,axis=1)
             data_to_be_used = data_to_be_used[data_to_be_used['District'].isin(selected_districts)]
 
             plot = go.Figure(data=[go.Bar(
@@ -129,7 +137,7 @@ def crop_production_yeald(survey_data):
                 x = selected_districts,
                 y = data_to_be_used['Total land area'],orientation='v',
                 marker_color = '#2e8b57',
-                text=[(f'{i}') for i in data_to_be_used['Total land area']],textposition='outside', 
+                text=[(f'{i} (1000 Ha)') for i in data_to_be_used['Total land area']],textposition='outside', 
 
                 ),
                 go.Bar(
@@ -137,18 +145,18 @@ def crop_production_yeald(survey_data):
                 x = selected_districts,
                 y = data_to_be_used['Agricultural land'],orientation='v',
                 marker_color = '#B0BF1A',
-                text=[(f'{i}') for i in data_to_be_used['Agricultural land']],textposition='outside', 
+                text=[(f'{i} (1000 Ha)') for i in data_to_be_used['Agricultural land']],textposition='outside', 
 
 
                 ),
-                go.Bar(
-                name = 'agricultural land %',
-                x = selected_districts,
-                y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                marker_color = '#ffffff',
-                text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
+                # go.Bar(
+                # name = 'agricultural land %',
+                # x = selected_districts,
+                # y = data_to_be_used["percentage of agricultural land"],orientation='v',
+                # marker_color = '#ffffff',
+                # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
 
-                )
+                # )
             ])
             plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
@@ -156,11 +164,13 @@ def crop_production_yeald(survey_data):
                 title_x=.26,
             width=3000,
             height=500,yaxis=dict( title='Land use per district (,1000 Ha)', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),barmode='overlay'
             )
             
-            plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickfont=dict(family='Rockwell', color='crimson', size=14))
             stl.plotly_chart(plot,use_container_width=True)
+            stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land was used in {season}')
+
    
     else:
          seasonal_data  = ''
@@ -168,7 +178,7 @@ def crop_production_yeald(survey_data):
             season_a_land_use = survey_data.get('Table 8')
             cols = season_a_land_use.columns
             data_to_be_used = round(season_a_land_use[cols[0:4]],1)
-            data_to_be_used.set_axis(new_cols,axis=1,inplace=True)
+            data_to_be_used = data_to_be_used.set_axis(new_cols,axis=1)
             seasonal_data = data_to_be_used["Agricultural land"][30]
             plot = go.Figure(data=[go.Bar(
                 
@@ -184,14 +194,14 @@ def crop_production_yeald(survey_data):
                 marker_color = '#B0BF1A',
 
                 ),
-                go.Bar(
-                name = 'agricultural land %',
-                x = data_to_be_used['District'][:30].tolist(),
-                y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                marker_color = '#3EA99F',
-                text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='auto', 
+                # go.Bar(
+                # name = 'agricultural land %',
+                # x = data_to_be_used['District'][:30].tolist(),
+                # y = data_to_be_used["percentage of agricultural land"],orientation='v',
+                # marker_color = '#3EA99F',
+                # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='auto', 
 
-                )
+                # )
             ])
             plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
@@ -204,12 +214,12 @@ def crop_production_yeald(survey_data):
             
             plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.text(f'In Season A 2022 Agricultural land Was {seasonal_data}(,1000 Ha) And Covered {data_to_be_used["percentage of agricultural land"][30]} % Of total Area Land')
+            stl.write(f':ballot_box_with_check: In {season} 2022, Agricultural land Was :green[{seasonal_data}(1000 Hecters)] And Covered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land.')
          else:
             season_b_land_use = survey_data.get('Table 9')
             cols = season_b_land_use.columns
             data_to_be_used = round(season_b_land_use[cols[0:4]],1)
-            data_to_be_used.set_axis(new_cols,axis=1,inplace=True)
+            data_to_be_used = data_to_be_used.set_axis(new_cols,axis=1)
             plot = go.Figure(data=[go.Bar(
                 
                 name = 'Total Land Area',
@@ -224,33 +234,62 @@ def crop_production_yeald(survey_data):
                 marker_color = '#B0BF1A',
 
                 ),
-                go.Bar(
-                name = 'agricultural land %',
-                x = data_to_be_used['District'][:30].tolist(),
-                y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                marker_color = '#ffffff',
-                text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='auto', 
+                # go.Bar(
+                # name = 'agricultural land %',
+                # x = data_to_be_used['District'][:30].tolist(),
+                # y = data_to_be_used["percentage of agricultural land"],orientation='v',
+                # marker_color = '#ffffff',
+                # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='auto', 
 
-                )
+                # )
             ])
-            plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+            plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
                 title=(f'{season} 2022 Agricultural land use per district (1000 Ha)'),
                 title_x=.26,
-            width=3000,
+            # width=3000,
             height=400,yaxis=dict( title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
             plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.text(f' Agricultural land Reduced From 1402.0(1000 Ha) In Season A To {data_to_be_used["Agricultural land"][30]}(1000 Ha) In Season B And \nCovered {data_to_be_used["percentage of agricultural land"][30]} % Of total Area Land')
+            stl.write(f' :ballot_box_with_check: Agricultural land Reduced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCovered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
 
     stl.subheader(":green[Cultivated Area, Havested Area, Average Yield And Production Of Major crops]")
-    season_A_cultivated_land = survey_data.get('Table 11')
-    stl.multiselect('Select Crop',season_A_cultivated_land.columns[1:24])
+    
+    if(igihe == 'Season A' or igihe ==None):
+        stl.write('season A')
+        # cultivated land
+        cultivated_land = survey_data.get('Table 11')
+        major = ['Cassava','Bananas','Irish potato','Sweet potato','Paddy rice','Maize','Beans']
+        major_crops = round(cultivated_land[major])
+        # havested land
+        havested_land = survey_data.get('Table 14')
+        havested_major_crops = round(havested_land[major])
+        # average yield
+        average_yield = survey_data.get('Table 17')
+        yield_major_crops = round(average_yield[major])
+        
+    else:
+        stl.write('season B')
+        # cultivated land
+        cultivated_land = survey_data.get('Table 12')
+        major = ['Cassava','Bananas','Irish potato','Sweet potato','Paddy rice','Maize','Beans']
+        major_crops = cultivated_land['major']
+        major_crops = round(major_crops)
+        # havested land
+        havested_land = survey_data.get('Table 15')
+        havested_major_crops = round(havested_land[major])
+        # average yield
+        average_yield = survey_data.get('Table 18')
+        yield_major_crops = round(average_yield[major])
+        
+    
    
-   
+    stl.write(major_crops)
+    stl.write(havested_major_crops)
+    stl.write(yield_major_crops)
    
     col1,col2 = stl.columns(2)
     # with col1:
