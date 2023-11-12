@@ -191,7 +191,7 @@ def showData(district,season):
                     fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                     stl.plotly_chart(fig,use_container_width=True)
                 # message
-                stl.write(f':pushpin: In Saosen A 2022, land protection against erosion achieved was :red[{round(protected_land["Overall"][31],1)}%] with  :green[{round(protected_land["SSF"][31],1)}%] of small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
+                stl.write(f':pushpin: In season A 2022, land protection against erosion achieved was :red[{round(protected_land["Overall"][31],1)}%] with  :green[{round(protected_land["SSF"][31],1)}%] of small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
                 stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments["Overall"][31],1)}%] with  :green[{round(machinary_equipments["SSF"][31],1)}%] of small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of larger scale farmers.')
                 stl.write(f':pushpin: Irrigation was :red[{round(irrigation["Overall"][31],1)}%] with  :green[{round(irrigation["SSF"][31],1)}%] of small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of larger scale farmers.')
                 stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry["Overall"][31],1)}%] with  :green[{round(agroforestry["SSF"][31],1)}%] of small scale farmers and :blue[{round(agroforestry["LSF"][31],1)}%] of larger scale farmers.')
