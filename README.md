@@ -2,7 +2,7 @@
 This is group bright NISR interactive app
 
 
-_This interactive dashboard is developed using Python and visualizes SAS and RLFS data as they are found on the NISR website_ 
+_This interactive dashboard is developed using Python and visualizes SAS and RLFS data as they are found on the NISR website<https://statistics.gov.rw/about-us/hackathon-competition-2023-edition>_ 
 ## Insight communicated
 
 ### Agriculture Inputs
