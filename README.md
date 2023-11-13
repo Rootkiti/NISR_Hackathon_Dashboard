@@ -42,8 +42,10 @@ _to be able to run this app you must have have/install python3+ and pip_
 _this app is developed using streamlit, numpy,pandas and plotly packages. for it to run successfully you have to install all those packages_
 ### step 1:
 ### istalling packages
-* installing streamlit
-
    * pip install streamlit
+   * pip install numpy
+   * pip install pandas
+   * pip install plotly
+
 
 
