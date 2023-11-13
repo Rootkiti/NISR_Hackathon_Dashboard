@@ -26,7 +26,7 @@ stl.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_all
 tab_list = [
     'Agriculture Inputs',
     'Agriculture Practices',
-    'Agriculture Land Use, Crop production And Yiels',
+    'Agriculture Land Use, Yield and Crop production',
     'Did You Know ?'
 ]
 

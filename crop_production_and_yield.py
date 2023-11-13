@@ -25,7 +25,7 @@ def crop_production_yeald(survey_data,igihe):
         xaxis_title="Years",
         yaxis_title="Gross Value (Value RWF per ha)",
         legend_title="Major Crops",
-        title_text = "Change In Gross Value Of Main Crops From 2016 - 2022",
+        title_text = "Change In Gross Value Of Major Crops From 2016 - 2022",
         title_x =0.3, title_y=.9
         
         

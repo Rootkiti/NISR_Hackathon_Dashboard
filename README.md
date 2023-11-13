@@ -1,11 +1,12 @@
 # NISR_Hackathon_Dashboard
-This is group bright NISR app
+This is group bright NISR interactive app
 
 
 _This interactive dashboard is developed using Python and visualizes SAS and RLFS data as they are found on the NISR website_ 
-#Insight communicated
+## Insight communicated
 
 ### Agriculture Inputs
+_this tab communicates the following insights_
 1. what was the major and least source/supplier of improved seeds in 2021 and 2022?
 2. where did most farmers buy inorganic fertilizers in 2021 and 2022?
 3. Seasonal % change in adoption to the agriculture inputs like:
@@ -14,10 +15,23 @@ _This interactive dashboard is developed using Python and visualizes SAS and RLF
    3. improved seeds
 
 ### Agriculture Practices
+_this tab presents this insights_
 1. what was the district's seasonal and national % of agricultural practices in 2022?
 2. what are modern irrigation methods and % adoption of their use in 2022 per district?
 3. what are the sources of water for irrigation and % of their use in 2022 per district?
 4. seasonal change in area under agriculture practices (Ha) in 2022
    
+### Agriculture Land Use, Crop production And Yiels
+_this tab visualize the following insights_
+1. Change In Cross Value Of Major Crops from 2016-2022
+2. seasonal change in agriculture land and it's percentage per district in 2022
+3. Average Yield Of Major crops Per Season In 2022
+4. Change In Major Crops production Per Season 2021 - 2022
 
+### Did you know
+_this tab presents insights from RLFS that are related to agriculture,forestry and fishing_
+1. how population were employed in agriculture,forestry and fishing by sex per province in 2022?
+2. % and number of migrants involved in agricurture,forestry and fishing
+3. average hour spent per week in agriculture,forestry and fishing by sex as their main job
+4. how level of eductation affected people's decision to involve in agriculture, forestry and fishing 
 
