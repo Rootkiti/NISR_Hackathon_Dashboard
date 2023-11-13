@@ -35,8 +35,8 @@ _this tab presents insights from RLFS that are related to agriculture,forestry a
 3. average hour spent per week in agriculture,forestry and fishing by sex as their main job
 4. how level of eductation affected people's decision to involve in agriculture, forestry and fishing 
 ## additional information
-### color choise
-_most of the colors user in this dashboard are from national flag, and other color that are used are those wich are used in agriculture. colors that are used to represent seasons in second tab at in the section of seasonal use of modern irrigation methods and source of water are from 4 seasons of the year from pinterest(https://www.pinterest.com/pin/297096906672643662/visual-search/?x=16&y=16&w=532&h=390&cropSource=6 "pinterest")_
+### color choice
+_most of the colors user in this dashboard are from national flag, and other color that are used are those wich are used in agriculture. colors that are used to represent seasons in second tab at in the section of seasonal use of modern irrigation methods and source of water are from 4 seasons of the year from pinterest(https://www.pinterest.com/pin/297096906672643662/visual-search/?x=16&y=16&w=532&h=390&cropSource=6/ "pinterest")_
 ## requirements
 _to be able to run this app you must have/install python3+ and pip_
 
