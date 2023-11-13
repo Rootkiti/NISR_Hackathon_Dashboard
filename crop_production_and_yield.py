@@ -24,7 +24,7 @@ def crop_production_yeald(survey_data,igihe):
     fig.update_layout(
         xaxis_title="Years",
         yaxis_title="Gross Value (Value RWF per ha)",
-        legend_title="Main Crops",
+        legend_title="Major Crops",
         title_text = "Change In Gross Value Of Main Crops From 2016 - 2022",
         title_x =0.3, title_y=.9
         
@@ -256,49 +256,325 @@ def crop_production_yeald(survey_data,igihe):
             stl.plotly_chart(plot,use_container_width=True)
             stl.write(f' :ballot_box_with_check: Agricultural land Reduced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCovered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
 
-    stl.subheader(":green[Cultivated Area, Havested Area, Average Yield And Production Of Major crops]")
+    stl.subheader(":bar_chart: :green[Average Yield Of Major crops Per Season In 2022]")
     
     if(igihe == 'Season A' or igihe ==None):
-        stl.write('season A')
         # cultivated land
         cultivated_land = survey_data.get('Table 11')
         major = ['Cassava','Bananas','Irish potato','Sweet potato','Paddy rice','Maize','Beans']
-        major_crops = round(cultivated_land[major])
+        a_major_crops = round(cultivated_land[major])
+        # lables = ['National','SSF','LSF']
+        # a_data = [major_crops['Cassava'][30],major_crops['Cassava'][31],major_crops['Cassava'][32],]
         # havested land
         havested_land = survey_data.get('Table 14')
-        havested_major_crops = round(havested_land[major])
+        a_havested_major_crops = round(havested_land[major])
         # average yield
         average_yield = survey_data.get('Table 17')
-        yield_major_crops = round(average_yield[major])
+        a_yield_major_crops = round(average_yield[major])
         
-    else:
-        stl.write('season B')
+        a_national = [a_yield_major_crops['Cassava'][30],a_yield_major_crops['Bananas'][30],a_yield_major_crops['Irish potato'][30],a_yield_major_crops['Sweet potato'][30],a_yield_major_crops['Paddy rice'][30],a_yield_major_crops['Maize'][30],a_yield_major_crops['Beans'][30]]
+        a_ssf = [a_yield_major_crops['Cassava'][31],a_yield_major_crops['Bananas'][31],a_yield_major_crops['Irish potato'][31],a_yield_major_crops['Sweet potato'][31],a_yield_major_crops['Paddy rice'][31],a_yield_major_crops['Maize'][31],a_yield_major_crops['Beans'][31]]
+        a_lsf = [a_yield_major_crops['Cassava'][32],a_yield_major_crops['Bananas'][32],a_yield_major_crops['Irish potato'][32],a_yield_major_crops['Sweet potato'][32],a_yield_major_crops['Paddy rice'][32],a_yield_major_crops['Maize'][32],a_yield_major_crops['Beans'][32]]
+
+        plot = go.Figure(data=[go.Bar(
+                
+                name = 'National',
+                y = major,
+                x = a_national,orientation='h',
+                marker_color = 'blue',
+                text=[(f'{i}Kg/Ha') for i in a_national],textposition='outside',textfont_size=15, 
+
+                ),
+                go.Bar(
+                name = 'Small Scale farmers',
+                y = major,
+                x = a_ssf,orientation='h',
+                marker_color = 'green',
+                text=[(f'{i}Kg/Ha') for i in a_ssf],textposition='outside',textfont_size=20, 
+
+
+                ),
+                go.Bar(
+                name = 'Larger scale Farmers',
+                y = major,
+                x = a_lsf,orientation='h',
+                marker_color = 'yellow',
+                text=[(f'{i}Kg/Ha') for i in a_lsf],textposition='outside'
+
+                )
+            ])
+        plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        plot.update_layout(
+                title=(f'{season} 2022 Average yield Of Major Crops'),
+                title_x=.26,
+            width=600,
+            height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
+            )
+            
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        stl.plotly_chart(plot,use_container_width=True)
+        
+       
+
+    if(igihe == 'Season B'):
         # cultivated land
-        cultivated_land = survey_data.get('Table 12')
+        cultivated_land = survey_data.get('Table 12 ')
         major = ['Cassava','Bananas','Irish potato','Sweet potato','Paddy rice','Maize','Beans']
-        major_crops = cultivated_land['major']
-        major_crops = round(major_crops)
+        major_crops = cultivated_land[major]
+        b_major_crops = round(major_crops)
         # havested land
-        havested_land = survey_data.get('Table 15')
-        havested_major_crops = round(havested_land[major])
+        havested_land = survey_data.get('Table 15 ')
+        b_havested_major_crops = round(havested_land[major])
         # average yield
-        average_yield = survey_data.get('Table 18')
-        yield_major_crops = round(average_yield[major])
+        average_yield = survey_data.get('Table 18 ')
+        b_yield_major_crops = round(average_yield[major])
         
-    
-   
-    stl.write(major_crops)
-    stl.write(havested_major_crops)
-    stl.write(yield_major_crops)
-   
-    col1,col2 = stl.columns(2)
-    # with col1:
-    
-    
-    # with col2:
-    #     season_b_land_use = survey_data.get('Table 9')
-    #     cols = season_b_land_use.columns
-    #     data_to_be_used = round(season_b_land_use[cols[0:4]],1)
-    #     stl.write(data_to_be_used)
+        b_national = [b_yield_major_crops['Cassava'][30],b_yield_major_crops['Bananas'][30],b_yield_major_crops['Irish potato'][30],b_yield_major_crops['Sweet potato'][30],b_yield_major_crops['Paddy rice'][30],b_yield_major_crops['Maize'][30],b_yield_major_crops['Beans'][30]]
+        b_ssf = [b_yield_major_crops['Cassava'][31],b_yield_major_crops['Bananas'][31],b_yield_major_crops['Irish potato'][31],b_yield_major_crops['Sweet potato'][31],b_yield_major_crops['Paddy rice'][31],b_yield_major_crops['Maize'][31],b_yield_major_crops['Beans'][31]]
+        b_lsf = [b_yield_major_crops['Cassava'][32],b_yield_major_crops['Bananas'][32],b_yield_major_crops['Irish potato'][32],b_yield_major_crops['Sweet potato'][32],b_yield_major_crops['Paddy rice'][32],b_yield_major_crops['Maize'][32],b_yield_major_crops['Beans'][32]]
+
+        plot = go.Figure(data=[go.Bar(
+                
+                name = 'National',
+                y = major,
+                x = b_national,orientation='h',
+                marker_color = 'blue',
+                text=[(f'{i}Kg/Ha') for i in b_national],textposition='outside',textfont_size=20, 
+
+                ),
+                go.Bar(
+                name = 'Small Scale farmers',
+                y = major,
+                x = b_ssf,orientation='h',
+                marker_color = 'green',
+                text=[(f'{i}Kg/Ha') for i in b_ssf],textposition='outside',textfont_size=20, 
+
+
+                ),
+                go.Bar(
+                name = 'Larger scale Farmers',
+                y = major,
+                x = b_lsf,orientation='h',
+                marker_color = 'yellow',
+                text=[(f'{i}Kg/Ha') for i in b_lsf],textposition='outside',
+
+                )
+            ])
+        plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        plot.update_layout(
+                title=(f'{igihe} 2022 Average yield Of Major Crops'),
+                title_x=.26,
+            width=600,
+            height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
+            )
+            
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        stl.plotly_chart(plot,use_container_width=True)
+    if(igihe == 'Season C'):
+        # cultivated land
+        cultivated_land = survey_data.get('Table 13')
+        major = ['Irish potato','Sweet potato','Beans']
+        major_crops = cultivated_land[major]
+        C_major_crops = round(major_crops)
+        # havested land
+        havested_land = survey_data.get('Table 16')
+        c_havested_major_crops = round(havested_land[major])
+        # average yield
+        average_yield = survey_data.get('Table 19')
+        c_yield_major_crops = round(average_yield[major])
         
-   
+        c_national = [c_yield_major_crops['Irish potato'][30],c_yield_major_crops['Sweet potato'][30],c_yield_major_crops['Beans'][30]]
+       
+
+        plot = go.Figure(data=[go.Bar(
+                
+                name = 'National',
+                x = major,
+                y = c_national,orientation='v',
+                marker_color = 'blue',
+                text=[(f'{i}Kg/Ha') for i in c_national],textposition='auto',textfont_size=20, 
+
+                ),
+                
+            ])
+        plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        plot.update_layout(
+                title=(f'{igihe} 2022 Average yield Of Major Crops At National Level.'),
+                title_x=.26,
+            # width=3000,
+            height=500,yaxis=dict( title='Kg/Ha', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Major Crops',titlefont_size=15,tickfont_size=14,),
+            )
+            
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        stl.plotly_chart(plot,use_container_width=True)
+    stl.subheader(":bar_chart: :green[Change In Major Crops production Per Season 2021 - 2022 At National Level]")
+       
+    if(igihe == 'Season A' or igihe ==None):
+      
+        # average yield
+        crop_production = survey_data.get('Table 23')
+        production = (crop_production[major])
+        
+        a_national_2022 = [round(production['Cassava'][30]),round(production['Bananas'][30]),round(production['Irish potato'][30]),round(production['Sweet potato'][30]),round(production['Paddy rice'][30]),round(production['Maize'][30]),round(production['Beans'][30])]
+        a_national_2021 = [round(production['Cassava'][31]),round(production['Bananas'][31]),round(production['Irish potato'][31]),round(production['Sweet potato'][31]),round(production['Paddy rice'][31]),round(production['Maize'][31]),round(production['Beans'][31])]
+        a_change = [round(production['Cassava'][32]*100,1),round(production['Bananas'][32]*100,1),round(production['Irish potato'][32]*100,1),round(production['Sweet potato'][32]*100,1),round(production['Paddy rice'][32]*100,1),round(production['Maize'][32]*100,1),round(production['Beans'][32]*100,1)]
+
+        plot = go.Figure(data=[go.Bar(
+                
+                name = 'National 2022',
+                y = major,
+                x = a_national_2022,orientation='h',
+                marker_color = 'blue',
+                text=[(f'{i} MT') for i in a_national_2022],textposition='outside',textfont_size=15, 
+
+                ),
+                go.Bar(
+                name = 'National 2021',
+                y = major,
+                x = a_national_2021,orientation='h',
+                marker_color = 'green',
+                text=[(f'{i} MT') for i in a_national_2021],textposition='outside',textfont_size=20, 
+
+
+                ),
+       
+            ])
+        plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        plot.update_layout(
+                title=(f'Season A Change In Production Of Main Crops 2022-2021'),
+                title_x=.26,
+            # width=300,
+            height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
+            )
+            
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        stl.plotly_chart(plot,use_container_width=True)
+        # mesaage
+        stl.text('Major crops production in Season A')
+        for i in major:
+            
+            stl.write(f':pushpin: In 2022, {i} production was :blue[{a_national_2022[major.index(i)]}] metric tones and :green[{a_national_2021[major.index(i)]}] metric tones in 2021 with a change of :red[{a_change[major.index(i)]}%]. ')
+
+        
+       
+
+    if(igihe == 'Season B'):
+         # average yield
+        crop_production = survey_data.get('Table 24')
+        production = (crop_production[major])
+        
+        b_national_2022 = [round(production['Cassava'][30]),round(production['Bananas'][30]),round(production['Irish potato'][30]),round(production['Sweet potato'][30]),round(production['Paddy rice'][30]),round(production['Maize'][30]),round(production['Beans'][30])]
+        b_national_2021 = [round(production['Cassava'][31]),round(production['Bananas'][31]),round(production['Irish potato'][31]),round(production['Sweet potato'][31]),round(production['Paddy rice'][31]),round(production['Maize'][31]),round(production['Beans'][31])]
+        b_change = [round(production['Cassava'][32]*100,1),round(production['Bananas'][32]*100,1),round(production['Irish potato'][32]*100,1),round(production['Sweet potato'][32]*100,1),round(production['Paddy rice'][32]*100,1),round(production['Maize'][32]*100,1),round(production['Beans'][32]*100,1)]
+
+        plot = go.Figure(data=[go.Bar(
+                
+                name = 'National 2022',
+                y = major,
+                x = b_national_2022,orientation='h',
+                marker_color = 'blue',
+                text=[(f'{i} MT') for i in b_national_2022],textposition='outside',textfont_size=15, 
+
+                ),
+                go.Bar(
+                name = 'National 2021',
+                y = major,
+                x = b_national_2021,orientation='h',
+                marker_color = 'green',
+                text=[(f'{i} MT') for i in b_national_2021],textposition='outside',textfont_size=20, 
+
+
+                ),
+       
+            ])
+        plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        plot.update_layout(
+                title=(f'{igihe} Change In Production Of Major Crops 2022-2021'),
+                title_x=.26,
+            # width=300,
+            height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
+            )
+            
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        stl.plotly_chart(plot,use_container_width=True)
+        # mesaage
+        stl.text(f'Major crops production in {igihe}')
+        for i in major:
+            
+            stl.write(f':pushpin: In 2022, {i} production was :blue[{b_national_2022[major.index(i)]}] metric tones and :green[{b_national_2021[major.index(i)]}] metric tones in 2021 with a change of :red[{b_change[major.index(i)]}%]. ')
+
+    if(igihe == 'Season C'):
+        # cultivated land
+        crop_production = survey_data.get('Table 25')
+        major = ['Irish potato','Sweet potato','Beans']
+        production = crop_production[major]
+        c_national_2022 = [round(production['Irish potato'][30]),round(production['Sweet potato'][30]),round(production['Beans'][30])]
+        c_national_2021 = [round(production['Irish potato'][31]),round(production['Sweet potato'][31]),round(production['Beans'][31])]
+        c_change = [round(production['Irish potato'][32]*100,1),round(production['Sweet potato'][32]*100,1),round(production['Beans'][32]*100,1)]
+
+        plot = go.Figure(data=[go.Bar(
+                
+                name = 'National 2022',
+                y = major,
+                x = c_national_2022,orientation='h',
+                marker_color = 'blue',
+                text=[(f'{i} MT') for i in c_national_2022],textposition='outside',textfont_size=15, 
+
+                ),
+                go.Bar(
+                name = 'National 2021',
+                y = major,
+                x = c_national_2021,orientation='h',
+                marker_color = 'green',
+                text=[(f'{i} MT') for i in c_national_2021],textposition='outside',textfont_size=20, 
+
+
+                ),
+       
+            ])
+        plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        plot.update_layout(
+                title=(f'{igihe} Change In Production Of Major Crops 2022-2021'),
+                title_x=.26,
+            # width=300,
+            height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
+            )
+            
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        stl.plotly_chart(plot,use_container_width=True)
+        # mesaage
+        stl.text(f'Major crops production in {igihe}')
+        for i in major:
+            
+            stl.write(f':pushpin: In 2022, {i} production was :blue[{c_national_2022[major.index(i)]}] metric tones and :green[{c_national_2021[major.index(i)]}] metric tones in 2021 with a change of :red[{c_change[major.index(i)]}%]. ')
+
+
+        # plot = go.Figure(data=[go.Bar(
+                
+        #         name = 'National',
+        #         x = major,
+        #         y = c_national,orientation='v',
+        #         marker_color = 'blue',
+        #         text=[(f'{i}Kg/Ha') for i in c_national],textposition='auto',textfont_size=20, 
+
+        #         ),
+                
+        #     ])
+        # plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+        # plot.update_layout(
+        #         title=(f'{igihe} 2022 Average yield Of Major Crops At National Level.'),
+        #         title_x=.26,
+        #     # width=3000,
+        #     height=500,yaxis=dict( title='Kg/Ha', titlefont_size=15,tickfont_size=14,),
+        #     xaxis=dict(title='Major Crops',titlefont_size=15,tickfont_size=14,),
+        #     )
+            
+        # plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        # stl.plotly_chart(plot,use_container_width=True)
+    

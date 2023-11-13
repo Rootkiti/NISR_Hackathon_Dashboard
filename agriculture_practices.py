@@ -29,7 +29,7 @@ def showData(district,season):
     cols = seasonal_practices.columns
 
     if (str(districts).strip().__contains__(district) and (district !='')):
-        stl.text(f"Precentage of agriculture practices  in  {district} district 2022")
+        stl.write(f":green[Precentage of agriculture practices  in  {district} district 2022]")
         if(season == 'Seasoc A' or season == None):
             seasonal_practices = survey_data.get('Table 55')
             seasonal_practices = seasonal_practices.fillna(0)
@@ -114,12 +114,14 @@ def showData(district,season):
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)            
         # # message
-        # stl.write(f':pushpin:  In {" Season A" if season == None else season} 2022, land protection against erosion achieved was :red[{round(protected_land_by_district["Overall"][0],1)}%] with  :green[{round(protected_land_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(protected_land_by_district["LSF"][0],1)}%] of larger scale farmers.')
-        # stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments["Overall"][31],1)}%] with  :green[{round(machinary_equipments["SSF"][31],1)}%] of small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of larger scale farmers.')
-        # stl.write(f':pushpin: Irrigation was :red[{round(irrigation["Overall"][31],1)}%] with  :green[{round(irrigation["SSF"][31],1)}%] of small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of larger scale farmers.')
-        # stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry["Overall"][31],1)}%] with  :green[{round(agroforestry["SSF"][31],1)}%] of small scale farmers and :blue[{round(agroforestry["LSF"][31],1)}%] of larger scale farmers.')
+        stl.write(f':pushpin:  In {" Season A" if season == None else season} 2022, land protection against erosion achieved was :red[{round(protected_land_by_district["Overall"][0],1)}%] with  :green[{round(protected_land_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(protected_land_by_district["LSF"][0],1)}%] of larger scale farmers.')
+        stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments_by_district["Overall"][0],1)}%] with  :green[{round(machinary_equipments_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(machinary_equipments_by_district["LSF"][0],1)}%] of larger scale farmers.')
+        stl.write(f':pushpin: Irrigation was :red[{round(irrigation_by_district["Overall"][0],1)}%] with  :green[{round(irrigation_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(irrigation_by_district["LSF"][0],1)}%] of larger scale farmers.')
+        stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry_by_district["Overall"][0],1)}%] with  :green[{round(agroforestry_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(agroforestry_by_district["LSF"][0],1)}%] of larger scale farmers.')
 
     else:
+        stl.write(f":green[Precentage of agriculture practices at national level in 2022]")
+
         if(season == 'Season A' or season ==None):
                 with col1:
                     stl.write(':red[Land protection (%)]')
@@ -353,12 +355,17 @@ def showData(district,season):
                 stl.write(f':pushpin: Irrigation was :red[{round(irrigation["Overall"][31],1)}%] with an increase of :orange[54.7%] compared to season A and :rainbow[54.9%] compared to season B.  :green[{round(irrigation["SSF"][31],1)}%] were small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of site.')
                 stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry["Overall"][31],1)}%] with a decrease of :orange[27%] compared to season A and :rainbow[22.8%] compared to season B.  :green[{round(agroforestry["SSF"][31],1)}%] were small scale farmers.')
 
-            
+    stl.write(':point_left: Use side menu to filter by season and/or district.')
+     
     # Use of modern irrigation methides
     if(district == ''):
         stl.subheader('  :bar_chart: What Was % Use Of Modern Irrigation Methods Per Season In 2022 ?') 
+        stl.write(f":green[Precentage of seasonal use of mordern irrigation methods at national level]")
+
     else:
-        stl.subheader(f':bar_chart: What Was % Use Of Modern Irrigation Methods Per Season In {district} District 2022 ?')               
+        stl.subheader(f':bar_chart: What Was % Use Of Modern Irrigation Methods Per Season In {district} District 2022 ?')  
+        stl.write(f":green[Precentage of seasonal use of mordern irrigation methods at District level]")
+
             
 #   types of irrigation section
     type1,type2,type3,type4,type5= stl.columns(5)
@@ -366,7 +373,9 @@ def showData(district,season):
     irrigation_type.drop(0)
     clrs = ['#B0BF1A','#045F5F','#FFFACD']
     cols = irrigation_type.columns
+    
     if str(districts).strip().__contains__(district) and (district !=''):
+        
         value = district
         with type1:            
             # surface irrigation
@@ -468,6 +477,7 @@ def showData(district,season):
             stl.plotly_chart(fig, use_container_width=True)
       
     else:
+
         with type1:
             # surface irrigation
             Surface_irrigation = irrigation_type[cols[:4]]
@@ -565,9 +575,13 @@ def showData(district,season):
    
    
     if(district == ''):
-       stl.subheader('  :bar_chart: What Was % Of Each Source Of Water Used In Irrigation Per Season In 2022 (%)')  
+       stl.subheader('  :bar_chart: What Was % Of Each Source Of Water Used In Irrigation Per Season In 2022')  
+       stl.write(f":green[Precentage of seasonal use and source of water for  irrigation at national level]")
+
     else:
-        stl.subheader(f' :bar_chart: What Was % Of Each Source Of Water Used In Irrigation Per Season In {district} District 2022 (%)')  
+        stl.subheader(f' :bar_chart: What Was % Of Each Source Of Water Used In Irrigation Per Season In {district} District 2022')
+        stl.write(f":green[Precentage of seasonal use and source of water for  irrigation at District level]")
+  
 
     
    #  source of water used in irrigation activities
@@ -772,19 +786,58 @@ def showData(district,season):
     stl.subheader(':green[What Was Seasonal Change In Area under agricultural practices ?]')
     practices = survey_data.get('Table 10')
     cols = practices.columns
+    practice = [' Agricultural land under Modern irrigation (Ha)','Agricultural area under erosion control','Agricultural area under agroforestry trees']
     p1,p2,p3 = stl.columns(3)
-    with p1: 
-        stl.text(round(practices[cols[1]][32]))
-        stl.text(round(practices[cols[2]][32]))
-        stl.text(round(practices[cols[3]][32]))
-    with p2: 
-        stl.text(round(practices[cols[4]][32]))
-        stl.text(round(practices[cols[5]][32]))
-    with p3: 
-        stl.text(round(practices[cols[1]][32]))
-        stl.text(round(practices[cols[2]][32]))
-        stl.text(round(practices[cols[3]][32]))
-    stl.write(practices)
+    a_data = [round(practices[cols[1]][32]),round(practices[cols[4]][32]),round(practices[cols[7]][32])]
+    b_data = [round(practices[cols[2]][32]),round(practices[cols[5]][32]),round(practices[cols[8]][32])]
+    c_data = [round(practices[cols[3]][32]),0,0]
+    # with p1: 
+ 
+        
+    seasons_bar = go.Figure(data=[go.Bar(
+                
+                name = 'Season A',
+                x = practice,
+                y = a_data,orientation='v',
+                marker_color = '#2e8b57',
+                text=[(f'{i} Ha') for i in a_data],textposition='outside', 
+
+                ),
+                go.Bar(
+                name = 'Season B',
+                x = practice,
+                y = b_data,orientation='v',
+                marker_color = '#B0BF1A',
+                text=[(f'{i} Ha') for i in b_data],textposition='outside', 
+
+
+                ),
+                go.Bar(
+                name = 'Season C',
+                x = practice,
+                y = c_data,orientation='v',
+                marker_color = '#ffffff',
+                text=[(f'{i} Ha') for i in c_data],textposition='auto', 
+
+                )
+            ])
+    seasons_bar.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
+    seasons_bar.update_layout(
+                title=(f'Seasonal Change In Area under agricultural practices'),
+                title_x=.26,
+            # width=3000,
+            height=600,yaxis=dict( title='Land Size (Ha)', titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(title='Agriculture Practice',titlefont_size=15,tickfont_size=14,),barmode='group'
+            )
+            
+    seasons_bar.update_xaxes(tickangle=15, tickfont=dict(family='Rockwell', color='crimson', size=14))
+    stl.plotly_chart(seasons_bar,use_container_width=True)
+    stl.write(f':pushpin: Modern irrigation was used on :green[27,134] hecters in season A and it was decreased to :orange[21,096] hecters in season B and in season C it was decresed to :violet[1,148] hecters.')
+    stl.write(f':pushpin: Erosion control was applied to :green[996,156] hecters in season A and decreased to  :orange[967,224] hecters in season B.')
+    stl.write(f':pushpin: Agroforestry was applied to :green[618,044] hecters in season A and increased to :orange[684,921] hecters in season B.')
+
+        
+
 
 
 

@@ -33,7 +33,7 @@ tab_list = [
 tabs = stl.tabs(tab_list)
 
 # sidebar
-stl.sidebar.header("choose Your Filter")
+stl.sidebar.header("Choose Your Filter")
 province = stl.sidebar.multiselect("Choose province",location["Province"].unique())
 
 if not province:
@@ -98,6 +98,10 @@ with tabs[0]:
             filtered_data = annual_data.copy()
             stl.write(f'Source Of Improved Seeds And Quantity Provided In {year}')
             stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'])
+            if(year == 2021):
+                stl.write(f':pushpin: In 2021, major source of improved seeds was agro dealers, followed by NGOs/companies and the least supply was from other source')
+            else:
+                stl.write(f':pushpin: In 2022, major source of improved seeds was agro dealers, then NGOs/companies and the least supply was from other source')
             with stl.expander("View Visualized Data"):
                 stl.write(filtered_data)
         else:
@@ -138,8 +142,13 @@ with tabs[0]:
 
         if not seasons:
             filtered_data = fertilizer_annual_data.copy()
-            stl.write(f'Where Did Majority Of Farmers Buy inorganic Fertilizers In {year}')
+            stl.write(f'Where Did Majority Of Farmers Buy inorganic Fertilizers In {year} ?')
             stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'],)
+            if(year == 2021):
+                stl.write(f':pushpin: In 2021, most of farmers bought fertilizers from agro dealers, then NGOs/companies and the least bought from other source')
+            else:
+                stl.write(f':pushpin: In 2021, major of farmers bought fertilizers from agro dealers, followed by NGOs/companies and the least bought from other source')
+            
             with stl.expander("View Visualized Data"):
                 stl.write(filtered_data)
         else:
