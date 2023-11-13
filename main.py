@@ -17,7 +17,7 @@ location = pd.read_excel("provinces&district.xlsx", )
 
 # page configurating
 stl.set_page_config( page_title="NISR 2023 Hackthon", page_icon=":bar_chart:", layout="wide" )
-stl.title("Lests start")
+stl.title("SAS And RLFS Insights Presentation")
 
 stl.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
@@ -33,6 +33,7 @@ tab_list = [
 tabs = stl.tabs(tab_list)
 
 # sidebar
+stl.sidebar.image('logo.png', use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 stl.sidebar.header("Choose Your Filter")
 province = stl.sidebar.multiselect("Choose province",location["Province"].unique())
 
@@ -147,7 +148,7 @@ with tabs[0]:
             if(year == 2021):
                 stl.write(f':pushpin: In 2021, most of farmers bought fertilizers from agro dealers, then NGOs/companies and the least bought from other source')
             else:
-                stl.write(f':pushpin: In 2021, major of farmers bought fertilizers from agro dealers, followed by NGOs/companies and the least bought from other source')
+                stl.write(f':pushpin: In 2022, major of farmers bought fertilizers from agro dealers, followed by NGOs/companies and the least bought from other source')
             
             with stl.expander("View Visualized Data"):
                 stl.write(filtered_data)
