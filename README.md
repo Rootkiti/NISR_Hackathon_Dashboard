@@ -35,3 +35,15 @@ _this tab presents insights from RLFS that are related to agriculture,forestry a
 3. average hour spent per week in agriculture,forestry and fishing by sex as their main job
 4. how level of eductation affected people's decision to involve in agriculture, forestry and fishing 
 
+## requirements
+_to be able to run this app you must have have/install python3+ and pip_
+
+## How to run this app
+_this app is developed using streamlit, numpy,pandas and plotly packages. for it to run successfully you have to install all those packages_
+### step 1:
+### istalling packages
+* installing streamlit
+
+   * pip install streamlit
+
+
