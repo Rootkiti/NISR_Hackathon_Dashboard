@@ -36,16 +36,17 @@ _this tab presents insights from RLFS that are related to agriculture,forestry a
 4. how level of eductation affected people's decision to involve in agriculture, forestry and fishing 
 
 ## requirements
-_to be able to run this app you must have have/install python3+ and pip_
+_to be able to run this app you must have/install python3+ and pip_
 
 ## How to run this app
 _this app is developed using streamlit, numpy,pandas and plotly packages. for it to run successfully you have to install all those packages_
-### step 1:
-### istalling packages
+### step 1: installing packages
    * pip install streamlit
    * pip install numpy
    * pip install pandas
    * pip install plotly
-
+### running app
+   _to run this app navigate to the root directory and use the following command_
+   * stream run main.py 
 
 
