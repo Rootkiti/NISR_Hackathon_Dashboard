@@ -47,6 +47,6 @@ _this app is developed using streamlit, numpy,pandas and plotly packages. for it
    * pip install plotly
 ### running app
    _to run this app navigate to the root directory and use the following command_
-   * stream run main.py 
+   * streamlit run main.py 
 
 
