@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 Labour_force = pd.read_excel('RLFS.xlsx',sheet_name=None)
 
 def Know_this():
+    
     stl.subheader(':bar_chart: How Population Were Employed In Agriculture Related Activities By Sex Per Province In 2022 ?')
     # kigali
     kigali_in_agriculture = Labour_force.get('Table 54')
@@ -57,16 +58,16 @@ def Know_this():
     name = 'Male',
     x = provinces,
     y = [male_in_agriculture_kigali,male_in_agriculture_south,male_in_agriculture_west,male_in_agriculture_north,male_in_agriculture_east],orientation='v',
-    marker_color = '#CD5C5C',
+    marker_color = '#00628e',
     text=[(f'{("{:,}".format(i))}') for i in [male_in_agriculture_kigali,male_in_agriculture_south,male_in_agriculture_west,male_in_agriculture_north,male_in_agriculture_east]],textposition='outside', 
 
     ),
     go.Bar(
     
-    name = 'Femal',
+    name = 'Female',
     x = provinces,
     y = [female_in_agriculture_kigali,female_in_agriculture_south,female_in_agriculture_west,female_in_agriculture_north,female_in_agriculture_east],orientation='v',
-    marker_color = 'beige',
+    marker_color = '#49abc8',
     text=[(f'{("{:,}".format(i))}') for i in [female_in_agriculture_kigali,female_in_agriculture_south,female_in_agriculture_west,female_in_agriculture_north,female_in_agriculture_east]],textposition='outside', 
 
     ),
@@ -128,10 +129,10 @@ def Know_this():
   
     plt.update_traces(textposition='outside')
     stl.plotly_chart(plt,use_container_width=True)
-    stl.write(":ballot_box_with_check: More People Lose Intrest In Agriculture, Forestry And Fishing As Their Level Of Eduction Increases. The Above Graph Shows That People With No Education Background Are More Involved In Agriculture, Forestry And Fishing.")
+    stl.write(":ballot_box_with_check: More People Lose Interest In Agriculture, Forestry And Fishing As Their Level Of Eduction Increases. The Above Graph Shows That People With No Education Background Are More Involved In Agriculture, Forestry And Fishing.")
     
     
-
+      
 
     
     
