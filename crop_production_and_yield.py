@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as stl
+import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -13,7 +14,7 @@ def crop_production_yeald(survey_data,igihe):
     trends = survey_data.get('Table 7')
     cols = trends.columns
     Years = cols[1:]
-    color = ['yellow','bronze','#f6f2c5','#F5DEB3','cream','brown','red','green']
+    color = ['yellow','bronze','#f6f2c5','#F5DEB3','cream','brown','orange','green']
     fig = go.Figure()
     for i in range(0,14):
         # fig.add_scatter(x=Years, y= trends.iloc[i,1:], name=trends['Crops '][i])
@@ -33,25 +34,103 @@ def crop_production_yeald(survey_data,igihe):
 
     stl.plotly_chart(fig, use_container_width=True)
     
-    stl.write("What Was Overall Gross Value Per Year From 2016 To 2021 :question:")
-    kpi1, kpi2,kpi3 = stl.columns(3)
+    stl.subheader(":bar_chart: What Was Overall Gross Value Per Year From 2016 To 2021 ?")
     
-    overall_216 =round(trends[cols[1]][14],0)
-    kpi1.metric("2016","Overall GVA Was",f"{overall_216} RWF per ha")
-    overall_2019 =round(trends[cols[4]][14],0)
-    kpi1.metric("2019","Overall GVA Increased",f"{overall_2019} RWF per ha")
     
-    overall_2017 =round(trends[cols[2]][14],0)
-    kpi2.metric("2017","Overall GVA Increased",f"{overall_2017} RWF per ha")
-    overall_2020 =round(trends[cols[5]][14],0)
-    kpi2.metric("2020","Overall GVA Increased",f"{overall_2020} RWF per ha")
+    #    # Your data
+    overall_2016 = round(trends[cols[1]][14],0)
+    overall_2019 = round(trends[cols[4]][14],0)
+    overall_2017 = round(trends[cols[2]][14],0)
+    overall_2020 = round(trends[cols[5]][14],0)
+    overall_2018 = round(trends[cols[3]][14],0)
+    overall_2021 = round(trends[cols[6]][14],0)
+
+# Custom CSS for the card-like elements
+    card_style = """
+  <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 400px;
+            padding: 20px;
+            margin: 10px;
+            width: 250px;
+            height: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #000000;
+        }
+        .card h3 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .card p {
+            margin: 5px 0;
+            font-size: 16px;
+            font-size: 20px;
+        }
+
+        .card-2016 {
+            
+            background-color: #49abc8; /* Yellow */
+        }
+        .card-2019 {
+            background-color: #004969; /* orange */
+        }
+        .card-2017 {
+            background-color: #266774; /* Green */
+        }
+        .card-2020 {
+            background-color: #00628e; /* Blue */
+        }
+        .card-2018 {
+            background-color: #358a9a; /* Pink */
+        }
+        .card-2021 {
+            background-color: #4D818E; /* Lavender */
+        }
+    </style>
+"""
+
+    # Display the custom CSS
+    st.markdown(card_style, unsafe_allow_html=True)
+
+    # Creating layout using st.columns() for three columns
+    col1, col2, col3 = st.columns(3)
+
+# Adding cards to columns
+    # with col1:
+    #     st.markdown('<div class="card"><h3>2016</h3><p>Overall GVA Was</p><p>{0} RWF per ha</p></div>'.format(overall_2016), unsafe_allow_html=True)
+    #     st.markdown('<div class="card"><h3>2019</h3><p>Overall GVA Increased</p><p>{0} RWF per ha</p></div>'.format(overall_2019), unsafe_allow_html=True)
+
+    # with col2:
+    #     st.markdown('<div class="card"><h3>2017</h3><p>Overall GVA Increased</p><p>{0} RWF per ha</p></div>'.format(overall_2017), unsafe_allow_html=True)
+    #     st.markdown('<div class="card"><h3>2020</h3><p>Overall GVA Increased</p><p>{0} RWF per ha</p></div>'.format(overall_2020), unsafe_allow_html=True)
+
+    # with col3:
+    #     st.markdown('<div class="card"><h3>2018</h3><p>Overall GVA Increased</p><p>{0} RWF per ha</p></div>'.format(overall_2018), unsafe_allow_html=True)
+    #     st.markdown('<div class="card"><h3>2021</h3><p>Overall GVA Decreased</p><p> {0} RWF per ha</p></div>'.format(overall_2021), unsafe_allow_html=True)
     
-    overall_2018 =round(trends[cols[3]][14],0)
-    kpi3.metric("2018","Overall GVA Increased",f"{overall_2018} RWF per ha")
-    overall_2021 =round(trends[cols[6]][14],0)
-    kpi3.metric("2021","Overall GVA Decreased")
+    with col1:
+       st.markdown('<div class="card card-2016"><h3>2016</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2016), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2019"><h3>2019</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span>{0} RWF per ha</p></div>'.format(overall_2019), unsafe_allow_html=True)
+
+    with col2:
+       st.markdown('<div class="card card-2017"><h3>2017</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2017), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2020"><h3>2020</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2020), unsafe_allow_html=True)
+
+    with col3:
+       st.markdown('<div class="card card-2018"><h3>2018</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2018), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2021"><h3>2021</h3><p>Overall GVA Decreased</p><p><span style="font-size:28px;">&#8595;</span> {0} RWF per ha</p></div>'.format(overall_2021), unsafe_allow_html=True)
+
+
+ 
     
-    stl.subheader(":violet[What was seasonal change in agriculture land and it's percentage per district in 2022?]")
+
+
+
+  
+    stl.subheader(":bar_chart: What was seasonal change in agriculture land and it's percentage per district in 2022 ?")
 
     selection1,selection2 = stl.columns([3,.5])
     new_cols = ['District','Total land area','Agricultural land','percentage of agricultural land']
@@ -84,7 +163,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Total Land Area',
                 x = selected_districts,
                 y = data_to_be_used['Total land area'],orientation='v',
-                marker_color = 'green',
+                marker_color = '#00628e',
                 text=[(f'{i}(1000 Ha)') for i in data_to_be_used['Total land area']],textposition='outside', 
 
                 ),
@@ -92,36 +171,30 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Agricultural land',
                 x = selected_districts,
                 y = data_to_be_used['Agricultural land'],orientation='v',
-                marker_color = '#B0BF1A',
+                marker_color = '#49abc8',
                 text=[(f'{i}(1000 Ha)') for i in data_to_be_used['Agricultural land']],textposition='outside', 
 
 
                 ),
-                # go.Bar(
-                # name = 'agricultural land %',
-                # x = selected_districts,
-                # y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                # marker_color = '#3EA99F',
-                # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
 
-                # )
+
             ])
             plot.update_traces(width=.5, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
-                title=(f'{season} 2022 Agricultural land in {dist} (,1000 Ha)') ,
+                title=(f'{season} 2022 Agricultural land in {dist} (1000 Ha)') ,
                 title_x=.26,
             width=200,
-            height=500,yaxis=dict( title='Land use per district (,1000 Ha)', titlefont_size=15,tickfont_size=14,),
+            height=500,yaxis=dict( title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,), barmode='overlay'
             )
             
-            plot.update_xaxes(tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
             stl.plotly_chart(plot,use_container_width=True)
         #     message
             if(selected_districts.__len__() == 1):
-                 stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land  were used in {season}')
+                 stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :orange{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land  were used in {season}')
             else:
-               stl.write(f':ballot_box_with_check: In {dist} :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and  :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land  were used in {season}')
+               stl.write(f':ballot_box_with_check: In {dist} :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and  :orange{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land  were used in {season}')
 
                   
          else:
@@ -136,7 +209,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Total Land Area',
                 x = selected_districts,
                 y = data_to_be_used['Total land area'],orientation='v',
-                marker_color = '#2e8b57',
+                marker_color = '#00628e',
                 text=[(f'{i} (1000 Ha)') for i in data_to_be_used['Total land area']],textposition='outside', 
 
                 ),
@@ -144,7 +217,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Agricultural land',
                 x = selected_districts,
                 y = data_to_be_used['Agricultural land'],orientation='v',
-                marker_color = '#B0BF1A',
+                marker_color = '#49abc8',
                 text=[(f'{i} (1000 Ha)') for i in data_to_be_used['Agricultural land']],textposition='outside', 
 
 
@@ -167,9 +240,9 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),barmode='overlay'
             )
             
-            plot.update_xaxes(tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land was used in {season}')
+            stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :orange{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land was used in {season}')
 
    
     else:
@@ -185,13 +258,13 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Total Land Area',
                 x = data_to_be_used['District'][:30].tolist(),
                 y = data_to_be_used['Total land area'],orientation='v',
-                marker_color = 'green',
+                marker_color = '#00628e',
                 ),
                 go.Bar(
                 name = 'Agricultural land',
                 x = data_to_be_used['District'][:30].tolist(),
                 y = data_to_be_used['Agricultural land'],orientation='v',
-                marker_color = '#B0BF1A',
+                marker_color = '#49abc8',
 
                 ),
                 # go.Bar(
@@ -212,9 +285,9 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
-            plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='white', size=13))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.write(f':ballot_box_with_check: In {season} 2022, Agricultural land Was :green[{seasonal_data}(1000 Hecters)] And Covered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land.')
+            stl.write(f':ballot_box_with_check: In {season} 2022, Agricultural land Was :green[{seasonal_data}(1000 Hecters)] And Coveorange :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land.')
          else:
             season_b_land_use = survey_data.get('Table 9')
             cols = season_b_land_use.columns
@@ -225,13 +298,13 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Total Land Area',
                 x = data_to_be_used['District'][:30].tolist(),
                 y = data_to_be_used['Total land area'],orientation='v',
-                marker_color = '#2e8b57',
+                marker_color = '#00628e',
                 ),
                 go.Bar(
                 name = 'Agricultural land',
                 x = data_to_be_used['District'][:30].tolist(),
                 y = data_to_be_used['Agricultural land'],orientation='v',
-                marker_color = '#B0BF1A',
+                marker_color = '#49abc8',
 
                 ),
                 # go.Bar(
@@ -252,11 +325,11 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
             )
             
-            plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='white', size=14))
             stl.plotly_chart(plot,use_container_width=True)
-            stl.write(f' :ballot_box_with_check: Agricultural land Reduced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCovered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
+            stl.write(f' :ballot_box_with_check: Agricultural land orangeuced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCoveorange :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
 
-    stl.subheader(":bar_chart: :green[Average Yield Of Major crops Per Season In 2022]")
+    stl.subheader(":bar_chart: Average Yield Of Major crops Per Season In 2022")
     
     if(igihe == 'Season A' or igihe ==None):
         # cultivated land
@@ -281,7 +354,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National',
                 y = major,
                 x = a_national,orientation='h',
-                marker_color = 'blue',
+                marker_color = '#358a9a',
                 text=[(f'{i}Kg/Ha') for i in a_national],textposition='outside',textfont_size=15, 
 
                 ),
@@ -289,7 +362,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Small Scale farmers',
                 y = major,
                 x = a_ssf,orientation='h',
-                marker_color = 'green',
+                marker_color = '#49abc8',
                 text=[(f'{i}Kg/Ha') for i in a_ssf],textposition='outside',textfont_size=20, 
 
 
@@ -298,7 +371,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Larger scale Farmers',
                 y = major,
                 x = a_lsf,orientation='h',
-                marker_color = 'yellow',
+                marker_color = '#00628e',
                 text=[(f'{i}Kg/Ha') for i in a_lsf],textposition='outside'
 
                 )
@@ -312,7 +385,7 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
             )
             
-        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='White', size=14))
         stl.plotly_chart(plot,use_container_width=True)
         
        
@@ -339,7 +412,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National',
                 y = major,
                 x = b_national,orientation='h',
-                marker_color = 'blue',
+                marker_color = '#358a9a',
                 text=[(f'{i}Kg/Ha') for i in b_national],textposition='outside',textfont_size=20, 
 
                 ),
@@ -347,7 +420,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Small Scale farmers',
                 y = major,
                 x = b_ssf,orientation='h',
-                marker_color = 'green',
+                marker_color = '#49abc8',
                 text=[(f'{i}Kg/Ha') for i in b_ssf],textposition='outside',textfont_size=20, 
 
 
@@ -356,7 +429,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Larger scale Farmers',
                 y = major,
                 x = b_lsf,orientation='h',
-                marker_color = 'yellow',
+                marker_color = '#00628e',
                 text=[(f'{i}Kg/Ha') for i in b_lsf],textposition='outside',
 
                 )
@@ -370,7 +443,7 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
             )
             
-        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
         stl.plotly_chart(plot,use_container_width=True)
     if(igihe == 'Season C'):
         # cultivated land
@@ -393,7 +466,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National',
                 x = major,
                 y = c_national,orientation='v',
-                marker_color = 'blue',
+                marker_color = '#00628e',
                 text=[(f'{i}Kg/Ha') for i in c_national],textposition='auto',textfont_size=20, 
 
                 ),
@@ -408,9 +481,9 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Major Crops',titlefont_size=15,tickfont_size=14,),
             )
             
-        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
         stl.plotly_chart(plot,use_container_width=True)
-    stl.subheader(":bar_chart: :green[Change In Major Crops production Per Season 2021 - 2022 At National Level]")
+    stl.subheader(":bar_chart: Change In Major Crops production Per Season 2021 - 2022 At National Level]")
        
     if(igihe == 'Season A' or igihe ==None):
       
@@ -427,7 +500,8 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National 2022',
                 y = major,
                 x = a_national_2022,orientation='h',
-                marker_color = 'blue',
+                
+                marker_color = '#49abc8',
                 text=[(f'{i} MT') for i in a_national_2022],textposition='outside',textfont_size=15, 
 
                 ),
@@ -435,7 +509,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National 2021',
                 y = major,
                 x = a_national_2021,orientation='h',
-                marker_color = 'green',
+                marker_color = '#00628e',
                 text=[(f'{i} MT') for i in a_national_2021],textposition='outside',textfont_size=20, 
 
 
@@ -451,13 +525,13 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
             )
             
-        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
         stl.plotly_chart(plot,use_container_width=True)
         # mesaage
         stl.text('Major crops production in Season A')
         for i in major:
             
-            stl.write(f':pushpin: In 2022, {i} production was :blue[{a_national_2022[major.index(i)]}] metric tones and :green[{a_national_2021[major.index(i)]}] metric tones in 2021 with a change of :red[{a_change[major.index(i)]}%]. ')
+            stl.write(f':pushpin: In 2022, {i} production was :blue[{a_national_2022[major.index(i)]}] metric tones and :green[{a_national_2021[major.index(i)]}] metric tones in 2021 with a change of :orange[{a_change[major.index(i)]}%]. ')
 
         
        
@@ -476,7 +550,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National 2022',
                 y = major,
                 x = b_national_2022,orientation='h',
-                marker_color = 'blue',
+                marker_color = '#49abc8',
                 text=[(f'{i} MT') for i in b_national_2022],textposition='outside',textfont_size=15, 
 
                 ),
@@ -484,7 +558,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National 2021',
                 y = major,
                 x = b_national_2021,orientation='h',
-                marker_color = 'green',
+                marker_color = '#00628e',
                 text=[(f'{i} MT') for i in b_national_2021],textposition='outside',textfont_size=20, 
 
 
@@ -500,13 +574,13 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
             )
             
-        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
         stl.plotly_chart(plot,use_container_width=True)
         # mesaage
         stl.text(f'Major crops production in {igihe}')
         for i in major:
             
-            stl.write(f':pushpin: In 2022, {i} production was :blue[{b_national_2022[major.index(i)]}] metric tones and :green[{b_national_2021[major.index(i)]}] metric tones in 2021 with a change of :red[{b_change[major.index(i)]}%]. ')
+            stl.write(f':pushpin: In 2022, {i} production was :blue[{b_national_2022[major.index(i)]}] metric tones and :green[{b_national_2021[major.index(i)]}] metric tones in 2021 with a change of :orange[{b_change[major.index(i)]}%]. ')
 
     if(igihe == 'Season C'):
         # cultivated land
@@ -522,7 +596,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National 2022',
                 y = major,
                 x = c_national_2022,orientation='h',
-                marker_color = 'blue',
+                marker_color = '#49abc8',
                 text=[(f'{i} MT') for i in c_national_2022],textposition='outside',textfont_size=15, 
 
                 ),
@@ -530,7 +604,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'National 2021',
                 y = major,
                 x = c_national_2021,orientation='h',
-                marker_color = 'green',
+                marker_color = '#00628e',
                 text=[(f'{i} MT') for i in c_national_2021],textposition='outside',textfont_size=20, 
 
 
@@ -546,13 +620,13 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
             )
             
-        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
+        plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
         stl.plotly_chart(plot,use_container_width=True)
         # mesaage
         stl.text(f'Major crops production in {igihe}')
         for i in major:
             
-            stl.write(f':pushpin: In 2022, {i} production was :blue[{c_national_2022[major.index(i)]}] metric tones and :green[{c_national_2021[major.index(i)]}] metric tones in 2021 with a change of :red[{c_change[major.index(i)]}%]. ')
+            stl.write(f':pushpin: In 2022, {i} production was :blue[{c_national_2022[major.index(i)]}] metric tones and :green[{c_national_2021[major.index(i)]}] metric tones in 2021 with a change of :orange[{c_change[major.index(i)]}%]. ')
 
 
         # plot = go.Figure(data=[go.Bar(
