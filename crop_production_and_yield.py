@@ -234,7 +234,7 @@ def crop_production_yeald(survey_data,igihe):
                     name = 'Total Land Area',
                     x = selected_districts,
                     y = data_to_be_used['Total land area'],orientation='v',
-                    marker_color = 'green',
+                     marker_color = '#00628e',
                     text=[(f'{i}(1000 Ha)') for i in data_to_be_used['Total land area']],textposition='outside', 
 
                     ),
@@ -242,19 +242,12 @@ def crop_production_yeald(survey_data,igihe):
                     name = 'Agricultural land',
                     x = selected_districts,
                     y = data_to_be_used['Agricultural land'],orientation='v',
-                    marker_color = '#B0BF1A',
+                    marker_color = '#49abc8',
                     text=[(f'{i}(1000 Ha)') for i in data_to_be_used['Agricultural land']],textposition='outside', 
 
 
                     ),
-                    # go.Bar(
-                    # name = 'agricultural land %',
-                    # x = selected_districts,
-                    # y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                    # marker_color = '#3EA99F',
-                    # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
-
-                    # )
+         
                 ])
                 plot.update_traces(width=.5, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
                 plot.update_layout(
@@ -265,7 +258,7 @@ def crop_production_yeald(survey_data,igihe):
                 xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,), barmode='overlay'
                 )
                 
-                plot.update_xaxes(tickfont=dict(family='Rockwell', color='crimson', size=14))
+                plot.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
                 stl.plotly_chart(plot,use_container_width=True)
             #     message
                 if(selected_districts.__len__() == 1):
@@ -286,7 +279,7 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Total Land Area',
                 x = selected_districts,
                 y = data_to_be_used['Total land area'],orientation='v',
-                marker_color = '#2e8b57',
+                marker_color = '#00628e',
                 text=[(f'{i} (1000 Ha)') for i in data_to_be_used['Total land area']],textposition='outside', 
 
                 ),
@@ -294,19 +287,12 @@ def crop_production_yeald(survey_data,igihe):
                 name = 'Agricultural land',
                 x = selected_districts,
                 y = data_to_be_used['Agricultural land'],orientation='v',
-                marker_color = '#B0BF1A',
+                marker_color = '#49abc8',
                 text=[(f'{i} (1000 Ha)') for i in data_to_be_used['Agricultural land']],textposition='outside', 
 
 
                     ),
-                    # go.Bar(
-                    # name = 'agricultural land %',
-                    # x = selected_districts,
-                    # y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                    # marker_color = '#ffffff',
-                    # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='outside', 
 
-                # )
             ])
             plot.update_traces(width=.3, marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
             plot.update_layout(
@@ -317,7 +303,7 @@ def crop_production_yeald(survey_data,igihe):
             xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),barmode='overlay'
             )
             
-            plot.update_xaxes(tickfont=dict(family='Rockwell', color='crimson', size=14))
+            plot.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
             stl.plotly_chart(plot,use_container_width=True)
             stl.write(f':ballot_box_with_check: In {dist} with total area land of :violet{[i for i in data_to_be_used["Total land area"]]} (1000 hecters), :green{[i for i in data_to_be_used["Agricultural land"]]} (1000 hecters) were used in agriculture and :red{[i for i in data_to_be_used["percentage of agricultural land"]]}% of agriculture land was used in {season}')
 
@@ -335,23 +321,16 @@ def crop_production_yeald(survey_data,igihe):
                     name = 'Total Land Area',
                     x = data_to_be_used['District'][:30].tolist(),
                     y = data_to_be_used['Total land area'],orientation='v',
-                    marker_color = 'green',
+                    marker_color = '#00628e',
                     ),
                     go.Bar(
                     name = 'Agricultural land',
                     x = data_to_be_used['District'][:30].tolist(),
                     y = data_to_be_used['Agricultural land'],orientation='v',
-                    marker_color = '#B0BF1A',
+                    marker_color = '#49abc8',
 
                         ),
-                        # go.Bar(
-                        # name = 'agricultural land %',
-                        # x = data_to_be_used['District'][:30].tolist(),
-                        # y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                        # marker_color = '#3EA99F',
-                        # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='auto', 
 
-                    # )
                 ])
                 plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
                 plot.update_layout(
@@ -362,7 +341,7 @@ def crop_production_yeald(survey_data,igihe):
                 xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
                 )
                 
-                plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
+                plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='white', size=14))
                 stl.plotly_chart(plot,use_container_width=True)
                 stl.write(f':ballot_box_with_check: In {season} 2022, Agricultural land Was :green[{seasonal_data}(1000 Hecters)] And Covered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land.')
             else:
@@ -375,23 +354,16 @@ def crop_production_yeald(survey_data,igihe):
                     name = 'Total Land Area',
                     x = data_to_be_used['District'][:30].tolist(),
                     y = data_to_be_used['Total land area'],orientation='v',
-                    marker_color = '#2e8b57',
+                    marker_color = '#00628e',
                     ),
                     go.Bar(
                     name = 'Agricultural land',
                     x = data_to_be_used['District'][:30].tolist(),
                     y = data_to_be_used['Agricultural land'],orientation='v',
-                    marker_color = '#B0BF1A',
+                    marker_color = '#49abc8',
 
                         ),
-                        # go.Bar(
-                        # name = 'agricultural land %',
-                        # x = data_to_be_used['District'][:30].tolist(),
-                        # y = data_to_be_used["percentage of agricultural land"],orientation='v',
-                        # marker_color = '#ffffff',
-                        # text=[(f'{i}%') for i in data_to_be_used['percentage of agricultural land']],textposition='auto', 
 
-                    # )
                 ])
                 plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
                 plot.update_layout(
@@ -402,7 +374,7 @@ def crop_production_yeald(survey_data,igihe):
                 xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
                 )
                 
-                plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='crimson', size=14))
+                plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='white', size=14))
                 stl.plotly_chart(plot,use_container_width=True)
                 stl.write(f' :ballot_box_with_check: Agricultural land Reduced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCovered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
     else:
