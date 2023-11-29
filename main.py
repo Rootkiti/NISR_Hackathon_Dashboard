@@ -61,6 +61,7 @@ else:
 #  agriculture inputs
 # what was major source for improved seed in each season in 2021 & 2022
 source_of_improved_seed = survey_data.get('Table 5')
+clr= ''
 
 with tabs[0]:
     
@@ -86,7 +87,10 @@ with tabs[0]:
         
         year = stl.sidebar.selectbox("Choose Year", [2021,2022])
         seasons = stl.sidebar.selectbox("Choose Season", ['Season A','Season B','Season C'],index=None,placeholder="Select Seaason...")
-
+        colors = ['#00628e','#49abc8','#358a9a']
+            
+        
+        
         if  year == 2021:
             annual_data = seasonal_data_2021.copy()
         else:
@@ -98,7 +102,7 @@ with tabs[0]:
             # anuual visualization of improved seeds source data
             filtered_data = annual_data.copy()
             stl.write(f'Source Of Improved Seeds And Quantity Provided In {year}')
-            stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'])
+            stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'],color=colors)
             if(year == 2021):
                 stl.write(f':pushpin: In 2021, major source of improved seeds was agro dealers, followed by NGOs/companies and the least supply was from other source')
             else:
@@ -107,10 +111,12 @@ with tabs[0]:
                 stl.write(filtered_data)
         else:
             # seasonal visualization of improved source data
+           
             filtered_data =  pd.concat([source,annual_data[seasons]], axis=1).drop(0)
 
             stl.write(f'Source Of Improved Seeds And Quantity Provided In {year} {seasons}')
-            stl.bar_chart(filtered_data, x='Source', y= seasons)
+            stl.bar_chart(filtered_data, x='Source',)
+            print(seasons)
             with stl.expander("View Visualized Data"):
                stl.write(filtered_data)
 
@@ -140,7 +146,7 @@ with tabs[0]:
         if not seasons:
             filtered_data = fertilizer_annual_data.copy()
             stl.write(f'Where Did Majority Of Farmers Buy inorganic Fertilizers In {year} ?')
-            stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'],)
+            stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'],color=colors)
             if(year == 2021):
                 stl.write(f':pushpin: In 2021, most of farmers bought fertilizers from agro dealers, then NGOs/companies and the least bought from other source')
             else:
@@ -152,7 +158,7 @@ with tabs[0]:
             filtered_data =  pd.concat([source,fertilizer_annual_data[seasons]], axis=1).drop(0)
             
             stl.write(f'Where Did Majority Of Farmers Buy inorganic Fertilizers In {year} {seasons}')
-            stl.bar_chart(filtered_data, x='Source', y= seasons)
+            stl.bar_chart(filtered_data, x='Source',)
             with stl.expander("View Visualized Data"):
                 stl.write(filtered_data)
  
@@ -160,29 +166,6 @@ with tabs[0]:
 
    
     new_column_names = ['District','Overall','SSF','LSF']
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #**************************** adption to the use agbriculture inputs by farmes categoried section **********************************
