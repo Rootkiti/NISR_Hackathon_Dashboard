@@ -123,7 +123,59 @@ def Know_this():
 
 
     data_value=[zero_level,primary,lower_secodary,upper_secondary,university]
-    plt = px.bar(data_value,x=levels,y=data_value,color=levels,text=(data_value),title='Popilation In Agriculture And Their Level Of Education',labels = dict(y = "Population In Agriculture",x = "Level Of Education"))
+    plt = px.bar(data_value,x=levels,y=data_value,color=levels,text=(data_value),title='Popilation In Agriculture And Their Level Of Education',range_y=[1000,2000000],
+                 color_discrete_map = {"None":"#FF0000", "Primary":"#00FF00", "Lower Secondary":"#0000FF", "Upper Secondary":"#FFFF00", "University":"#800080"},labels = dict(y = "Population In Agriculture",x = "Level Of Education"))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     plt.update_traces(width=1)
     plt.update_layout(height=500,legend_title="Level Of Education",)
   
