@@ -50,14 +50,27 @@ def showData(district,season):
             protected_land_by_district = protected_land[protected_land['District']==district].reset_index()
             # drawing figue
             notation = round(protected_land_by_district['Overall'][0],1)
-            data = [notation,(100-notation)]
-            Lables = ['Achieved %','Lacking %']
+            data = [round(protected_land_by_district['SSF'][0],1),round(protected_land_by_district['LSF'][0],1)]
+            Lables = ['SSF(%)','LSF(%)']
             fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-            fig.update_traces(hoverinfo='percent+label', textinfo='none')
-            fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
+            fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+            annotation1 = dict(
+            text='Overall',
+            x=0.5, y=0.7,  # Adjust the position
+            font=dict(size=15),
+            showarrow=False,
+            )
+
+            annotation2 = dict(
+            text=(f'{notation}%'),
+            x=0.5, y=0.4,  # Adjust the position
+            font=dict(size=13),
+            showarrow=False,
+                    )
+            fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
             stl.plotly_chart(fig,use_container_width=True)
 
         with col2:
@@ -68,14 +81,27 @@ def showData(district,season):
             machinary_equipments_by_district = machinary_equipments[machinary_equipments['District'] == district].reset_index()
             # drawing figue
             notation = round(machinary_equipments_by_district['Overall'][0],1)
-            data = [notation,(100-notation)]
-            Lables = ['Achieved %','Lacking %']
+            data = [round(machinary_equipments_by_district['SSF'][0],1),round(machinary_equipments_by_district['LSF'][0],1)]
+            Lables = ['SSF(%)','LSF(%)']
             fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-            fig.update_traces(hoverinfo='percent+label', textinfo='none')
-            fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
+            fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+            annotation1 = dict(
+            text='Overall',
+            x=0.5, y=0.7,  # Adjust the position
+            font=dict(size=15),
+            showarrow=False,
+            )
+
+            annotation2 = dict(
+            text=(f'{notation}%'),
+            x=0.5, y=0.4,  # Adjust the position
+            font=dict(size=13),
+            showarrow=False,
+                    )
+            fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
             stl.plotly_chart(fig,use_container_width=True)
 
         with col3:
@@ -86,15 +112,28 @@ def showData(district,season):
             irrigation_by_district = irrigation[irrigation['District'] == district].reset_index()
             # drawing figue
             notation = round(irrigation_by_district['Overall'][0],1)
-            data = [notation,(100-notation)]
-            Lables = ['Achieved %','Lacking %']
+            data = [round(irrigation_by_district['SSF'][0],1),round(irrigation_by_district['LSF'][0],1)]
+            Lables = ['SSF(%)','LSF(%)']
             fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-            fig.update_traces(hoverinfo='percent+label', textinfo='none')
-            fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
-            stl.plotly_chart(fig,use_container_width=True) 
+            fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+            annotation1 = dict(
+            text='Overall',
+            x=0.5, y=0.7,  # Adjust the position
+            font=dict(size=15),
+            showarrow=False,
+            )
+
+            annotation2 = dict(
+            text=(f'{notation}%'),
+            x=0.5, y=0.4,  # Adjust the position
+            font=dict(size=13),
+            showarrow=False,
+                    )
+            fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+            stl.plotly_chart(fig,use_container_width=True)
                     
         with col4:
                 stl.write(':blue[Agroforestry (%)]')
@@ -104,14 +143,27 @@ def showData(district,season):
                 agroforestry_by_district = agroforestry[agroforestry['District'] == district].reset_index()
                 # drawing figue
                 notation = round(agroforestry_by_district['Overall'][0],1)
-                data = [notation,(100-notation)]
-                Lables = ['Achieved %','Lacking %']
+                data = [round(agroforestry_by_district['SSF'][0],1),round(agroforestry_by_district['LSF'][0],1)]
+                Lables = ['SSF(%)','LSF(%)']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
+                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                annotation1 = dict(
+                text='Overall',
+                x=0.5, y=0.7,  # Adjust the position
+                font=dict(size=15),
+                showarrow=False,
+                )
+
+                annotation2 = dict(
+                text=(f'{notation}%'),
+                x=0.5, y=0.4,  # Adjust the position
+                font=dict(size=13),
+                showarrow=False,
+                        )
+                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                 stl.plotly_chart(fig,use_container_width=True)            
         # # message
         stl.write(f':pushpin:  In {" Season A" if season == None else season} 2022, land protection against erosion achieved was :red[{round(protected_land_by_district["Overall"][0],1)}%] with  :green[{round(protected_land_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(protected_land_by_district["LSF"][0],1)}%] of larger scale farmers.')
@@ -129,15 +181,28 @@ def showData(district,season):
                     protected_land = protected_land.set_axis(new_column_names,axis=1)
                     protected_land = protected_land.drop(0)
                     ## drawing figue
-                    data = [round(protected_land['Overall'][31],1),round((100-protected_land['Overall'][31]),1)]
-                    notation = protected_land['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(protected_land['SSF'][31],1),round((protected_land['LSF'][31]),1)]
+                    notation = round(protected_land['Overall'][31],1)
+                    Lables = ['SSF(%)','LSF(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.5,))
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col2:
@@ -146,15 +211,29 @@ def showData(district,season):
                     machinary_equipments = pd.concat([districts,machinary_equipments], axis=1)
                     machinary_equipments = machinary_equipments.set_axis(new_column_names,axis=1)
                         ## drawing figue
-                    data = [round(machinary_equipments['Overall'][31],1),round((100-machinary_equipments['Overall'][31]),1)]
-                    notation = machinary_equipments['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(machinary_equipments['SSF'][31],1),round((machinary_equipments['LSF'][31]),1)]
+                    notation = round(machinary_equipments['Overall'][31],1)
+                    Lables = ['SSF(%)','LSF(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],
+                                      legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col3:
@@ -163,16 +242,28 @@ def showData(district,season):
                     irrigation = pd.concat([districts,irrigation], axis=1)
                     irrigation = irrigation.set_axis(new_column_names,axis=1)
                     ## drawing figue
-                    data = [round(irrigation['Overall'][31],1),round((100-irrigation['Overall'][31]),1)]
-                    notation = irrigation['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(irrigation['SSF'][31],1),round((irrigation['LSF'][31]),1)]
+                    notation = round(irrigation['Overall'][31],1)
+                    Lables = ['SSF(%)','LSF(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
                 
                 with col4:
@@ -181,16 +272,28 @@ def showData(district,season):
                     agroforestry = pd.concat([districts,agroforestry], axis=1)
                     agroforestry = agroforestry.set_axis(new_column_names,axis=1)
                     ## drawing figue
-                    data = [round(agroforestry['Overall'][31],1),round((100-agroforestry['Overall'][31]),1)]
-                    notation = agroforestry['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(agroforestry['SSF'][31],1),round((agroforestry['LSF'][31]),1)]
+                    notation = round(agroforestry['Overall'][31],1)
+                    Lables = ['SSF(%)','LSF(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
                 # message
                 stl.write(f':pushpin: In season A 2022, land protection against erosion achieved was :orange[{round(protected_land["Overall"][31],1)}%] with  :green[{round(protected_land["SSF"][31],1)}%] of small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
@@ -207,15 +310,28 @@ def showData(district,season):
                 protected_land = protected_land.set_axis(new_column_names,axis=1)
                 protected_land = protected_land.drop(0)
                 ## drawing figue
-                data = [round(protected_land['Overall'][31],1),round((100-protected_land['Overall'][31]),1)]
-                notation = protected_land['Overall'][31]
-                Lables = ['Achieved %','Lacking %']
+                data = [round(protected_land['SSF'][31],1),round((protected_land['LSF'][31]),1)]
+                notation = round(protected_land['Overall'][31],1)
+                Lables = ['SSF(%)','LSF(%)']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                 color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                annotation1 = dict(
+                text='Overall',
+                x=0.5, y=0.7,  # Adjust the position
+                font=dict(size=15),
+                showarrow=False,
+                )
+
+                annotation2 = dict(
+                text=(f'{notation}%'),
+                x=0.5, y=0.4,  # Adjust the position
+                font=dict(size=13),
+                showarrow=False,
+                    )
+                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                 stl.plotly_chart(fig,use_container_width=True)
 
             with col2:
@@ -224,15 +340,28 @@ def showData(district,season):
                 machinary_equipments = pd.concat([districts,machinary_equipments], axis=1)
                 machinary_equipments = machinary_equipments.set_axis(new_column_names,axis=1)
                     ## drawing figue
-                data = [round(machinary_equipments['Overall'][31],1),round((100-machinary_equipments['Overall'][31]),1)]
-                notation = machinary_equipments['Overall'][31]
-                Lables = ['Achieved %','Lacking %']
+                data = [round(machinary_equipments['SSF'][31],1),round((machinary_equipments['LSF'][31]),1)]
+                notation = round(machinary_equipments['Overall'][31],1)
+                Lables = ['SSF(%)','LSF(%)']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                 color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                annotation1 = dict(
+                text='Overall',
+                x=0.5, y=0.7,  # Adjust the position
+                font=dict(size=15),
+                showarrow=False,
+                )
+
+                annotation2 = dict(
+                text=(f'{notation}%'),
+                x=0.5, y=0.4,  # Adjust the position
+                font=dict(size=13),
+                showarrow=False,
+                        )
+                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                 stl.plotly_chart(fig,use_container_width=True)
 
             with col3:
@@ -241,16 +370,28 @@ def showData(district,season):
                 irrigation = pd.concat([districts,irrigation], axis=1)
                 irrigation = irrigation.set_axis(new_column_names,axis=1)
                 ## drawing figue
-                data = [round(irrigation['Overall'][31],1),round((100-irrigation['Overall'][31]),1)]
-                notation = irrigation['Overall'][31]
-                Lables = ['Achieved %','Lacking %']
+                data = [round(irrigation['SSF'][31],1),round((irrigation['LSF'][31]),1)]
+                notation = round(irrigation['Overall'][31],1)
+                Lables = ['SSF(%)','LSF(%)']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                 color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                fig.update_traces(hoverinfo='percent+label', textinfo='none')
+                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                annotation1 = dict(
+                text='Overall',
+                x=0.5, y=0.7,  # Adjust the position
+                font=dict(size=15),
+                showarrow=False,
+                )
 
-                fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                annotation2 = dict(
+                text=(f'{notation}%'),
+                x=0.5, y=0.4,  # Adjust the position
+                font=dict(size=13),
+                showarrow=False,
+                        )
+                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                 stl.plotly_chart(fig,use_container_width=True)
             
             with col4:
@@ -259,16 +400,28 @@ def showData(district,season):
                 agroforestry = pd.concat([districts,agroforestry], axis=1)
                 agroforestry = agroforestry.set_axis(new_column_names,axis=1)
                 ## drawing figue
-                data = [round(agroforestry['Overall'][31],1),round((100-agroforestry['Overall'][31]),1)]
-                notation = agroforestry['Overall'][31]
-                Lables = ['Achieved %','Lacking %']
+                data = [round(agroforestry['SSF'][31],1),round((agroforestry['LSF'][31]),1)]
+                notation = round(agroforestry['Overall'][31],1)
+                Lables = ['SSF(%)','LS(%)']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                 color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                fig.update_traces(hoverinfo='percent+label', textinfo='none')
+                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                annotation1 = dict(
+                text='Overall',
+                x=0.5, y=0.7,  # Adjust the position
+                font=dict(size=15),
+                showarrow=False,
+                )
 
-                fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                annotation2 = dict(
+                text=(f'{notation}%'),
+                x=0.5, y=0.4,  # Adjust the position
+                font=dict(size=13),
+                showarrow=False,
+                        )
+                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                 stl.plotly_chart(fig,use_container_width=True)
             
         # message
@@ -285,15 +438,28 @@ def showData(district,season):
                     protected_land = protected_land.set_axis(new_column_names,axis=1)
                     protected_land = protected_land.drop(0)
                     ## drawing figue
-                    data = [round(protected_land['Overall'][31],1),round((100-protected_land['Overall'][31]),1)]
-                    notation = protected_land['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(protected_land['SSF'][31],1),round((protected_land['LSF'][31]),1)]
+                    notation = round(protected_land['Overall'][31],1)
+                    Lables = ['SSF(%)','SITE(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col2:
@@ -302,15 +468,28 @@ def showData(district,season):
                     machinary_equipments = pd.concat([districts,machinary_equipments], axis=1)
                     machinary_equipments = machinary_equipments.set_axis(new_column_names,axis=1)
                         ## drawing figue
-                    data = [round(machinary_equipments['Overall'][31],1),round((100-machinary_equipments['Overall'][31]),1)]
-                    notation = machinary_equipments['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(machinary_equipments['SSF'][31],1),round((machinary_equipments['LSF'][31]),1)]
+                    notation = round(machinary_equipments['Overall'][31],1)
+                    Lables = ['SSF(%)','SITE(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col3:
@@ -319,16 +498,28 @@ def showData(district,season):
                     irrigation = pd.concat([districts,irrigation], axis=1)
                     irrigation = irrigation.set_axis(new_column_names,axis=1)
                     ## drawing figue
-                    data = [round(irrigation['Overall'][31],1),round((100-irrigation['Overall'][31]),1)]
-                    notation = irrigation['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(irrigation['SSF'][31],1),round((irrigation['LSF'][31]),1)]
+                    notation = round(irrigation['Overall'][31],1)
+                    Lables = ['SSF(%)','SITE(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
                 
                 with col4:
@@ -337,16 +528,28 @@ def showData(district,season):
                     agroforestry = pd.concat([districts,agroforestry], axis=1)
                     agroforestry = agroforestry.set_axis(new_column_names,axis=1)
                     ## drawing figue
-                    data = [round(agroforestry['Overall'][31],1),round((100-agroforestry['Overall'][31]),1)]
-                    notation = agroforestry['Overall'][31]
-                    Lables = ['Achieved %','Lacking %']
+                    data = [round(agroforestry['SSF'][31],1),round((agroforestry['LSF'][31]),1)]
+                    notation = round(agroforestry['Overall'][31],1)
+                    Lables = ['SSF(%)','SITE(%)']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
                     color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                    fig.update_traces(hoverinfo='percent+label', textinfo='none')
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                    fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                           )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
         
                     # message
