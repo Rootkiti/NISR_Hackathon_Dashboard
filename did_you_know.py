@@ -9,7 +9,7 @@ Labour_force = pd.read_excel('RLFS.xlsx',sheet_name=None)
 
 def Know_this():
     
-    stl.subheader(':bar_chart: How Population Were Employed In Agriculture Related Activities By Sex Per Province In 2022 ?')
+    stl.write('#### :bar_chart:  Population Employed In Agriculture Related Activities By Sex Per Province In 2022')
     # kigali
     kigali_in_agriculture = Labour_force.get('Table 54')
     male_in_agriculture_kigali = kigali_in_agriculture[kigali_in_agriculture.columns[2]][3]
@@ -84,7 +84,7 @@ def Know_this():
     stl.write(f':heavy_check_mark: In Rwanda 2022, :orange[{total}] people over 16 years old were employed in agriculture, forestry and fishing, with :blue[{total_male}] Males and :violet[{total_female}] Females. The number show that except for South province where numbers for females are less than males but in other provinces numbers of females involved in agriculture, forestry and fishing are higher than males. This proves that More females were engaged in agriculture and other related activities.')
     
     #  migrants in agriculture related activities
-    stl.subheader(':clipboard: what Was The Number Of Migrants Involved In Agriculture, Forestry And Fishing ?')
+    stl.write('### :clipboard: Number Of Migrants Involved In Agriculture, Forestry And Fishing In 2022')
     migrant = Labour_force.get('Table 52')
     total_migrants_in_agriculture = migrant[migrant.columns[1]][3]
     ttl_migrants_in_agriculture = ("{:,}".format(total_migrants_in_agriculture))
@@ -110,9 +110,9 @@ def Know_this():
     stl.plotly_chart(fig,use_container_width=True)
     stl.write(f":ballot_box_with_check: In :orange[{total}] people who were invloved in agriculture, forestry and fishing in 2022,  :red[6.46%] were migrants equivalent to :blue[{ttl_migrants_in_agriculture}] people. :gray[{female_migrants_in_agriculture}] were female and :violet[{male_migrants_in_agriculture}] males. amonge them :green[{internal_migrants_in_agriculture}] were internal migrants and :blue[{external_migrants_in_agriculture}] were external migrants.")
     
-    stl.subheader(f"	:timer_clock: what was average time spent in agriculture, forestry and fishing per sex in 2022 ?")
+    stl.write(f"####	:timer_clock: average time spent in agriculture, forestry and fishing per sex in 2022 As Main Activity")
     stl.write(':ballot_box_with_check: On average males spent more time in agriculture,forestery and fishing as their main job than females. they spent :red[29.6] hours per week while females only spent :orange[27.5] hourse per week and this make on average a total of :green[28.5] hours per week.')
-    stl.write(f"#### :chart_with_downwards_trend:**Education level of population involved in agriculture, forestry and fishing**.")
+    stl.write(f"#### :chart_with_downwards_trend: Education level of population involved in agriculture, forestry and fishing")
     population_education_level  = Labour_force.get('Table 21')
     zero_level = population_education_level[population_education_level.columns[2]][3]
     primary = population_education_level[population_education_level.columns[3]][3]

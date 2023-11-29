@@ -120,7 +120,7 @@ def showData(district,season):
         stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry_by_district["Overall"][0],1)}%] with  :green[{round(agroforestry_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(agroforestry_by_district["LSF"][0],1)}%] of larger scale farmers.')
 
     else:
-        stl.write(f":green[Precentage of agriculture practices at national level in 2022]")
+        stl.write(f"##### :green[**Precentage of agriculture practices at national level in 2022**]")
 
         if(season == 'Season A' or season ==None):
                 with col1:
@@ -367,12 +367,12 @@ def showData(district,season):
 
     # Use of modern irrigation methides
     if(district == ''):
-        stl.subheader('  :bar_chart: What Was % Use Of Modern Irrigation Methods Per Season In 2022 ?') 
-        stl.write(f":green[Precentage of seasonal use of mordern irrigation methods at national level]")
+        stl.markdown('#### :bar_chart: % Use Of Modern Irrigation Methods Per Season In 2022') 
+        stl.write(f"##### :green[Precentage of seasonal use of mordern irrigation methods at national level]")
 
     else:
-        stl.subheader(f':bar_chart: What Was % Use Of Modern Irrigation Methods Per Season In {district} District 2022 ?')  
-        stl.write(f":green[Precentage of seasonal use of mordern irrigation methods at District level]")
+        stl.markdown(f'#### :bar_chart: % Use Of Modern Irrigation Methods Per Season In {district} District 2022')  
+        stl.write(f"##### :green[Precentage of seasonal use of mordern irrigation methods at District level]")
 
             
 #   types of irrigation section
@@ -583,12 +583,12 @@ def showData(district,season):
    
    
     if(district == ''):
-       stl.subheader('  :bar_chart: What Was % Of Each Source Of Water Used In Irrigation Per Season In 2022')  
-       stl.write(f":green[Precentage of seasonal use and source of water for  irrigation at national level]")
+       stl.markdown('####  :bar_chart: % Of Each Source Of Water Used In Irrigation Per Season In 2022')  
+       stl.write(f"##### :green[Precentage of seasonal use and source of water for  irrigation at national level]")
 
     else:
-        stl.subheader(f' :bar_chart: What Was % Of Each Source Of Water Used In Irrigation Per Season In {district} District 2022')
-        stl.write(f":green[Precentage of seasonal use and source of water for  irrigation at District level]")
+        stl.markdown(f'#### :bar_chart: % Of Each Source Of Water Used In Irrigation Per Season In {district} District 2022')
+        stl.write(f"##### :green[Precentage of seasonal use and source of water for  irrigation at District level]")
   
 
     
@@ -792,7 +792,7 @@ def showData(district,season):
            stl.plotly_chart(fig, use_container_width=True)
     stl.write(':point_left: Select district from left sidebar to see sources of water used in desired district per season.')
 #  area under agriculture practices
-    stl.subheader(':bar_chart: What Was Seasonal Change In Area under agricultural practices ?')
+    stl.subheader(':bar_chart: Seasonal Change In Area under agricultural practices in 20222')
     practices = survey_data.get('Table 10')
     cols = practices.columns
     practice = [' Agricultural land under Modern irrigation (Ha)','Agricultural area under erosion control','Agricultural area under agroforestry trees']
