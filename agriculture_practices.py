@@ -43,7 +43,7 @@ def showData(district,season):
             seasonal_practices = seasonal_practices.fillna(0)
 
         with col1:
-            stl.write(':red[Land Protection %]')
+            stl.write(':blue[Land Protection %]')
             protected_land = seasonal_practices[cols[0:4]]
             protected_land = protected_land.set_axis(new_column_names,axis=1)
             protected_land = protected_land.drop(0)
@@ -53,8 +53,8 @@ def showData(district,season):
             data = [notation,(100-notation)]
             Lables = ['Achieved %','Lacking %']
             fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'brown',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
             fig.update_traces(hoverinfo='percent+label', textinfo='none')
             fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
@@ -71,15 +71,15 @@ def showData(district,season):
             data = [notation,(100-notation)]
             Lables = ['Achieved %','Lacking %']
             fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'blue',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
             fig.update_traces(hoverinfo='percent+label', textinfo='none')
             fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
             stl.plotly_chart(fig,use_container_width=True)
 
         with col3:
-            stl.write(':orange[Irrigation (%)]')
+            stl.write(':blue[Irrigation (%)]')
             irrigation = seasonal_practices[cols[7:10]].drop(0)
             irrigation = pd.concat([districts,irrigation], axis=1)
             irrigation = irrigation.set_axis(new_column_names,axis=1)
@@ -89,15 +89,15 @@ def showData(district,season):
             data = [notation,(100-notation)]
             Lables = ['Achieved %','Lacking %']
             fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'yellow',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
             fig.update_traces(hoverinfo='percent+label', textinfo='none')
             fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
             stl.plotly_chart(fig,use_container_width=True) 
                     
         with col4:
-                stl.write(':green[Agroforestry (%)]')
+                stl.write(':blue[Agroforestry (%)]')
                 agroforestry = seasonal_practices[cols[10:]].drop(0)
                 agroforestry = pd.concat([districts,agroforestry], axis=1)
                 agroforestry = agroforestry.set_axis(new_column_names,axis=1)
@@ -107,8 +107,8 @@ def showData(district,season):
                 data = [notation,(100-notation)]
                 Lables = ['Achieved %','Lacking %']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': '#004225',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                 fig.update_traces(hoverinfo='percent+label', textinfo='none')
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=20, showarrow=False)])
@@ -124,7 +124,7 @@ def showData(district,season):
 
         if(season == 'Season A' or season ==None):
                 with col1:
-                    stl.write(':red[Land protection (%)]')
+                    stl.write(':blue[Land protection (%)]')
                     protected_land = seasonal_practices[cols[0:4]]
                     protected_land = protected_land.set_axis(new_column_names,axis=1)
                     protected_land = protected_land.drop(0)
@@ -133,8 +133,8 @@ def showData(district,season):
                     notation = protected_land['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'brown',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
                     fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
@@ -150,15 +150,15 @@ def showData(district,season):
                     notation = machinary_equipments['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'blue',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
                     fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col3:
-                    stl.write(':orange[Irrigation (%)]')
+                    stl.write(':blue[Irrigation (%)]')
                     irrigation = seasonal_practices[cols[7:10]].drop(0)
                     irrigation = pd.concat([districts,irrigation], axis=1)
                     irrigation = irrigation.set_axis(new_column_names,axis=1)
@@ -167,8 +167,8 @@ def showData(district,season):
                     notation = irrigation['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'yellow',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
 
@@ -176,7 +176,7 @@ def showData(district,season):
                     stl.plotly_chart(fig,use_container_width=True)
                 
                 with col4:
-                    stl.write(':green[Agroforestry (%)]')
+                    stl.write(':blue[Agroforestry (%)]')
                     agroforestry = seasonal_practices[cols[10:]].drop(0)
                     agroforestry = pd.concat([districts,agroforestry], axis=1)
                     agroforestry = agroforestry.set_axis(new_column_names,axis=1)
@@ -185,24 +185,24 @@ def showData(district,season):
                     notation = agroforestry['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': '#004225',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
 
                     fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                     stl.plotly_chart(fig,use_container_width=True)
                 # message
-                stl.write(f':pushpin: In season A 2022, land protection against erosion achieved was :red[{round(protected_land["Overall"][31],1)}%] with  :green[{round(protected_land["SSF"][31],1)}%] of small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
-                stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments["Overall"][31],1)}%] with  :green[{round(machinary_equipments["SSF"][31],1)}%] of small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of larger scale farmers.')
-                stl.write(f':pushpin: Irrigation was :red[{round(irrigation["Overall"][31],1)}%] with  :green[{round(irrigation["SSF"][31],1)}%] of small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of larger scale farmers.')
-                stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry["Overall"][31],1)}%] with  :green[{round(agroforestry["SSF"][31],1)}%] of small scale farmers and :blue[{round(agroforestry["LSF"][31],1)}%] of larger scale farmers.')
+                stl.write(f':pushpin: In season A 2022, land protection against erosion achieved was :orange[{round(protected_land["Overall"][31],1)}%] with  :green[{round(protected_land["SSF"][31],1)}%] of small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
+                stl.write(f':pushpin: use of machinary in agriculture was :orange[{round(machinary_equipments["Overall"][31],1)}%] with  :green[{round(machinary_equipments["SSF"][31],1)}%] of small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of larger scale farmers.')
+                stl.write(f':pushpin: Irrigation was :orange[{round(irrigation["Overall"][31],1)}%] with  :green[{round(irrigation["SSF"][31],1)}%] of small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of larger scale farmers.')
+                stl.write(f':pushpin: Agroforestry was :orange[{round(agroforestry["Overall"][31],1)}%] with  :green[{round(agroforestry["SSF"][31],1)}%] of small scale farmers and :blue[{round(agroforestry["LSF"][31],1)}%] of larger scale farmers.')
 
         
         if(season == 'Season B'):
             seasonal_practices = survey_data.get('Table 56')
             with col1:
-                stl.write(':red[Land Protection (%)]')
+                stl.write(':blue[Land Protection (%)]')
                 protected_land = seasonal_practices[cols[0:4]]
                 protected_land = protected_land.set_axis(new_column_names,axis=1)
                 protected_land = protected_land.drop(0)
@@ -211,9 +211,9 @@ def showData(district,season):
                 notation = protected_land['Overall'][31]
                 Lables = ['Achieved %','Lacking %']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                color_discrete_map = {'p1': 'brown',
-                                    'p2': '#8690FF',
-                                    })
+                color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
+                                        })
                 fig.update_traces(hoverinfo='percent+label', textinfo='none')
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
@@ -228,15 +228,15 @@ def showData(district,season):
                 notation = machinary_equipments['Overall'][31]
                 Lables = ['Achieved %','Lacking %']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                color_discrete_map = {'p1': 'blue',
-                                    'p2': '#8690FF',
-                                    })
+                color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
+                                        })
                 fig.update_traces(hoverinfo='percent+label', textinfo='none')
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
 
             with col3:
-                stl.write(':orange[Irrigatio (%)]')
+                stl.write(':blue[Irrigation (%)]')
                 irrigation = seasonal_practices[cols[7:10]].drop(0)
                 irrigation = pd.concat([districts,irrigation], axis=1)
                 irrigation = irrigation.set_axis(new_column_names,axis=1)
@@ -245,16 +245,16 @@ def showData(district,season):
                 notation = irrigation['Overall'][31]
                 Lables = ['Achieved %','Lacking %']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                color_discrete_map = {'p1': 'yellow',
-                                    'p2': '#8690FF',
-                                    })
+                color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
+                                        })
                 fig.update_traces(hoverinfo='percent+label', textinfo='none')
 
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
             
             with col4:
-                stl.write(':green[agroforestry (%)]')
+                stl.write(':blue[agroforestry (%)]')
                 agroforestry = seasonal_practices[cols[10:]].drop(0)
                 agroforestry = pd.concat([districts,agroforestry], axis=1)
                 agroforestry = agroforestry.set_axis(new_column_names,axis=1)
@@ -263,24 +263,24 @@ def showData(district,season):
                 notation = agroforestry['Overall'][31]
                 Lables = ['Achieved %','Lacking %']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                color_discrete_map = {'p1': '#004225',
-                                    'p2': '#8690FF',
-                                    })
+                color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
+                                        })
                 fig.update_traces(hoverinfo='percent+label', textinfo='none')
 
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
             
         # message
-            stl.write(f':pushpin: In {season} 2022, land protection against erosion achieved was :red[{round(protected_land["Overall"][31],1)}%] with a decrease of :orange[0.7%] compared to season A.  :green[{round(protected_land["SSF"][31],1)}%] were small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
-            stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments["Overall"][31],1)}%] and there was a decreas of :orange[0.1%] compared to season A.  :green[{round(machinary_equipments["SSF"][31],1)}%] were small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of larger scale farmers.')
-            stl.write(f':pushpin: Irrigation was :red[{round(irrigation["Overall"][31],1)}%] with a decrease of :orange[0.2%] compared to season A.  :green[{round(irrigation["SSF"][31],1)}%] were small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of larger scale farmers.')
-            stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry["Overall"][31],1)}%] with a decrease of :orange[4.35%].  :green[{round(agroforestry["SSF"][31],1)}%] were small scale farmers and :blue[{round(agroforestry["LSF"][31],1)}%] of larger scale farmers.')
+            stl.write(f':pushpin: In {season} 2022, land protection against erosion achieved was :orange[{round(protected_land["Overall"][31],1)}%] with a decrease of :orange[0.7%] compared to season A.  :green[{round(protected_land["SSF"][31],1)}%] were small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of larger scale farmers.')
+            stl.write(f':pushpin: use of machinary in agriculture was :orange[{round(machinary_equipments["Overall"][31],1)}%] and there was a decreas of :orange[0.1%] compared to season A.  :green[{round(machinary_equipments["SSF"][31],1)}%] were small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of larger scale farmers.')
+            stl.write(f':pushpin: Irrigation was :orange[{round(irrigation["Overall"][31],1)}%] with a decrease of :orange[0.2%] compared to season A.  :green[{round(irrigation["SSF"][31],1)}%] were small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of larger scale farmers.')
+            stl.write(f':pushpin: Agroforestry was :orange[{round(agroforestry["Overall"][31],1)}%] with a decrease of :orange[4.35%].  :green[{round(agroforestry["SSF"][31],1)}%] were small scale farmers and :blue[{round(agroforestry["LSF"][31],1)}%] of larger scale farmers.')
 
         if (season == 'Season C'):
                 seasonal_practices = survey_data.get('Table 57')
                 with col1:
-                    stl.write(':red[Land Protection (%)]')
+                    stl.write(':blue[Land Protection (%)]')
                     protected_land = seasonal_practices[cols[0:4]]
                     protected_land = protected_land.set_axis(new_column_names,axis=1)
                     protected_land = protected_land.drop(0)
@@ -289,15 +289,15 @@ def showData(district,season):
                     notation = protected_land['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'brown',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
                     fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col2:
-                    stl.write(':ble[Use Of Machnary (%)]')
+                    stl.write(':blue[Use Of Machnary (%)]')
                     machinary_equipments = seasonal_practices[cols[4:7]].drop(0)
                     machinary_equipments = pd.concat([districts,machinary_equipments], axis=1)
                     machinary_equipments = machinary_equipments.set_axis(new_column_names,axis=1)
@@ -306,15 +306,15 @@ def showData(district,season):
                     notation = machinary_equipments['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'blue',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
                     fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{round(notation,1)}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                     stl.plotly_chart(fig,use_container_width=True)
 
                 with col3:
-                    stl.write(':orange[Irrigation]')
+                    stl.write(':blue[Irrigation %]')
                     irrigation = seasonal_practices[cols[7:10]].drop(0)
                     irrigation = pd.concat([districts,irrigation], axis=1)
                     irrigation = irrigation.set_axis(new_column_names,axis=1)
@@ -323,8 +323,8 @@ def showData(district,season):
                     notation = irrigation['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': 'yellow',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
 
@@ -332,7 +332,7 @@ def showData(district,season):
                     stl.plotly_chart(fig,use_container_width=True)
                 
                 with col4:
-                    stl.write(':green[Agroforestry (%)]')
+                    stl.write(':blue[Agroforestry (%)]')
                     agroforestry = seasonal_practices[cols[10:]].drop(0)
                     agroforestry = pd.concat([districts,agroforestry], axis=1)
                     agroforestry = agroforestry.set_axis(new_column_names,axis=1)
@@ -341,8 +341,8 @@ def showData(district,season):
                     notation = agroforestry['Overall'][31]
                     Lables = ['Achieved %','Lacking %']
                     fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                    color_discrete_map = {'p1': '#004225',
-                                        'p2': '#8690FF',
+                    color_discrete_map = {'p1': '#49abc8',
+                                        'p2': '#00628e',
                                         })
                     fig.update_traces(hoverinfo='percent+label', textinfo='none')
 
@@ -350,13 +350,21 @@ def showData(district,season):
                     stl.plotly_chart(fig,use_container_width=True)
         
                     # message
-                stl.write(f':pushpin: In {season} 2022, land protection against erosion achieved was :red[{round(protected_land["Overall"][31],1)}%] with an increase of :orange[3.7%] compared to season A and :rainbow[4.4%] compared to season B.  :green[{round(protected_land["SSF"][31],1)}%] were small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of site.')
-                stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments["Overall"][31],1)}%] and there was a decreas of :orange[0.4%] compared to season A and :rainbow[0.3%] compared to season B.  :green[{round(machinary_equipments["SSF"][31],1)}%] were small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of site.')
-                stl.write(f':pushpin: Irrigation was :red[{round(irrigation["Overall"][31],1)}%] with an increase of :orange[54.7%] compared to season A and :rainbow[54.9%] compared to season B.  :green[{round(irrigation["SSF"][31],1)}%] were small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of site.')
-                stl.write(f':pushpin: Agroforestry was :red[{round(agroforestry["Overall"][31],1)}%] with a decrease of :orange[27%] compared to season A and :rainbow[22.8%] compared to season B.  :green[{round(agroforestry["SSF"][31],1)}%] were small scale farmers.')
+                stl.write(f':pushpin: In {season} 2022, land protection against erosion achieved was :orange[{round(protected_land["Overall"][31],1)}%] with an increase of :orange[3.7%] compared to season A and :rainbow[4.4%] compared to season B.  :green[{round(protected_land["SSF"][31],1)}%] were small scale farmers and :blue[{round(protected_land["LSF"][31],1)}%] of site.')
+                stl.write(f':pushpin: use of machinary in agriculture was :orange[{round(machinary_equipments["Overall"][31],1)}%] and there was a decreas of :orange[0.4%] compared to season A and :rainbow[0.3%] compared to season B.  :green[{round(machinary_equipments["SSF"][31],1)}%] were small scale farmers and :blue[{round(machinary_equipments["LSF"][31],1)}%] of site.')
+                stl.write(f':pushpin: Irrigation was :orange[{round(irrigation["Overall"][31],1)}%] with an increase of :orange[54.7%] compared to season A and :rainbow[54.9%] compared to season B.  :green[{round(irrigation["SSF"][31],1)}%] were small scale farmers and :blue[{round(irrigation["LSF"][31],1)}%] of site.')
+                stl.write(f':pushpin: Agroforestry was :orange[{round(agroforestry["Overall"][31],1)}%] with a decrease of :orange[27%] compared to season A and :rainbow[22.8%] compared to season B.  :green[{round(agroforestry["SSF"][31],1)}%] were small scale farmers.')
 
     stl.write(':point_left: Use side menu to filter by season and/or district.')
      
+
+
+
+
+
+
+
+
     # Use of modern irrigation methides
     if(district == ''):
         stl.subheader('  :bar_chart: What Was % Use Of Modern Irrigation Methods Per Season In 2022 ?') 
@@ -371,7 +379,7 @@ def showData(district,season):
     type1,type2,type3,type4,type5= stl.columns(5)
     irrigation_type = survey_data.get("Table 58")
     irrigation_type.drop(0)
-    clrs = ['#B0BF1A','#045F5F','#FFFACD']
+    clrs = ['#00628e','#49abc8','#358a9a']
     cols = irrigation_type.columns
     
     if str(districts).strip().__contains__(district) and (district !=''):
@@ -390,7 +398,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Surface Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Surface Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -409,7 +417,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Flood Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Flood Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -428,7 +436,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Drip Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Drip Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -449,7 +457,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Sprinkler Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Sprinkler Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -469,7 +477,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Pivot Irrigation', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Pivot Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -490,7 +498,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside',)])
 
-            fig.update_layout(title_text=(f'Surface Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Surface Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -509,7 +517,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -527,7 +535,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -546,7 +554,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Sprinkler Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Sprinkler Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -564,7 +572,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Pivot Irrigation'), font_color='red',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Pivot Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -590,8 +598,46 @@ def showData(district,season):
     cols = water_source.columns
     districts = water_source[cols[0]]
     column_names = ['District',	'Season A',	'Season B',	'Season C']
-    colors = ['#254117','#1F6357','#3EA99F']
+    colors = ['#00628e','#49abc8','#358a9a']
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     if str(districts).strip().__contains__(district) and (district !=''):
         
@@ -607,7 +653,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Rain Water'), font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title_text=(f'Rain Water'), font_color='white',titlefont_size=15, titlefont_color='#3090C7', yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -627,7 +673,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f' Water treatment', font_color='red',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f' Water treatment', font_color='white',titlefont_size=15, titlefont_color='#3090C7', yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -646,7 +692,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=f'Underground Water', font_color='red',titlefont_size=13,yaxis=dict(
+            fig.update_layout(title_text=f'Underground Water', font_color='white',titlefont_size=13, titlefont_color='#3090C7', yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -665,7 +711,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=f'Lake / streams Water', font_color='red',titlefont_size=13,yaxis=dict(
+            fig.update_layout(title_text=f'Lake / streams Water', font_color='white',titlefont_size=13, titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -684,7 +730,7 @@ def showData(district,season):
            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
            textposition='outside')])
 
-           fig.update_layout(title_text=f'Water catchment', font_color='red',titlefont_size=15,  yaxis=dict(
+           fig.update_layout(title_text=f'Water catchment', font_color='white',titlefont_size=15,titlefont_color='#3090C7',  yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -704,7 +750,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y], 
             textposition='outside')])
 
-            fig.update_layout(title_text=('Rain Water'), titlefont_size=15,titlefont_color='green',title_x = 0.3,yaxis=dict(
+            fig.update_layout(title_text=('Rain Water'), titlefont_size=15,titlefont_color='#3090C7',title_x = 0.3,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -723,7 +769,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Water Treatment'), font_color='red',titlefont_size=15,titlefont_color='green',title_x = 0.2,yaxis=dict(
+            fig.update_layout(title_text=(f'Water Treatment'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.2,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -740,7 +786,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'underground Water'), font_color='red',titlefont_size=15,titlefont_color='green',title_x = 0.1,yaxis=dict(
+            fig.update_layout(title_text=(f'underground Water'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.1,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -758,7 +804,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Lake/Stream Water'), font_color='red',titlefont_size=15,titlefont_color='green',yaxis=dict(
+            fig.update_layout(title_text=(f'Lake/Stream Water'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -775,7 +821,7 @@ def showData(district,season):
            fig = go.Figure([go.Bar(x=x, y=y,marker_color=colors,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-           fig.update_layout(title_text=(f'Water Catchment'), font_color='red',titlefont_size=15,titlefont_color='green',title_x = 0.1,yaxis=dict(
+           fig.update_layout(title_text=(f'Water Catchment'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',title_x = 0.1,yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -783,7 +829,7 @@ def showData(district,season):
            stl.plotly_chart(fig, use_container_width=True)
     stl.write(':point_left: Select district from left sidebar to see sources of water used in desired district per season.')
 #  area under agriculture practices
-    stl.subheader(':green[What Was Seasonal Change In Area under agricultural practices ?]')
+    stl.subheader(':bar_chart: What Was Seasonal Change In Area under agricultural practices ?')
     practices = survey_data.get('Table 10')
     cols = practices.columns
     practice = [' Agricultural land under Modern irrigation (Ha)','Agricultural area under erosion control','Agricultural area under agroforestry trees']
@@ -799,7 +845,7 @@ def showData(district,season):
                 name = 'Season A',
                 x = practice,
                 y = a_data,orientation='v',
-                marker_color = '#2e8b57',
+                marker_color = '#00628e',
                 text=[(f'{i} Ha') for i in a_data],textposition='outside', 
 
                 ),
@@ -807,7 +853,7 @@ def showData(district,season):
                 name = 'Season B',
                 x = practice,
                 y = b_data,orientation='v',
-                marker_color = '#B0BF1A',
+                marker_color = '#49abc8',
                 text=[(f'{i} Ha') for i in b_data],textposition='outside', 
 
 
@@ -816,7 +862,7 @@ def showData(district,season):
                 name = 'Season C',
                 x = practice,
                 y = c_data,orientation='v',
-                marker_color = '#ffffff',
+                marker_color = '#358a9a',
                 text=[(f'{i} Ha') for i in c_data],textposition='auto', 
 
                 )
@@ -830,7 +876,7 @@ def showData(district,season):
             xaxis=dict(title='Agriculture Practice',titlefont_size=15,tickfont_size=14,),barmode='group'
             )
             
-    seasons_bar.update_xaxes(tickangle=15, tickfont=dict(family='Rockwell', color='crimson', size=14))
+    seasons_bar.update_xaxes(tickangle=15, tickfont=dict(family='Rockwell', color='white', size=14))
     stl.plotly_chart(seasons_bar,use_container_width=True)
     stl.write(f':pushpin: Modern irrigation was used on :green[27,134] hecters in season A and it was decreased to :orange[21,096] hecters in season B and in season C it was decresed to :violet[1,148] hecters.')
     stl.write(f':pushpin: Erosion control was applied to :green[996,156] hecters in season A and decreased to  :orange[967,224] hecters in season B.')
@@ -838,47 +884,7 @@ def showData(district,season):
 
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
+    
             
             
             
