@@ -29,13 +29,15 @@ def crop_production_yeald(survey_data,igihe):
         fig = go.Figure()
         for i in range(0,14):
             # fig.add_scatter(x=Years, y= trends.iloc[i,1:], name=trends['Crops '][i])
-            fig.add_trace(go.Scatter(x=Years,y=trends.iloc[i,1:], name=trends['Crops '][i]    # this sets its legend entry
-            ))
+            fig.add_trace(go.Scatter(x=Years,y=trends.iloc[i,1:], name=trends['Crops '][i]))
 
 
             fig.update_layout(
                 xaxis_title="Years",
-                yaxis_title="Gross Value (Value RWF per ha)",
+                # yaxis_title="",
+                yaxis=dict(
+                title='Gross Value (Value RWF per ha)',  # Set the y-axis title
+                range=[0, 5000000],),
                 legend_title="Major Crops",
                 title_text = "Change In Gross Value Of Major Crops From 2016 - 2022",
                 title_x =0.3, title_y=.9
@@ -321,7 +323,7 @@ def crop_production_yeald(survey_data,igihe):
                     title=(f'Total Area Land And Agricultural land use per district (1000 Ha) In {season} 2022'),
                     title_x=.1,
                 # width=3000,
-                height=400,yaxis=dict( title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
+                height=400,yaxis=dict( range=[0, 250],title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
                 xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
                 )
                 
@@ -354,7 +356,7 @@ def crop_production_yeald(survey_data,igihe):
                     title=(f' Total Area Land And Agricultural land use per district (1000 Ha) In {season} 2022'),
                     title_x=.1,
                 # width=3000,
-                height=400,yaxis=dict(range=[0, 300], title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
+                height=400,yaxis=dict(range=[0, 250], title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
                 xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
                 )
                 
