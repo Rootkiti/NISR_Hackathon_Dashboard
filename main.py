@@ -5,6 +5,8 @@ import plotly.express as px
 import agriculture_practices as ap
 import crop_production_and_yield as cpy
 import did_you_know as did
+import streamlit as st
+from streamlit_option_menu import option_menu
 
 
 # reading data
@@ -22,15 +24,6 @@ stl.title("SAS And RLFS Insights Presentation")
 stl.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
 
-# tabs
-tab_list = [
-    'Agriculture Inputs',
-    'Agriculture Practices',
-    'Agriculture Land Use, Yield and Crop production',
-    'Did You Know ?'
-]
-
-tabs = stl.tabs(tab_list)
 
 # sidebar
 stl.sidebar.image('logo.png', use_column_width=None, clamp=False, channels="RGB", output_format="auto")
@@ -63,8 +56,56 @@ else:
 source_of_improved_seed = survey_data.get('Table 5')
 clr= ''
 
-with tabs[0]:
     
+    
+
+                   
+# with tabs[1]:    
+#     ap.showData(dist,seasons)
+# with tabs[2]:
+#     cpy.crop_production_yeald(survey_data,seasons) 
+    
+    
+# with tabs[3]:
+#     did.Know_this() 
+
+
+
+
+# 1=sidebar menu, 2=horizontal menu, 3=horizontal menu w/ custom menu
+EXAMPLE_NO = 3
+
+year = stl.sidebar.selectbox("Choose Year", [2021,2022])
+seasons = stl.sidebar.selectbox("Choose Season", ['Season A','Season B','Season C'],index=None,placeholder="Select Seaason...")
+colors = ['#00628e','#49abc8','#358a9a']
+def streamlit_menu(example=3):
+
+    if example == 3:
+        # 2. horizontal menu with custom style
+        selected = option_menu(
+            menu_title=None,  # required
+            options=["Agriculture Inputs", "Agriculture Practices", "Land Use, Yield and Crops","Did You Know ?"],  # required
+            icons=["h", "h", "h","h"],  # optional
+            menu_icon="cast",  # optional
+            default_index=0,  # optional
+            orientation="horizontal",
+            styles={
+                "container": {"padding": "0!important", "background-color": '#13274F' },
+                # "icon": {"color": "orange", "font-size": "15px"},
+                "nav-link": {
+                    "font-size": "17px",
+                    "text-align": "left",
+                    "margin": "3px",
+                    "--hover-color": "#1F456E",
+                },
+                "nav-link-selected": {"background-color": '#0066B2'},
+            },
+        )
+        return selected
+
+selected = streamlit_menu(example=EXAMPLE_NO)
+
+if selected == "Agriculture Inputs":
     seeds_col, fertilizers_col = stl.columns(2)
     
     with seeds_col:
@@ -81,15 +122,7 @@ with tabs[0]:
         # year of 2022
         source = source_of_improved_seed[table_columns[0]]
         seasonal_data_2022 = pd.concat([source,source_of_improved_seed[table_columns[4:]]], axis=1).drop(0)
-        seasonal_data_2022 = seasonal_data_2022.set_axis(New_column_names,axis=1)
-
-        # side bars for years and seasons
-        
-        year = stl.sidebar.selectbox("Choose Year", [2021,2022])
-        seasons = stl.sidebar.selectbox("Choose Season", ['Season A','Season B','Season C'],index=None,placeholder="Select Seaason...")
-        colors = ['#00628e','#49abc8','#358a9a']
-            
-        
+        seasonal_data_2022 = seasonal_data_2022.set_axis(New_column_names,axis=1)    
         
         if  year == 2021:
             annual_data = seasonal_data_2021.copy()
@@ -421,13 +454,9 @@ with tabs[0]:
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
                 stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with an increase of :red[17.4%] compared to season B. :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nlarge-scale farmers.")
-
-                   
-with tabs[1]:    
+if selected == "Agriculture Practices":
     ap.showData(dist,seasons)
-with tabs[2]:
-    cpy.crop_production_yeald(survey_data,seasons) 
-    
-    
-with tabs[3]:
-    did.Know_this()                              
+if selected == "Land Use, Yield and Crops":
+    cpy.crop_production_yeald(survey_data,seasons)
+if selected == "Did You Know ?":
+    did.Know_this()
