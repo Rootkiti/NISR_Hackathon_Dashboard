@@ -382,7 +382,7 @@ def crop_production_yeald(survey_data,igihe):
             
             agri_land = data_to_be_used['Agricultural land']
             
-            map = mv.draw_map(area_land,agri_land)
+            map = mv.draw_map(area_land,agri_land,season)
             st_folium(map, width=1000)  
             stl.write(f':ballot_box_with_check: In {season} 2022, Agricultural land Was :green[{seasonal_data}(1000 Hecters)] And Covered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land.')
 
@@ -395,7 +395,7 @@ def crop_production_yeald(survey_data,igihe):
         
             area_land = data_to_be_used['Total land area']           
             agri_land = data_to_be_used['Agricultural land']
-            map = mv.draw_map(area_land,agri_land)
+            map = mv.draw_map(area_land,agri_land,season)
             st_folium(map, width=1000)
             stl.write(f' :ballot_box_with_check: Agricultural land Reduced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCovered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
 
