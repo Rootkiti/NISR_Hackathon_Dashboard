@@ -248,7 +248,7 @@ with tabs[0]:
              color_discrete_map = {'p1': '#49abc8',
                                         'p2': '#00628e',
                                         })
-                fig.update_traces(textinfo='none',hoverinfo='name')
+                fig.update_traces(textinfo='value+label',hoverinfo='name',textposition='inside',textfont_size=16)
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
                 stl.write(f"In season A of 2022, :orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
