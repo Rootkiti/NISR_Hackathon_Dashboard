@@ -602,43 +602,6 @@ def showData(district,season):
     
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if str(districts).strip().__contains__(district) and (district !=''):
         
         with source1:
