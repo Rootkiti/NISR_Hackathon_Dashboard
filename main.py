@@ -184,13 +184,15 @@ with tabs[0]:
                 farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
                 farmers_applied_organic = farmers_applied_organic.drop(0)
                 notation = round(farmers_applied_organic['Overall'][31],1)
-                data = [round(farmers_applied_organic['Overall'][31],1),(100-round(farmers_applied_organic['Overall'][31],1))]
-                Lables = ['Covered %','Lacking %']
+                data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
+                Lables = ['SSF (%)','LSF (%)']
+                text=['%']
                 fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
              color_discrete_map = {'p1': 'green',
                                    'p2': '#8690FF',
                                    })
-                fig.update_traces(textinfo='none',hoverinfo='name')
+                a='a'
+                fig.update_traces(textinfo=('value+label'),hoverinfo='name',textposition='inside', textfont_size=16)
                 fig.update_layout(width=250, height=250,annotations=[dict(text=(f'{notation}%'), x=0.5, y=0.5, font_size=15, showarrow=False)])
                 stl.plotly_chart(fig,use_container_width=True)
                 stl.write(f"In season A of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic['SSF'][31],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers applied \norganic fertilizers.")

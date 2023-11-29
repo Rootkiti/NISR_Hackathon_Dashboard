@@ -377,9 +377,35 @@ def crop_production_yeald(survey_data,igihe):
                 plot.update_xaxes(tickangle=45, tickfont=dict(family='Rockwell', color='white', size=14))
                 stl.plotly_chart(plot,use_container_width=True)
                 stl.write(f' :ballot_box_with_check: Agricultural land Reduced From :green[1402.0(1000 Hecters)] In Season A To :blue[{data_to_be_used["Agricultural land"][30]}(1000 Hecters)] In Season B And \nCovered :orange[{data_to_be_used["percentage of agricultural land"][30]} %] Of total Area Land')
+    
+    # ***************************** map visualzation *************************************************
     else:
         stl.write('map')
-        map = mv.draw_map()
+        seasonal_data  = ''
+        area_land = ''
+        agri_land = ''
+        if (season == 'Season A'):
+            season_a_land_use = survey_data.get('Table 8')
+            cols = season_a_land_use.columns
+            data_to_be_used = round(season_a_land_use[cols[0:4]],1)
+            data_to_be_used = data_to_be_used.set_axis(new_cols,axis=1)
+            seasonal_data = data_to_be_used["Agricultural land"][30]
+            
+            area_land = data_to_be_used['Total land area']
+            
+            agri_land = data_to_be_used['Agricultural land']
+           
+        else:
+            season_b_land_use = survey_data.get('Table 9')
+            cols = season_b_land_use.columns
+            data_to_be_used = round(season_b_land_use[cols[0:4]],1)
+            data_to_be_used = data_to_be_used.set_axis(new_cols,axis=1)
+        
+            area_land = data_to_be_used['Total land area']           
+            agri_land = data_to_be_used['Agricultural land']
+              
+            
+        map = mv.draw_map(area_land,agri_land)
         st_folium(map, width=1000)
         
     
@@ -681,26 +707,4 @@ def crop_production_yeald(survey_data,igihe):
             stl.write(f':pushpin: In 2022, {i} production was :blue[{c_national_2022[major.index(i)]}] metric tones and :green[{c_national_2021[major.index(i)]}] metric tones in 2021 with a change of :orange[{c_change[major.index(i)]}%]. ')
 
 
-        # plot = go.Figure(data=[go.Bar(
-                
-        #         name = 'National',
-        #         x = major,
-        #         y = c_national,orientation='v',
-        #         marker_color = 'blue',
-        #         text=[(f'{i}Kg/Ha') for i in c_national],textposition='auto',textfont_size=20, 
-
-        #         ),
-                
-        #     ])
-        # plot.update_traces(marker_line_color = 'pink', marker_line_width = .5, opacity = 1,)
-        # plot.update_layout(
-        #         title=(f'{igihe} 2022 Average yield Of Major Crops At National Level.'),
-        #         title_x=.26,
-        #     # width=3000,
-        #     height=500,yaxis=dict( title='Kg/Ha', titlefont_size=15,tickfont_size=14,),
-        #     xaxis=dict(title='Major Crops',titlefont_size=15,tickfont_size=14,),
-        #     )
-            
-        # plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='orange', size=14))
-        # stl.plotly_chart(plot,use_container_width=True)
     
