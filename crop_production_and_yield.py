@@ -104,7 +104,7 @@ def crop_production_yeald(survey_data,igihe):
 
         stl.plotly_chart(individual_crop_fig, use_container_width=True)   
     
-    stl.subheader(":bar_chart: **What Was Overall Gross Value Per Year From 2016 To 2021?**")
+    stl.subheader(":bar_chart: **Overall Gross Value Per Year From 2016 To 2021**")
     
     
     #    # Your data
@@ -182,7 +182,7 @@ def crop_production_yeald(survey_data,igihe):
 
 
 #    **************** change in agriculture lad section ***********************
-    stl.subheader(":bar_chart: What was seasonal change in agriculture land and it's percentage per district in 2022 ?")
+    stl.subheader(":bar_chart: Seasonal change in agriculture land and it's percentage per district in 2022")
 
 # choosing btn map and bar chart
     view_mode = stl.radio('**Change View Property**',['Bar Chart','Map'])
