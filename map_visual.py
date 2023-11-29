@@ -16,7 +16,7 @@ def draw_map(area_land,agri_land):
     map = folium.Map(location=CONNECTICUT_CENTER, zoom_start=8.5)
     for i in range(0, 30):
         location =[cordinater['latitude'][i],cordinater['longitude'][i]]
-        folium.Marker(location,popup = (f'District: {cordinater["district"][i]}\n Total Area: {area_land[i]}Ha\n Agriculture Land: {agri_land[i]}Ha'),tooltip=cordinater["district"][i]).add_to(map)
+        folium.Marker(location,popup = (f'District: {cordinater["district"][i]}\n Total Area: {area_land[i]}(1000Ha)\n Agriculture Land: {agri_land[i]}(1000Ha)'),tooltip=cordinater["district"][i]).add_to(map)
         
     
     return map
