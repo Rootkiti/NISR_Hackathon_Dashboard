@@ -354,7 +354,7 @@ def crop_production_yeald(survey_data,igihe):
                     title=(f' Total Area Land And Agricultural land use per district (1000 Ha) In {season} 2022'),
                     title_x=.1,
                 # width=3000,
-                height=400,yaxis=dict( title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
+                height=400,yaxis=dict(range=[0, 300], title='Land use per district (1000 Ha)', titlefont_size=15,tickfont_size=14,),
                 xaxis=dict(title='Districts',titlefont_size=15,tickfont_size=14,),
                 )
                 
@@ -455,7 +455,7 @@ def crop_production_yeald(survey_data,igihe):
                 title_x=.26,
             width=600,
             height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(range=[0, 20000],title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
             )
             
         plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='White', size=14))
@@ -511,7 +511,7 @@ def crop_production_yeald(survey_data,igihe):
                 title_x=.26,
             width=600,
             height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(range=[0, 20000],title='Kg\Ha',titlefont_size=15,tickfont_size=14,),
             )
             
         plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
@@ -548,7 +548,7 @@ def crop_production_yeald(survey_data,igihe):
                 title=(f'{igihe} 2022 Average yield Of Major Crops At National Level.'),
                 title_x=.26,
             # width=3000,
-            height=500,yaxis=dict( title='Kg/Ha', titlefont_size=15,tickfont_size=14,),
+            height=500,yaxis=dict( range=[0, 13000],title='Kg/Ha', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Major Crops',titlefont_size=15,tickfont_size=14,),
             )
             
@@ -595,7 +595,7 @@ def crop_production_yeald(survey_data,igihe):
                 title_x=.26,
             # width=300,
             height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(range=[0, 2000000],title='Metric Tones',titlefont_size=15,tickfont_size=14,),
             )
             
         plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
@@ -642,7 +642,7 @@ def crop_production_yeald(survey_data,igihe):
                 title_x=.26,
             # width=300,
             height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(range=[0, 2000000],title='Metric Tones',titlefont_size=15,tickfont_size=14,),
             )
             
         plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))
@@ -688,7 +688,7 @@ def crop_production_yeald(survey_data,igihe):
                 title_x=.26,
             # width=300,
             height=600,yaxis=dict( title='Major Crops', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Metric Tones',titlefont_size=15,tickfont_size=14,),
+            xaxis=dict(range=[0, 150000],title='Metric Tones',titlefont_size=15,tickfont_size=14,),
             )
             
         plot.update_xaxes(tickangle=0, tickfont=dict(family='Rockwell', color='white', size=14))

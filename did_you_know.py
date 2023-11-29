@@ -75,8 +75,10 @@ def Know_this():
     fig.update_layout(barmode='group', title=(f'People Employed In Agriculture, Forestry And Fishing By Sex') ,
                 title_x=.26,
             width=3000,
-            height=500,yaxis=dict( title='Number Of People', titlefont_size=15,tickfont_size=14,),
-            xaxis=dict(title='Provinces',titlefont_size=15,tickfont_size=14,),)
+            height=500,
+            yaxis=dict( title='Number Of People', titlefont_size=15,tickfont_size=14,range=[0, 500000]),
+            xaxis=dict(title='Provinces',titlefont_size=15,tickfont_size=14,),
+            )
     fig.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
     stl.plotly_chart(fig,use_container_width=True)
     
@@ -111,7 +113,26 @@ def Know_this():
     stl.write(f":ballot_box_with_check: In :orange[{total}] people who were invloved in agriculture, forestry and fishing in 2022,  :red[6.46%] were migrants equivalent to :blue[{ttl_migrants_in_agriculture}] people. :gray[{female_migrants_in_agriculture}] were female and :violet[{male_migrants_in_agriculture}] males. amonge them :green[{internal_migrants_in_agriculture}] were internal migrants and :blue[{external_migrants_in_agriculture}] were external migrants.")
     
     stl.write(f"####	:timer_clock: average time spent in agriculture, forestry and fishing per sex in 2022 As Main Activity")
-    stl.write(':ballot_box_with_check: On average males spent more time in agriculture,forestery and fishing as their main job than females. they spent :red[29.6] hours per week while females only spent :orange[27.5] hourse per week and this make on average a total of :green[28.5] hours per week.')
+    average_time = Labour_force.get('Table 28')
+    total_hour = average_time[average_time.columns[1]][4]
+    male_hour = average_time[average_time.columns[2]][4]
+    female_hour = average_time[average_time.columns[3]][4]
+    sex= ['Male','Female']
+
+
+    data_value=[male_hour,female_hour]
+    cl1,cl2,cl3=stl.columns(3)
+    with cl2:
+        plt = px.bar(data_value,x=sex,y=data_value,color=sex,text=(data_value),title='Average Number Of Hours worked per week by sex',
+                 color_discrete_map = {"Male":"#49abc8", "Female":"#00628e"},labels = dict(y = "Average Hours",x = "Sex"),range_y=[0,50]) 
+    
+        plt.update_traces(width=.8)
+        plt.update_layout(height=500,legend_title="sex",barmode='group')
+    
+        plt.update_traces(textposition='outside')
+        stl.plotly_chart(plt,use_container_width=True)
+    
+    stl.write(f':ballot_box_with_check: On average males spent more time in agriculture,forestery and fishing as their main job than females. they spent :red[{male_hour}] hours per week while females only spent :orange[{female_hour}] hourse per week and this make on average a total of :green[{total_hour}] hours per week.')
     stl.write(f"#### :chart_with_downwards_trend: Education level of population involved in agriculture, forestry and fishing")
     population_education_level  = Labour_force.get('Table 21')
     zero_level = population_education_level[population_education_level.columns[2]][3]
@@ -123,15 +144,30 @@ def Know_this():
 
 
     data_value=[zero_level,primary,lower_secodary,upper_secondary,university]
-    plt = px.bar(data_value,x=levels,y=data_value,color=levels,text=(data_value),title='Popilation In Agriculture And Their Level Of Education',range_y=[1000,2000000],
-                 color_discrete_map = {"None":"#00628e", "Primary":"#49abc8", "Lower Secondary":"#358a9a", "Upper Secondary":"#266774", "University":"#022D36"},labels = dict(y = "Population In Agriculture",x = "Level Of Education")) 
+    fig = go.Figure(data=[go.Bar(
     
-    plt.update_traces(width=1)
-    plt.update_layout(height=500,legend_title="Level Of Education",)
-  
-    plt.update_traces(textposition='outside')
-    stl.plotly_chart(plt,use_container_width=True)
-    stl.write(":ballot_box_with_check: More People Lose Interest In Agriculture, Forestry And Fishing As Their Level Of Eduction Increases. The Above Graph Shows That People With No Education Background Are More Involved In Agriculture, Forestry And Fishing.")
+    name = 'Male',
+    x = levels,
+    y = data_value,orientation='v',
+    marker_color=["#00628e", "#49abc8", "#358a9a", "#266774", "#022D36"],    
+    text=[(f'{("{:,}".format(i))}') for i in data_value],textposition='outside', 
+
+    ),
+    
+    ])
+    fig.update_layout(barmode='group', title=(f'Population In Agriculture And Their Level Of Education') ,
+                title_x=.26,
+            width=3000,
+            height=500,
+            yaxis=dict( title='Population', titlefont_size=15,tickfont_size=14,range=[0, 2000000],dtick=300000),
+            xaxis=dict(title='Education Level',titlefont_size=15,tickfont_size=14,),
+            )
+    fig.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
+    stl.plotly_chart(fig,use_container_width=True)
+    # stl.write('#### :green[Extracted Insights]')
+    stl.write(":ballot_box_with_check: More People Loose Interest In Agriculture, Forestry And Fishing As Their Level Of Eduction Increases. The Above Graph Shows That People With No Education Background Are More Involved In Agriculture, Forestry And Fishing.")
+    stl.write(":ballot_box_with_check: Youth are not involved in Agriculture, fishing and forestry activities since they are the one who are in high level of eduction.")
+
     
     
       
