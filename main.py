@@ -97,6 +97,8 @@ def streamlit_menu(example=3):
                     "text-align": "left",
                     "margin": "3px",
                     "--hover-color": "#1F456E",
+                     "color": "#FFFFFF",
+                    
                 },
                 "nav-link-selected": {"background-color": '#0066B2'},
             },
