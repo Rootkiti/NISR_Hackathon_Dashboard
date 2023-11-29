@@ -221,7 +221,7 @@ with tabs[0]:
                 notation = round(farmers_applied_pesticides['Overall'][31],1)
                 Lables = ['SSF (%)','LSF (%)']
                 fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': 'orange',
+                color_discrete_map = {'p1': 'orange',
                                    'p2': '#8690FF',
                                    })
                 fig.update_traces(textinfo='value+label',hoverinfo='name',textposition='inside',textfont_size=16)
