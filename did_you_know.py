@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as stl
 import plotly.express as px
 import plotly.graph_objects as go
+from base64 import b64encode
 
 # reading the dataset
 Labour_force = pd.read_excel('RLFS.xlsx',sheet_name=None)
@@ -164,13 +165,23 @@ def Know_this():
             )
     fig.update_xaxes(tickfont=dict(family='Rockwell', color='white', size=14))
     stl.plotly_chart(fig,use_container_width=True)
+    
+    data = {
+    'Level Of Education': levels,
+    'population': data_value
+    
+    }
+ 
+    df = pd.DataFrame(data)
+   
+    with stl.expander("View Data In Table"):
+                stl.write(df)
+                data = df.to_csv(index=False).encode('UTF-8')
+                 
+                stl.download_button('Download Data', data = data, file_name = 'visualized_data.csv', mime='text/csv')
     # stl.write('#### :green[Extracted Insights]')
     stl.write(":ballot_box_with_check: More People Loose Interest In Agriculture, Forestry And Fishing As Their Level Of Eduction Increases. The Above Graph Shows That People With No Education Background Are More Involved In Agriculture, Forestry And Fishing.")
     stl.write(":ballot_box_with_check: Youth are not involved in Agriculture, fishing and forestry activities since they are the one who are in high level of eduction.")
-
-    
-    
-      
 
     
     
