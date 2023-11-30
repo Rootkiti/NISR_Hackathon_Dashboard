@@ -230,7 +230,7 @@ if selected == "Agriculture Inputs":
                             )
                     fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                     stl.plotly_chart(fig,use_container_width=True)
-                    stl.write(f"{district} distgrict In season A of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+                    stl.write(f"{district} district In season A of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
  
                 
                 with inorganic_in_season:

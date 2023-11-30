@@ -1013,7 +1013,7 @@ def showData(district,season):
                 x = practice,
                 y = a_data,orientation='v',
                 marker_color = '#00628e',
-                text=[(f'{i} Ha') for i in a_data],textposition='outside', 
+                text=[(f'{("{:,}".format(i))} Ha') for i in a_data],textposition='outside', 
 
                 ),
                 go.Bar(
@@ -1021,7 +1021,7 @@ def showData(district,season):
                 x = practice,
                 y = b_data,orientation='v',
                 marker_color = '#49abc8',
-                text=[(f'{i} Ha') for i in b_data],textposition='outside', 
+                text=[(f'{("{:,}".format(i))} Ha') for i in b_data],textposition='outside', 
 
 
                 ),
@@ -1030,7 +1030,7 @@ def showData(district,season):
                 x = practice,
                 y = c_data,orientation='v',
                 marker_color = '#358a9a',
-                text=[(f'{i} Ha') for i in c_data],textposition='auto', 
+                text=[(f'{("{:,}".format(i))} Ha') for i in c_data],textposition='auto', 
 
                 )
             ])
@@ -1039,7 +1039,7 @@ def showData(district,season):
                 title=(f'Seasonal Change In Area under agricultural practices'),
                 title_x=.26,
             # width=3000,
-            height=600,yaxis=dict( title='Land Size (Ha)', titlefont_size=15,tickfont_size=14,),
+            height=600,yaxis=dict( range=[0,1500000],title='Land Size (Ha)', titlefont_size=15,tickfont_size=14,),
             xaxis=dict(title='Agriculture Practice',titlefont_size=15,tickfont_size=14,),barmode='group'
             )
             
