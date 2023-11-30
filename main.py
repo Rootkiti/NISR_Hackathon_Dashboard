@@ -119,7 +119,7 @@ if selected == "Agriculture Inputs":
         if not seasons:
             # anuual visualization of improved seeds source data
             filtered_data = annual_data.copy()
-            stl.write(f'Source Of Improved Seeds And Quantity Provided In {year}')
+            stl.write(f'Source Of Improved Seeds And Quantity Provided In {year} (%)')
             stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'],color=colors)
             if(year == 2021):
                 stl.write(f':pushpin: In 2021, major source of improved seeds was agro dealers, followed by NGOs/companies and the least supply was from other source')
@@ -132,7 +132,7 @@ if selected == "Agriculture Inputs":
            
             filtered_data =  pd.concat([source,annual_data[seasons]], axis=1).drop(0)
 
-            stl.write(f'Source Of Improved Seeds And Quantity Provided In {year} {seasons}')
+            stl.write(f'Source Of Improved Seeds And Quantity Provided In {year} {seasons} (%)')
             stl.bar_chart(filtered_data, x='Source',)
             print(seasons)
             with stl.expander("View Visualized Data"):
@@ -163,7 +163,7 @@ if selected == "Agriculture Inputs":
 
         if not seasons:
             filtered_data = fertilizer_annual_data.copy()
-            stl.write(f'Where Did Majority Of Farmers Buy inorganic Fertilizers In {year} ?')
+            stl.write(f'Source inorganic Fertilizers In {year} (%) ')
             stl.bar_chart(filtered_data, x='Source', y= ['Season A','Season B','Season C'],color=colors)
             if(year == 2021):
                 stl.write(f':pushpin: In 2021, most of farmers bought fertilizers from agro dealers, then NGOs/companies and the least bought from other source')
@@ -175,7 +175,7 @@ if selected == "Agriculture Inputs":
         else:
             filtered_data =  pd.concat([source,fertilizer_annual_data[seasons]], axis=1).drop(0)
             
-            stl.write(f'Where Did Majority Of Farmers Buy inorganic Fertilizers In {year} {seasons}')
+            stl.write(f'Source of inorganic Fertilizers In {year} {seasons} (%)')
             stl.bar_chart(filtered_data, x='Source',)
             with stl.expander("View Visualized Data"):
                 stl.write(filtered_data)
@@ -515,7 +515,7 @@ if selected == "Agriculture Inputs":
                                 )
                         fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                         stl.plotly_chart(fig,use_container_width=True)
-                        stl.write(f"{district} distgrict In {season} of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+                        stl.write(f"{district} district In {season} of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
     
                     
                     with inorganic_in_season:
@@ -800,7 +800,7 @@ if selected == "Agriculture Inputs":
                                 )
                         fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                         stl.plotly_chart(fig,use_container_width=True)
-                        stl.write(f"{district} distgrict In {season} of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+                        stl.write(f"{district} district In {season} of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
     
                     
                     with inorganic_in_season:
