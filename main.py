@@ -196,137 +196,284 @@ if selected == "Agriculture Inputs":
              organic_fertilizer_in_season = survey_data.get('Table 38')
              inorganic_fertilizer_in_season = survey_data.get('Table 41')        
              pesticide_in_season = survey_data.get('Table 51')
-             with organic_in_season:
+             if(district):
+                with organic_in_season:
+                    
+                    stl.write(f":blue[Farmers who applied organic fertilizer in {district} district]")
+                    column_names = organic_fertilizer_in_season.columns
+                    farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
+                    farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
+                    farmers_applied_organic = farmers_applied_organic.drop(0)
+                    farmers_applied_organic_by_district = farmers_applied_organic[farmers_applied_organic['District']==district.strip()].reset_index()
+
+                    notation = round(farmers_applied_organic_by_district['Overall'][0],1)
+                    data = [round(farmers_applied_organic_by_district['SSF'][0],1),(round(farmers_applied_organic_by_district['LSF'][0],1))]
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+                    a='a'
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"{district} distgrict In season A of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+ 
                 
-                stl.write(":blue[Farmers who applied organic fertilizer]")
-                column_names = organic_fertilizer_in_season.columns
-                farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
-                farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
-                farmers_applied_organic = farmers_applied_organic.drop(0)
-                notation = round(farmers_applied_organic['Overall'][31],1)
-                data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                a='a'
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                with inorganic_in_season:
+            
+                    stl.write(f":blue[Farmers who used inorganic fertilizers in {district} district] ")
+                    cols = inorganic_fertilizer_in_season.columns
+                    farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
+                    farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
+                    farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
+                    farmers_applied_inorganic_by_district = farmers_applied_inorganic[farmers_applied_inorganic['District']==district.strip()].reset_index()
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
-                        )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In season A of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic['SSF'][31],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
-       
-             with inorganic_in_season:
+                    notation = round(farmers_applied_inorganic_by_district['Overall'][0],1)
+                    data = [round(farmers_applied_inorganic_by_district['SSF'][0],1),(round(farmers_applied_inorganic_by_district['LSF'][0],1))]
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"{district} district In season A of 2022, :red[{round(farmers_applied_inorganic_by_district['Overall'][0],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
+
+                with pesticides_in_season:
+            
+                    stl.write(f":blue[Farmers who used pesticides in {district} district]")
+                    cols = pesticide_in_season.columns
+                    farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
+                    farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
+                    farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
+                    farmers_applied_pesticides_by_district = farmers_applied_pesticides[farmers_applied_pesticides['District']==district.strip()].reset_index()
+
+                    notation = round(farmers_applied_pesticides_by_district['Overall'][0],1)
+                    data = [round(farmers_applied_pesticides_by_district['SSF'][0],1),(round(farmers_applied_pesticides_by_district['LSF'][0],1))]
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+            
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"{district} district In season A of 2022, :orange[{round(farmers_applied_pesticides_by_district['Overall'][0],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides_by_district['LSF'][0],1)}%] \nof large-scale farmers.")
+
+                    # rainbow
+                              #     stl.write(':blue[Irrigation (%)]')
+               
+                with seeds_in_season:
+            
+                    stl.write(f":blue[Farmers who used improved seeds in {district} district]")
+                    cols = improved_seeds_in_season.columns
+                    farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
+                    farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
+                    farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
+                    farmers_used_improved_seeds_by_district = farmers_used_improved_seeds[farmers_used_improved_seeds['District']==district.strip()].reset_index()
+
+                    notation = round(farmers_used_improved_seeds_by_district['Overall'][0],1)
+                    data = [round(farmers_used_improved_seeds_by_district['SSF'][0],1),(round(farmers_used_improved_seeds_by_district['LSF'][0],1))]
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"{district} district In {season} of 2022, :blue[{round(farmers_used_improved_seeds_by_district['Overall'][0],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds_by_district['LSF'][0],1)}%] \nof large-scale farmers.")
+
+            
+             else:
+                 
+                with organic_in_season:
+                    
+                    stl.write(":blue[Farmers who applied organic fertilizer]")
+                    column_names = organic_fertilizer_in_season.columns
+                    farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
+                    farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
+                    farmers_applied_organic = farmers_applied_organic.drop(0)
+                    notation = round(farmers_applied_organic['Overall'][31],1)
+                    data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+                    a='a'
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
+
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"In season A of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic['SSF'][31],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
         
-                stl.write(":blue[Farmers who used inorganic fertilizers]")
-                cols = inorganic_fertilizer_in_season.columns
-                farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
-                farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
-                farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
-                data = [round(farmers_applied_inorganic['SSF'][31],1),(round(farmers_applied_inorganic['LSF'][31],1))]
-                Lables = ['SSF (%)','LSF (%)']
-                notation = round(farmers_applied_inorganic['Overall'][31],1)
-                fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                with inorganic_in_season:
+            
+                    stl.write(":blue[Farmers who used inorganic fertilizers]")
+                    cols = inorganic_fertilizer_in_season.columns
+                    farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
+                    farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
+                    farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
+                    data = [round(farmers_applied_inorganic['SSF'][31],1),(round(farmers_applied_inorganic['LSF'][31],1))]
+                    Lables = ['SSF (%)','LSF (%)']
+                    notation = round(farmers_applied_inorganic['Overall'][31],1)
+                    fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
-                        )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In season A of 2022, :red[{round(farmers_applied_inorganic['Overall'][31],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic['LSF'][31],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"In season A of 2022, :red[{round(farmers_applied_inorganic['Overall'][31],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic['LSF'][31],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
 
-             with pesticides_in_season:
-        
-                stl.write(":blue[Farmers who used pesticides]")
-                cols = pesticide_in_season.columns
-                farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
-                farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
-                farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
-                data = [round(farmers_applied_pesticides['SSF'][31],1),(round(farmers_applied_pesticides['LSF'][31],1))]
-                notation = round(farmers_applied_pesticides['Overall'][31],1)
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-           
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                with pesticides_in_season:
+            
+                    stl.write(":blue[Farmers who used pesticides]")
+                    cols = pesticide_in_season.columns
+                    farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
+                    farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
+                    farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
+                    data = [round(farmers_applied_pesticides['SSF'][31],1),(round(farmers_applied_pesticides['LSF'][31],1))]
+                    notation = round(farmers_applied_pesticides['Overall'][31],1)
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+            
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
-                        )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In season A of 2022, :orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"In season A of 2022, :orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
 
-                # rainbow
-             with seeds_in_season:
-        
-                stl.write(":blue[Farmers who used improved seeds]")
-                cols = improved_seeds_in_season.columns
-                farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
-                farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
-                farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
-                data = [round(farmers_used_improved_seeds['SSF'][31],1),(round(farmers_used_improved_seeds['LSF'][31],1))]
+                    # rainbow
+              
+                with seeds_in_season:
+            
+                    stl.write(":blue[Farmers who used improved seeds]")
+                    cols = improved_seeds_in_season.columns
+                    farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
+                    farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
+                    farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
+                    data = [round(farmers_used_improved_seeds['SSF'][31],1),(round(farmers_used_improved_seeds['LSF'][31],1))]
 
-                notation = round(farmers_used_improved_seeds['Overall'][31],1)
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                    notation = round(farmers_used_improved_seeds['Overall'][31],1)
+                    Lables = ['SSF (%)','LSF (%)']
+                    fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                color_discrete_map = {'p1': '#49abc8',
+                                            'p2': '#00628e',
+                                            })
+                    fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                    annotation1 = dict(
+                    text='Overall',
+                    x=0.5, y=0.7,  # Adjust the position
+                    font=dict(size=15),
+                    showarrow=False,
+                    )
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
-                        )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nof large-scale farmers.")
+                    annotation2 = dict(
+                    text=(f'{notation}%'),
+                    x=0.5, y=0.4,  # Adjust the position
+                    font=dict(size=13),
+                    showarrow=False,
+                            )
+                    fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                    stl.plotly_chart(fig,use_container_width=True)
+                    stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nof large-scale farmers.")
 
               
         if  season == "Season B":
@@ -334,267 +481,571 @@ if selected == "Agriculture Inputs":
              organic_fertilizer_in_season = survey_data.get('Table 39')
              inorganic_fertilizer_in_season = survey_data.get('Table 42')        
              pesticide_in_season = survey_data.get('Table 52')
-             with organic_in_season:
+             if(district):
+                    with organic_in_season:
+                        
+                        stl.write(f":blue[Farmers who applied organic fertilizer in {district} district]")
+                        column_names = organic_fertilizer_in_season.columns
+                        farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
+                        farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
+                        farmers_applied_organic = farmers_applied_organic.drop(0)
+                        farmers_applied_organic_by_district = farmers_applied_organic[farmers_applied_organic['District']==district.strip()].reset_index()
+
+                        notation = round(farmers_applied_organic_by_district['Overall'][0],1)
+                        data = [round(farmers_applied_organic_by_district['SSF'][0],1),(round(farmers_applied_organic_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        a='a'
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} distgrict In {season} of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+    
+                    
+                    with inorganic_in_season:
                 
-                stl.write(":blue[farmers who applied organic fertilizer]")
-                column_names = organic_fertilizer_in_season.columns
-                farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
-                farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
-                farmers_applied_organic = farmers_applied_organic.drop(0)
-                notation = round(farmers_applied_organic['Overall'][31],1)
-                data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-                 color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                        stl.write(f":blue[Farmers who used inorganic fertilizers in {district} district] ")
+                        cols = inorganic_fertilizer_in_season.columns
+                        farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
+                        farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
+                        farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
+                        farmers_applied_inorganic_by_district = farmers_applied_inorganic[farmers_applied_inorganic['District']==district.strip()].reset_index()
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                        notation = round(farmers_applied_inorganic_by_district['Overall'][0],1)
+                        data = [round(farmers_applied_inorganic_by_district['SSF'][0],1),(round(farmers_applied_inorganic_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In {season} of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with a decrease of :red[11.8%] compared to season A.  :blue[{round(farmers_applied_organic['SSF'][31],1)}%] were \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers.")
-       
-             with inorganic_in_season:
-        
-                stl.write(":blue[farmers who used inorganic fertilizers]")
-                cols = inorganic_fertilizer_in_season.columns
-                farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
-                farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
-                farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
-                data = [round(farmers_applied_inorganic['SSF'][31],1),(round(farmers_applied_inorganic['LSF'][31],1))]
-                Lables = ['SSF (%)','LSF (%)']
-                notation = round(farmers_applied_inorganic['Overall'][31],1)
-                fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} district In {season} of 2022, :red[{round(farmers_applied_inorganic_by_district['Overall'][0],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
+
+                    with pesticides_in_season:
+                
+                        stl.write(f":blue[Farmers who used pesticides in {district} district]")
+                        cols = pesticide_in_season.columns
+                        farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
+                        farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
+                        farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
+                        farmers_applied_pesticides_by_district = farmers_applied_pesticides[farmers_applied_pesticides['District']==district.strip()].reset_index()
+
+                        notation = round(farmers_applied_pesticides_by_district['Overall'][0],1)
+                        data = [round(farmers_applied_pesticides_by_district['SSF'][0],1),(round(farmers_applied_pesticides_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f":red[{round(farmers_applied_inorganic['Overall'][31],1)}%] \nof farmers applied inorganic \nfertilizers In {season} of 2022, and decreased by :rainbow[11.1%] compared to season A. :blue[{round(farmers_applied_inorganic['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_applied_inorganic['LSF'][31],1)}%] \nof large-scale farmers.")
 
-             with pesticides_in_season:
-        
-                stl.write(":blue[farmers who used pesticides]")
-                cols = pesticide_in_season.columns
-                farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
-                farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
-                farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
-                data = [round(farmers_applied_pesticides['SSF'][31],1),(round(farmers_applied_pesticides['LSF'][31],1))]
-                notation = round(farmers_applied_pesticides['Overall'][31],1)
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} district In {season} of 2022, :orange[{round(farmers_applied_pesticides_by_district['Overall'][0],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides_by_district['LSF'][0],1)}%] \nof large-scale farmers.")
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                        # rainbow
+                                #     stl.write(':blue[Irrigation (%)]')
+                
+                    with seeds_in_season:
+                
+                        stl.write(f":blue[Farmers who used improved seeds in {district} district]")
+                        cols = improved_seeds_in_season.columns
+                        farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
+                        farmers_used_improved_seeds_by_district = farmers_used_improved_seeds[farmers_used_improved_seeds['District']==district.strip()].reset_index()
+
+                        notation = round(farmers_used_improved_seeds_by_district['Overall'][0],1)
+                        data = [round(farmers_used_improved_seeds_by_district['SSF'][0],1),(round(farmers_used_improved_seeds_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f":orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides and there was a decrease of :red[3.9%] compared to season A. :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
 
-             with seeds_in_season:
-        
-                stl.write(":blue[farmers who used improved seeds]")
-                cols = improved_seeds_in_season.columns
-                farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
-                farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1)
-                farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
-                data = [round(farmers_used_improved_seeds['SSF'][31],1),(round(farmers_used_improved_seeds['LSF'][31],1))]
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} district In {season} of 2022, :blue[{round(farmers_used_improved_seeds_by_district['Overall'][0],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds_by_district['LSF'][0],1)}%] \nof large-scale farmers.")
 
-                notation = round(farmers_used_improved_seeds['Overall'][31],1)
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
-
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                
+             else:
+                    
+                    with organic_in_season:
+                        
+                        stl.write(":blue[Farmers who applied organic fertilizer]")
+                        column_names = organic_fertilizer_in_season.columns
+                        farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
+                        farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
+                        farmers_applied_organic = farmers_applied_organic.drop(0)
+                        notation = round(farmers_applied_organic['Overall'][31],1)
+                        data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        a='a'
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with a decrease of :red[24.4%] compared to season A. :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nlarge-scale farmers.")
 
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic['SSF'][31],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+            
+                    with inorganic_in_season:
+                
+                        stl.write(":blue[Farmers who used inorganic fertilizers]")
+                        cols = inorganic_fertilizer_in_season.columns
+                        farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
+                        farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
+                        farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
+                        data = [round(farmers_applied_inorganic['SSF'][31],1),(round(farmers_applied_inorganic['LSF'][31],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        notation = round(farmers_applied_inorganic['Overall'][31],1)
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :red[{round(farmers_applied_inorganic['Overall'][31],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic['LSF'][31],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
+
+                    with pesticides_in_season:
+                
+                        stl.write(":blue[Farmers who used pesticides]")
+                        cols = pesticide_in_season.columns
+                        farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
+                        farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
+                        farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
+                        data = [round(farmers_applied_pesticides['SSF'][31],1),(round(farmers_applied_pesticides['LSF'][31],1))]
+                        notation = round(farmers_applied_pesticides['Overall'][31],1)
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
+
+                        # rainbow
+                
+                    with seeds_in_season:
+                
+                        stl.write(":blue[Farmers who used improved seeds]")
+                        cols = improved_seeds_in_season.columns
+                        farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
+                        data = [round(farmers_used_improved_seeds['SSF'][31],1),(round(farmers_used_improved_seeds['LSF'][31],1))]
+
+                        notation = round(farmers_used_improved_seeds['Overall'][31],1)
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nof large-scale farmers.")
+
+            
         if season == "Season C":
              improved_seeds_in_season = survey_data.get('Table 34')
              organic_fertilizer_in_season = survey_data.get('Table 40')
              inorganic_fertilizer_in_season = survey_data.get('Table 43')        
              pesticide_in_season = survey_data.get('Table 53')
-             with organic_in_season:
+             if(district):
+                    with organic_in_season:
+                        
+                        stl.write(f":blue[Farmers who applied organic fertilizer in {district} district]")
+                        column_names = organic_fertilizer_in_season.columns
+                        farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
+                        farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
+                        farmers_applied_organic = farmers_applied_organic.drop(0)
+                        farmers_applied_organic_by_district = farmers_applied_organic[farmers_applied_organic['District']==district.strip()].reset_index()
+
+                        notation = round(farmers_applied_organic_by_district['Overall'][0],1)
+                        data = [round(farmers_applied_organic_by_district['SSF'][0],1),(round(farmers_applied_organic_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        a='a'
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} distgrict In {season} of 2022, :green[{round(farmers_applied_organic_by_district['Overall'][0],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+    
+                    
+                    with inorganic_in_season:
                 
-                stl.write(":blue[farmers who applied organic fertilizers]")
-                column_names = organic_fertilizer_in_season.columns
-                farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
-                farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
-                farmers_applied_organic = farmers_applied_organic.drop(0)
-                notation = round(farmers_applied_organic['Overall'][31],1)
-                data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                        stl.write(f":blue[Farmers who used inorganic fertilizers in {district} district] ")
+                        cols = inorganic_fertilizer_in_season.columns
+                        farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
+                        farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
+                        farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
+                        farmers_applied_inorganic_by_district = farmers_applied_inorganic[farmers_applied_inorganic['District']==district.strip()].reset_index()
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                        notation = round(farmers_applied_inorganic_by_district['Overall'][0],1)
+                        data = [round(farmers_applied_inorganic_by_district['SSF'][0],1),(round(farmers_applied_inorganic_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In {season} of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with an increase of :red[24.4%] compared to season B.  :blue[{round(farmers_applied_organic['SSF'][31],1)}%] were \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers.")
-       
-             with inorganic_in_season:        
-                stl.write(":blue[Farmers who used inorganic fertilizers]")
-                cols = inorganic_fertilizer_in_season.columns
-                farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
-                farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
-                farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
-                data = [round(farmers_applied_inorganic['SSF'][31],1),(round(farmers_applied_inorganic['LSF'][31],1))]
-                Lables = ['SSF(%)','LSF (%)']
-                notation = round(farmers_applied_inorganic['Overall'][31],1)
-                fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} district In {season} of 2022, :red[{round(farmers_applied_inorganic_by_district['Overall'][0],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic_by_district['LSF'][0],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
+
+                    with pesticides_in_season:
+                
+                        stl.write(f":blue[Farmers who used pesticides in {district} district]")
+                        cols = pesticide_in_season.columns
+                        farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
+                        farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
+                        farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
+                        farmers_applied_pesticides_by_district = farmers_applied_pesticides[farmers_applied_pesticides['District']==district.strip()].reset_index()
+
+                        notation = round(farmers_applied_pesticides_by_district['Overall'][0],1)
+                        data = [round(farmers_applied_pesticides_by_district['SSF'][0],1),(round(farmers_applied_pesticides_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f":red[{round(farmers_applied_inorganic['Overall'][31],1)}%] \nof farmers applied inorganic \nfertilizers In {season} of 2022, and increased by :rainbow[44%] compared to season B. :blue[{round(farmers_applied_inorganic['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_applied_inorganic['LSF'][31],1)}%] \nof large-scale farmers.")
 
-             with pesticides_in_season:
-        
-                stl.write(":blue[Farmers who used pesticides]")
-                cols = pesticide_in_season.columns
-                farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
-                farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
-                farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
-                data = [round(farmers_applied_pesticides['SSF'][31],1),(round(farmers_applied_pesticides['LSF'][31],1))]
-                notation = round(farmers_applied_pesticides['Overall'][31],1)
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} district In {season} of 2022, :orange[{round(farmers_applied_pesticides_by_district['Overall'][0],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides_by_district['LSF'][0],1)}%] \nof large-scale farmers.")
 
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                        # rainbow
+                                #     stl.write(':blue[Irrigation (%)]')
+                
+                    with seeds_in_season:
+                
+                        stl.write(f":blue[Farmers who used improved seeds in {district} district]")
+                        cols = improved_seeds_in_season.columns
+                        farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
+                        farmers_used_improved_seeds_by_district = farmers_used_improved_seeds[farmers_used_improved_seeds['District']==district.strip()].reset_index()
+
+                        notation = round(farmers_used_improved_seeds_by_district['Overall'][0],1)
+                        data = [round(farmers_used_improved_seeds_by_district['SSF'][0],1),(round(farmers_used_improved_seeds_by_district['LSF'][0],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f":orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides in {season} and there was an increase of :red[54.2%] compared to season B. :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
 
-             with seeds_in_season:
-        
-                stl.write(":blue[Farmers who used improved seeds]")
-                cols = improved_seeds_in_season.columns
-                farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
-                farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1)
-                farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
-                data = [round(farmers_used_improved_seeds['SSF'][31],1),(round(farmers_used_improved_seeds['LSF'][31],1))]
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"{district} district In {season} of 2022, :blue[{round(farmers_used_improved_seeds_by_district['Overall'][0],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds_by_district['SSF'][0],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds_by_district['LSF'][0],1)}%] \nof large-scale farmers.")
 
-                notation = round(farmers_used_improved_seeds['Overall'][31],1)
-                Lables = ['SSF (%)','LSF (%)']
-                fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
-             color_discrete_map = {'p1': '#49abc8',
-                                        'p2': '#00628e',
-                                        })
-                fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
-                annotation1 = dict(
-                text='Overall',
-                x=0.5, y=0.7,  # Adjust the position
-                font=dict(size=15),
-                showarrow=False,
-                )
-
-                annotation2 = dict(
-                text=(f'{notation}%'),
-                x=0.5, y=0.4,  # Adjust the position
-                font=dict(size=13),
-                showarrow=False,
+                
+             else:
+                    
+                    with organic_in_season:
+                        
+                        stl.write(":blue[Farmers who applied organic fertilizer]")
+                        column_names = organic_fertilizer_in_season.columns
+                        farmers_applied_organic = organic_fertilizer_in_season[column_names[0:4]]
+                        farmers_applied_organic = farmers_applied_organic.set_axis(new_column_names,axis=1)
+                        farmers_applied_organic = farmers_applied_organic.drop(0)
+                        notation = round(farmers_applied_organic['Overall'][31],1)
+                        data = [round(farmers_applied_organic['SSF'][31],1),(round(farmers_applied_organic['LSF'][31],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        a='a'
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
                         )
-                fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
-                stl.plotly_chart(fig,use_container_width=True)
-                stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with an increase of :red[17.4%] compared to season B. :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] were \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nlarge-scale farmers.")
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :green[{round(farmers_applied_organic['Overall'][31],1)}%] \nof farmers applied organic \nfertilizers with :blue[{round(farmers_applied_organic['SSF'][31],1)}%] of \nsmall-scale farmers and :red[{round(farmers_applied_organic['LSF'][31],1)}%] \nof large-scale farmers applied \norganic fertilizers.")
+            
+                    with inorganic_in_season:
+                
+                        stl.write(":blue[Farmers who used inorganic fertilizers]")
+                        cols = inorganic_fertilizer_in_season.columns
+                        farmers_applied_inorganic = inorganic_fertilizer_in_season[cols[0:4]]
+                        farmers_applied_inorganic = farmers_applied_inorganic.set_axis(new_column_names,axis=1)
+                        farmers_applied_inorganic = farmers_applied_inorganic.drop(0)
+                        data = [round(farmers_applied_inorganic['SSF'][31],1),(round(farmers_applied_inorganic['LSF'][31],1))]
+                        Lables = ['SSF (%)','LSF (%)']
+                        notation = round(farmers_applied_inorganic['Overall'][31],1)
+                        fig = px.pie(data, names=Lables,values=data, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :red[{round(farmers_applied_inorganic['Overall'][31],1)}%] \nof farmers applied inorganic \nfertilizers with :blue[{round(farmers_applied_inorganic['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_inorganic['LSF'][31],1)}%] \nof large-scale farmers applied \ninorganic fertilizers.")
+
+                    with pesticides_in_season:
+                
+                        stl.write(":blue[Farmers who used pesticides]")
+                        cols = pesticide_in_season.columns
+                        farmers_applied_pesticides = pesticide_in_season[cols[0:4]]
+                        farmers_applied_pesticides = farmers_applied_pesticides.set_axis(new_column_names,axis=1)
+                        farmers_applied_pesticides = farmers_applied_pesticides.drop(0)
+                        data = [round(farmers_applied_pesticides['SSF'][31],1),(round(farmers_applied_pesticides['LSF'][31],1))]
+                        notation = round(farmers_applied_pesticides['Overall'][31],1)
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :orange[{round(farmers_applied_pesticides['Overall'][31],1)}%] \nof farmers used pestsides with :blue[{round(farmers_applied_pesticides['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_applied_pesticides['LSF'][31],1)}%] \nof large-scale farmers.")
+
+                        # rainbow
+                
+                    with seeds_in_season:
+                
+                        stl.write(":blue[Farmers who used improved seeds]")
+                        cols = improved_seeds_in_season.columns
+                        farmers_used_improved_seeds = improved_seeds_in_season[cols[0:4]]
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.set_axis(new_column_names,axis=1,)
+                        farmers_used_improved_seeds = farmers_used_improved_seeds.drop(0)
+                        data = [round(farmers_used_improved_seeds['SSF'][31],1),(round(farmers_used_improved_seeds['LSF'][31],1))]
+
+                        notation = round(farmers_used_improved_seeds['Overall'][31],1)
+                        Lables = ['SSF (%)','LSF (%)']
+                        fig = px.pie(data, values=data, names=Lables, hole=0.5,color = ['p1', 'p2'],
+                    color_discrete_map = {'p1': '#49abc8',
+                                                'p2': '#00628e',
+                                                })
+                        fig.update_traces(hoverinfo='percent+label', textinfo='value+label', textposition='outside',textfont_size=13,textfont_color='orange')
+                        annotation1 = dict(
+                        text='Overall',
+                        x=0.5, y=0.7,  # Adjust the position
+                        font=dict(size=15),
+                        showarrow=False,
+                        )
+
+                        annotation2 = dict(
+                        text=(f'{notation}%'),
+                        x=0.5, y=0.4,  # Adjust the position
+                        font=dict(size=13),
+                        showarrow=False,
+                                )
+                        fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
+                        stl.plotly_chart(fig,use_container_width=True)
+                        stl.write(f"In {season} of 2022, :blue[{round(farmers_used_improved_seeds['Overall'][31],1)}%] \nof farmers used improved seeds with :rainbow[{round(farmers_used_improved_seeds['SSF'][31],1)}%] of \nsmall-scale farmers and :green[{round(farmers_used_improved_seeds['LSF'][31],1)}%] \nof large-scale farmers.")
+
+           
 if selected == "Agriculture Practices":
     ap.showData(dist,seasons)
 if selected == "Land Use, Yield and Crops":

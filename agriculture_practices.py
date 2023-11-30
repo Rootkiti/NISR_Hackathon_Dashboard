@@ -165,6 +165,7 @@ def showData(district,season):
                         )
                 fig.update_layout(width=265, height=265,annotations=[annotation1,annotation2],legend=dict(x=.3, y=-.7,))
                 stl.plotly_chart(fig,use_container_width=True)            
+
         # # message
         stl.write(f':pushpin:  In {" Season A" if season == None else season} 2022, land protection against erosion achieved was :red[{round(protected_land_by_district["Overall"][0],1)}%] with  :green[{round(protected_land_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(protected_land_by_district["LSF"][0],1)}%] of larger scale farmers.')
         stl.write(f':pushpin: use of machinary in agriculture was :red[{round(machinary_equipments_by_district["Overall"][0],1)}%] with  :green[{round(machinary_equipments_by_district["SSF"][0],1)}%] of small scale farmers and :blue[{round(machinary_equipments_by_district["LSF"][0],1)}%] of larger scale farmers.')
