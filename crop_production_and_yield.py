@@ -430,7 +430,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = a_national,orientation='h',
                 marker_color = '#358a9a',
-                text=[(f'{i}Kg/Ha') for i in a_national],textposition='outside',textfont_size=15, 
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in a_national],textposition='outside',textfont_size=15, 
 
                 ),
                 go.Bar(
@@ -438,7 +438,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = a_ssf,orientation='h',
                 marker_color = '#49abc8',
-                text=[(f'{i}Kg/Ha') for i in a_ssf],textposition='outside',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in a_ssf],textposition='outside',textfont_size=15, 
 
 
                 ),
@@ -447,7 +447,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = a_lsf,orientation='h',
                 marker_color = '#00628e',
-                text=[(f'{i}Kg/Ha') for i in a_lsf],textposition='outside'
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in a_lsf],textposition='outside'
 
                 )
             ])
@@ -486,7 +486,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = b_national,orientation='h',
                 marker_color = '#358a9a',
-                text=[(f'{i}Kg/Ha') for i in b_national],textposition='outside',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in b_national],textposition='outside',textfont_size=15, 
 
                 ),
                 go.Bar(
@@ -494,7 +494,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = b_ssf,orientation='h',
                 marker_color = '#49abc8',
-                text=[(f'{i}Kg/Ha') for i in b_ssf],textposition='outside',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in b_ssf],textposition='outside',textfont_size=15, 
 
 
                 ),
@@ -503,7 +503,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = b_lsf,orientation='h',
                 marker_color = '#00628e',
-                text=[(f'{i}Kg/Ha') for i in b_lsf],textposition='outside',
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in b_lsf],textposition='outside',
 
                 )
             ])
@@ -540,7 +540,7 @@ def crop_production_yeald(survey_data,igihe):
                 x = major,
                 y = c_national,orientation='v',
                 marker_color = '#00628e',
-                text=[(f'{i}Kg/Ha') for i in c_national],textposition='auto',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} Kg/Ha') for i in c_national],textposition='auto',textfont_size=20, 
 
                 ),
                 
@@ -577,7 +577,7 @@ def crop_production_yeald(survey_data,igihe):
                 x = a_national_2022,orientation='h',
                 
                 marker_color = '#49abc8',
-                text=[(f'{i} MT') for i in a_national_2022],textposition='outside',textfont_size=15, 
+                text=[(f'{("{:,}".format(i))} MT') for i in a_national_2022],textposition='outside',textfont_size=15, 
 
                 ),
                 go.Bar(
@@ -585,7 +585,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = a_national_2021,orientation='h',
                 marker_color = '#00628e',
-                text=[(f'{i} MT') for i in a_national_2021],textposition='outside',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} MT') for i in a_national_2021],textposition='outside',textfont_size=15, 
 
 
                 ),
@@ -624,7 +624,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = b_national_2022,orientation='h',
                 marker_color = '#49abc8',
-                text=[(f'{i} MT') for i in b_national_2022],textposition='outside',textfont_size=15, 
+                text=[(f'{("{:,}".format(i))} MT') for i in b_national_2022],textposition='outside',textfont_size=15, 
 
                 ),
                 go.Bar(
@@ -632,7 +632,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = b_national_2021,orientation='h',
                 marker_color = '#00628e',
-                text=[(f'{i} MT') for i in b_national_2021],textposition='outside',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} MT') for i in b_national_2021],textposition='outside',textfont_size=15, 
 
 
                 ),
@@ -670,7 +670,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = c_national_2022,orientation='h',
                 marker_color = '#49abc8',
-                text=[(f'{i} MT') for i in c_national_2022],textposition='outside',textfont_size=15, 
+                text=[(f'{("{:,}".format(i))} MT') for i in c_national_2022],textposition='outside',textfont_size=15, 
 
                 ),
                 go.Bar(
@@ -678,7 +678,7 @@ def crop_production_yeald(survey_data,igihe):
                 y = major,
                 x = c_national_2021,orientation='h',
                 marker_color = '#00628e',
-                text=[(f'{i} MT') for i in c_national_2021],textposition='outside',textfont_size=20, 
+                text=[(f'{("{:,}".format(i))} MT') for i in c_national_2021],textposition='outside',textfont_size=15, 
 
 
                 ),
