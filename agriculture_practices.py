@@ -601,7 +601,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Surface Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Surface Irrigation', font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -620,7 +620,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Flood Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Flood Irrigation', font_color='white',titlefont_size=15, titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -639,7 +639,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Drip Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Drip Irrigation', font_color='white',titlefont_size=15, titlefont_color='#3090C7', yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -660,7 +660,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Sprinkler Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Sprinkler Irrigation', font_color='white',titlefont_size=15, titlefont_color='#3090C7', yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -680,7 +680,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title=f'Pivot Irrigation', font_color='white',titlefont_size=15,yaxis=dict(
+            fig.update_layout(title=f'Pivot Irrigation', font_color='white',titlefont_size=15, titlefont_color='#3090C7', yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
@@ -738,7 +738,7 @@ def showData(district,season):
             fig = go.Figure([go.Bar(x=x, y=y,marker_color=clrs,text=[(f'{i}%') for i in y],
             textposition='outside')])
 
-            fig.update_layout(title_text=(f'Flood Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
+            fig.update_layout(title_text=(f'Drip Irrigation'), font_color='white',titlefont_size=15,titlefont_color='#3090C7',yaxis=dict(
                                 title='Percentage (%)',
                                 titlefont_size=15,
                                 tickfont_size=14,
