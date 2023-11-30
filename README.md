@@ -36,7 +36,9 @@ _this tab presents insights from RLFS that are related to agriculture,forestry a
 4. how level of eductation affected people's decision to involve in agriculture, forestry and fishing 
 ## additional information
 ### color choice
-_most of the colors user in this dashboard are from national flag, and other color that are used are those wich are used in agriculture. colors that are used to represent seasons in second tab at in the section of seasonal use of modern irrigation methods and source of water are from 4 seasons of the year from pinterest:<https://www.pinterest.com/pin/297096906672643662/visual-search/?x=16&y=16&w=532&h=390&cropSource=6>. again this dasdoard by default has dack mode on but you cas still customize it however you like and other colors and fonts used are those that meets the best with dark mode_ 
+
+_the used colors were selected based on factor that they clearly visible in darck mode as well as in light mode. and here is the link for color we have used:<https://www.color-hex.com/color-palette/1026876>_
+
 ## requirements
 _to be able to run this app you must have/install python3+ and pip_
 
@@ -47,8 +49,15 @@ _this app is developed using streamlit, numpy,pandas and plotly packages. for it
    * pip install numpy
    * pip install pandas
    * pip install plotly
+   * pip install streamlit_folium
+   * pip install streamlit_option_menu
+   * pip install folium
+
+   ##### Alternative installation
+   * pip install requirements.txt
+
 ### running app
    _to run this app navigate to the root directory and use the following command_
-   * streamlit run main.py 
+   * streamlit run main.py
 
 

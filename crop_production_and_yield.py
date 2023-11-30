@@ -124,22 +124,22 @@ def crop_production_yeald(survey_data,igihe):
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 400px;
-            padding: 20px;
+            padding: -20px;
             margin: 10px;
-            width: 250px;
-            height: 200px;
+            width: 230px;
+            height: 100px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #000000;
         }
-        .card h3 {
-            font-size: 30px;
-            margin-bottom: 10px;
+        .card h4 {
+            font-size: 20px;
+            margin-bottom: -20px;
         }
         .card p {
             margin: 5px 0;
-            font-size: 16px;
-            font-size: 20px;
+            
+            font-size: 14px;
         }
 
         .card-2016 {
@@ -171,16 +171,16 @@ def crop_production_yeald(survey_data,igihe):
     col1, col2, col3 = st.columns(3)
 
     with col1:
-       st.markdown('<div class="card card-2016"><h3>2016</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2016), unsafe_allow_html=True)
-       st.markdown('<div class="card card-2019"><h3>2019</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span>{0} RWF per ha</p></div>'.format(overall_2019), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2016"><h4>2016</h4><p>Overall GVA Increased<br><span style="font-size:18px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2016), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2019"><h4>2019</h4><p>Overall GVA Increased<br><span style="font-size:18px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2019), unsafe_allow_html=True)
 
     with col2:
-       st.markdown('<div class="card card-2017"><h3>2017</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2017), unsafe_allow_html=True)
-       st.markdown('<div class="card card-2020"><h3>2020</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2020), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2017"><h4>2017</h4><p>Overall GVA Increased<br><span style="font-size:18px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2017), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2020"><h4>2020</h4><p>Overall GVA Increased<br><span style="font-size:18px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2020), unsafe_allow_html=True)
 
     with col3:
-       st.markdown('<div class="card card-2018"><h3>2018</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2018), unsafe_allow_html=True)
-       st.markdown('<div class="card card-2021"><h3>2021</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2021), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2018"><h4>2018</h4><p>Overall GVA Increased<br><span style="font-size:18px;">&#8593;</span>{0} RWF per ha</p></div>'.format(overall_2018), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2021"><h4>2021</h4><p>Overall GVA Increased<br><span style="font-size:18px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2021), unsafe_allow_html=True)
 
 
 #    **************** change in agriculture lad section ***********************
