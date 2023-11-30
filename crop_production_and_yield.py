@@ -18,7 +18,7 @@ def crop_production_yeald(survey_data,igihe):
     # css
     
         
-    visual = stl.radio('**Change visual property**',['Combined','Individual Crop'])
+    visual = stl.radio('**Change Graph**',['Combined','Individual Crop'])
     trends = survey_data.get('Table 7')
     cols = trends.columns
     Years = cols[1:]
@@ -180,14 +180,14 @@ def crop_production_yeald(survey_data,igihe):
 
     with col3:
        st.markdown('<div class="card card-2018"><h3>2018</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2018), unsafe_allow_html=True)
-       st.markdown('<div class="card card-2021"><h3>2021</h3><p>Overall GVA Decreased</p><p><span style="font-size:28px;">&#8595;</span> {0} RWF per ha</p></div>'.format(overall_2021), unsafe_allow_html=True)
+       st.markdown('<div class="card card-2021"><h3>2021</h3><p>Overall GVA Increased</p><p><span style="font-size:28px;">&#8593;</span> {0} RWF per ha</p></div>'.format(overall_2021), unsafe_allow_html=True)
 
 
 #    **************** change in agriculture lad section ***********************
-    stl.subheader(":bar_chart: Seasonal change in agriculture land and it's percentage per district in 2022")
+    stl.subheader(":bar_chart: Seasonal change in agriculture land Vs Total land area per district in 2022")
 
 # choosing btn map and bar chart
-    view_mode = stl.radio('**Change View Property**',['Bar Chart','Map'])
+    view_mode = stl.radio('**Change Graph**',['Bar Chart','Map'])
     selection1,selection2 = stl.columns([3,.5])
     new_cols = ['District','Total land area','Agricultural land','percentage of agricultural land']
 
